@@ -9,7 +9,7 @@ int main()
 
     
 
-//     while (window.isOpen())
+//     while (window.isOpedeln())
 //     {
         
 //         sf::Event event;
