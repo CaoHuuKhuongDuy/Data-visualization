@@ -1,6 +1,5 @@
 #include "render.h"
 
-
 const int height = 1400;
 const int width = 780;
 
@@ -17,20 +16,20 @@ int main() {
         
         Sprite sprite;
         switch (status) {
-            case -1: return EXIT_SUCCESS;
-            // case 0:
-            default:
+
+            case 0: 
                 status = homePage(window);
                 break;
-            // case 2: 
-                
-            //     break;
-            // default: status = 1;
+            case 1:
+                status = linkListPage(window);
+                break; 
+            default: 
+                status = 0;
+                break;
         }
+        window.clear();
     }
 
 
     return EXIT_SUCCESS;
 }
-
-

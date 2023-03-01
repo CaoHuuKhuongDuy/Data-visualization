@@ -1,4 +1,6 @@
 #include "process.h"
+#include "button.h"
+
 
 Event event;
 
@@ -12,8 +14,9 @@ bool Press(Sprite sprite) {
 int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
     int state = 0;
     while (window.pollEvent(event)) {
-        switch (event.type) {
 
+        switch (event.type) {
+   
             case Event::Closed:  
                 window.close(); 
                 state = -1;
@@ -24,10 +27,31 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
 
                     if (Press(linkList)) state = 1;
                     else if (Press(Stack)) state = 2;
-                    cout << state << endl;
                 }
                 break;
     
+        }
+    }
+    return state;
+}
+
+int statuslinkListPage(RenderWindow &window, Button returnButton) {
+    int state = 1;
+    
+    while (window.pollEvent(event)) {
+        state = 1;
+        switch (event.type) {
+ 
+            case Event::Closed:
+                window.close();
+                state = -1;
+                break;
+
+            case Event::MouseButtonPressed:
+                if (event.mouseButton.button == Mouse::Left) {
+                  if (returnButton.isClicked(window)) state = 0; 
+                }
+                break;
         }
     }
     return state;

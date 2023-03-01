@@ -1,9 +1,11 @@
 #include "render.h"
 #include "process.h"
+#include "button.h"
 
 using namespace sf;
 
 const string imgSource = "../media/img/";
+
 
 void resizeSprite(Sprite &sprite, double height, double width) {
     
@@ -55,5 +57,22 @@ int homePage(RenderWindow &window) {
     window.display();
     
     return statusHomePage(window, linkList, Stack);
+
+}
+
+int linkListPage(RenderWindow &window) {
+
+    window.clear(Color::White);
+    displayText(window, "Linked list", 550, 10, 50);
+
+    Font font;
+    font.loadFromFile("../media/font/arial.ttf");
+
+    Button returnButton(Vector2f(10, 10), Vector2f(100, 50), sf::Color::Black, font, "Home", 30, Color::White);
+
+    returnButton.draw(window);
+    window.display();
+
+    return statuslinkListPage(window, returnButton);
 
 }

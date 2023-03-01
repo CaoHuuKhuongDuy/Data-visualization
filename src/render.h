@@ -10,6 +10,7 @@ using namespace std;
 
 int homePage(RenderWindow &window);
 
+int linkListPage(RenderWindow &window);
 
 
 #endif
