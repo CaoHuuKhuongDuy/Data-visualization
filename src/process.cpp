@@ -35,7 +35,7 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
     return state;
 }
 
-int statuslinkListPage(RenderWindow &window, Button returnButton) {
+int statuslinkListPage(RenderWindow &window, Sprite returnButton) {
     int state = 1;
     
     while (window.pollEvent(event)) {
@@ -49,7 +49,7 @@ int statuslinkListPage(RenderWindow &window, Button returnButton) {
 
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
-                  if (returnButton.isClicked(window)) state = 0; 
+                  if (Press(returnButton)) state = 0; 
                 }
                 break;
         }

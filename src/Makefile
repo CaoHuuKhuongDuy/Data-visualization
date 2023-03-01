@@ -11,8 +11,7 @@ compile:
 	g++ -c main.cpp -I $(INCLUDE)
 	g++ -c render.cpp -o render.o -I $(INCLUDE)
 	g++ -c process.cpp -o process.o -I $(INCLUDE)
-	g++ -c button.cpp -o button.o -I $(INCLUDE)
 link:
-	g++ main.o render.o process.o button.o -o main.exe -L $(LIBRARY) $(SFMLFLAGS) $(SFML_INCLUDE)
+	g++ main.o render.o process.o -o main.exe -L $(LIBRARY) $(SFMLFLAGS) $(SFML_INCLUDE)
 run:
 	./main.exe

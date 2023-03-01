@@ -16,7 +16,7 @@ void resizeSprite(Sprite &sprite, double height, double width) {
         targetSize.y / sprite.getLocalBounds().height);
 }
 
-Sprite dataStructer(RenderWindow &window, string fileName, double sz1, double sz2, int x, int y) {
+Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, int x, int y) {
     
     fileName = imgSource + fileName;
     Texture texture;
@@ -50,8 +50,8 @@ int homePage(RenderWindow &window) {
     window.clear(Color::White);
 
     // Texture
-    Sprite linkList = dataStructer(window, "Linked-list.png", 400, 300, 50, 100);
-    Sprite Stack = dataStructer(window, "stack.png", 400, 300, 500, 100);
+    Sprite linkList = addSprite(window, "Linked-list.png", 400, 300, 50, 100);
+    Sprite Stack = addSprite(window, "stack.png", 400, 300, 500, 100);
     
     displayText(window, "Data visualization", 500, 10, 50);
     window.display();
@@ -68,9 +68,12 @@ int linkListPage(RenderWindow &window) {
     Font font;
     font.loadFromFile("../media/font/arial.ttf");
 
-    Button returnButton(Vector2f(10, 10), Vector2f(100, 50), sf::Color::Black, font, "Home", 30, Color::White);
 
-    returnButton.draw(window);
+    Sprite returnButton = addSprite(window, "homeButton.png", 150, 80, 10, 10);
+    // Button returnButton(Vector2f(10, 10), Vector2f(100, 50), sf::Color::Black, font, "Home", 30, Color::White);
+
+    // returnButton.draw(window);
+    
     window.display();
 
     return statuslinkListPage(window, returnButton);

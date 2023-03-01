@@ -11,7 +11,7 @@ using namespace std;
 
 int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack);
 
-int statuslinkListPage(RenderWindow &window, Button returnButton);
+int statuslinkListPage(RenderWindow &window, Sprite returnButton);
 
 
 #endif
