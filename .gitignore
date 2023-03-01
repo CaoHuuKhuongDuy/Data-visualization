@@ -1,2 +1,3 @@
 .vscode
-/src/example.cpp
+src/test.cpp
+src/example.cpp
