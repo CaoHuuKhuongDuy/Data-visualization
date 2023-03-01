@@ -8,6 +8,6 @@
 using namespace sf;
 using namespace std;
 
-int checkState(RenderWindow &window);
+int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack);
 
 #endif

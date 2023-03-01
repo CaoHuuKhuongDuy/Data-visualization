@@ -8,6 +8,8 @@
 using namespace sf;
 using namespace std;
 
-Sprite homePage(RenderWindow &window);
+int homePage(RenderWindow &window);
+
+
 
 #endif
