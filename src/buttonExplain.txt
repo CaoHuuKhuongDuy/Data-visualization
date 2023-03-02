@@ -1,7 +1,10 @@
 
 0: Home Page
 
-1 link list
+1: link list
+    11: singly linkList
+    12: doubly linkList
+    13: circular linkList
 
 2: stack
     

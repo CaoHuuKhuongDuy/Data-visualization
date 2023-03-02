@@ -16,13 +16,15 @@ int main() {
         
         Sprite sprite;
         switch (status) {
-
+            case -1: return EXIT_SUCCESS;
             case 0: 
                 status = homePage(window);
                 break;
             case 1:
                 status = linkListPage(window);
                 break; 
+            // case 11:
+                // status = 
             default: 
                 status = 0;
                 break;

@@ -2,10 +2,10 @@
 #include "process.h"
 #include "button.h"
 
-using namespace sf;
 
 const string imgSource = "../media/img/";
 
+bool backButtonDark = false;
 
 void resizeSprite(Sprite &sprite, double height, double width) {
     
@@ -16,9 +16,10 @@ void resizeSprite(Sprite &sprite, double height, double width) {
         targetSize.y / sprite.getLocalBounds().height);
 }
 
-Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, int x, int y) {
+Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, int x, int y, bool dark = false) {
     
     fileName = imgSource + fileName;
+    if (dark) fileName.insert(fileName.size() - 4, "_dark", 5);
     Texture texture;
     texture.loadFromFile(fileName);
     texture.setSmooth(true);
@@ -65,17 +66,20 @@ int linkListPage(RenderWindow &window) {
     window.clear(Color::White);
     displayText(window, "Linked list", 550, 10, 50);
 
-    Font font;
-    font.loadFromFile("../media/font/arial.ttf");
 
+    Sprite singlyLinkList = addSprite(window, "singlyLinkList.png", 450, 300, 20, 220);
+    Sprite doublyLinkList = addSprite(window, "doublyLinkList.png", 400, 340, 520, 160);
+    Sprite circularLinkList = addSprite(window, "circular_singlyLinkList.png", 400, 300, 930, 210);
 
-    Sprite returnButton = addSprite(window, "homeButton.png", 150, 80, 10, 10);
-    // Button returnButton(Vector2f(10, 10), Vector2f(100, 50), sf::Color::Black, font, "Home", 30, Color::White);
+    displayText(window, "Singly Linked List", 135, 430, 20);
+    displayText(window, "Doubly Linked List", 620, 430, 20);
+    displayText(window, "Circular Linked List", 1050, 430, 20);
 
-    // returnButton.draw(window);
-    
+    Sprite returnButton = addSprite(window, "backButton.png", 150, 70, 10, 10, backButtonDark);     
+
     window.display();
 
-    return statuslinkListPage(window, returnButton);
+    return statuslinkListPage(window, singlyLinkList, doublyLinkList, 
+                              circularLinkList, returnButton, backButtonDark);
 
 }
