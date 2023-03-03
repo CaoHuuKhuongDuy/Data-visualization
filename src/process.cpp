@@ -1,5 +1,5 @@
 #include "process.h"
-#include "button.h"
+// #include "button.h"
 
 Event event;
 
@@ -56,6 +56,27 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
                   if (Press(sLinkList)) state = 11;
                   if (Press(dLinkList)) state = 12;
                   if (Press(cLinkList)) state = 13;
+                }
+                break;
+        }
+    }
+    return state;
+}
+
+int statusSingleLinkList(RenderWindow &window, Sprite returnButton, bool &backButtonDark) {
+    int state = 11;
+    backButtonDark = hoverMouse(returnButton);
+    while (window.pollEvent(event)) {
+        state = 11;
+        switch (event.type) {
+
+            case Event::Closed:
+                window.close();
+                state = -1;
+                break;
+            case Event::MouseButtonPressed:
+                if (event.mouseButton.button == Mouse::Left) {
+                    if (Press(returnButton)) state = 1;
                 }
                 break;
         }

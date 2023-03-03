@@ -15,6 +15,8 @@ int main() {
     while (window.isOpen()) {
         
         Sprite sprite;
+        status = singleLinkList(window);
+        continue;
         switch (status) {
             case -1: return EXIT_SUCCESS;
             case 0: 
@@ -23,8 +25,9 @@ int main() {
             case 1:
                 status = linkListPage(window);
                 break; 
-            // case 11:
-                // status = 
+            case 11:
+                status = singleLinkList(window);
+                break; 
             default: 
                 status = 0;
                 break;

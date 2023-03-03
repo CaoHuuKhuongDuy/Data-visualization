@@ -13,5 +13,6 @@ int homePage(RenderWindow &window);
 
 int linkListPage(RenderWindow &window);
 
+int singleLinkList(RenderWindow &window);
 
 #endif

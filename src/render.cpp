@@ -1,9 +1,12 @@
 #include "render.h"
 #include "process.h"
-#include "button.h"
+#include "node.h"
+#include <vector>
 
 
 const string imgSource = "../media/img/";
+
+const int numNode = 10;
 
 bool backButtonDark = false;
 
@@ -55,8 +58,8 @@ int homePage(RenderWindow &window) {
     Sprite Stack = addSprite(window, "stack.png", 400, 300, 500, 100);
     
     displayText(window, "Data visualization", 500, 10, 50);
-    window.display();
     
+    window.display();
     return statusHomePage(window, linkList, Stack);
 
 }
@@ -64,7 +67,7 @@ int homePage(RenderWindow &window) {
 int linkListPage(RenderWindow &window) {
 
     window.clear(Color::White);
-    displayText(window, "Linked list", 550, 10, 50);
+    displayText(window, "Linked List", 550, 10, 50);
 
 
     Sprite singlyLinkList = addSprite(window, "singlyLinkList.png", 450, 300, 20, 220);
@@ -78,8 +81,32 @@ int linkListPage(RenderWindow &window) {
     Sprite returnButton = addSprite(window, "backButton.png", 150, 70, 10, 10, backButtonDark);     
 
     window.display();
-
     return statuslinkListPage(window, singlyLinkList, doublyLinkList, 
                               circularLinkList, returnButton, backButtonDark);
+
+}
+
+void drawCircle(RenderWindow &window, Node &node, int radius, Vector2f pos, string text, Font font) 
+{
+    node.init(pos, 14, "12", font);
+    node.draw(window);
+}
+
+int singleLinkList(RenderWindow &window) {
+
+    window.clear(Color::White);
+    displayText(window, "Singly Linked List", 500, 10, 50);
+
+    Sprite returnButton = addSprite(window, "backButton.png", 150, 70, 10, 10, backButtonDark);     
+    
+    Font font;
+    font.loadFromFile("../media/font/arial.ttf");
+
+    vector <Node> node(numNode);
+    for (int i = 0; i < 10; i++) 
+        drawCircle(window, node[i], 14, Vector2f(120 + 150 * i, 300), "12", font);
+    
+    window.display();
+    return statusSingleLinkList(window, returnButton, backButtonDark);
 
 }
