@@ -1,5 +1,4 @@
-#include "process.h"
-// #include "button.h"
+ #include "process.h"
 
 Event event;
 
@@ -38,10 +37,10 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
 }
 
 int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList,
-                       Sprite returnButton, bool &backButtonDark) {
+                       Sprite backButton, bool &backButtonDark) {
                         
     int state = 1;
-    backButtonDark = hoverMouse(returnButton);
+    backButtonDark = hoverMouse(backButton);
     while (window.pollEvent(event)) {
         state = 1;
         switch (event.type) {
@@ -52,7 +51,7 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
                 break;
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
-                  if (Press(returnButton)) state = 0; 
+                  if (Press(backButton)) state = 0; 
                   if (Press(sLinkList)) state = 11;
                   if (Press(dLinkList)) state = 12;
                   if (Press(cLinkList)) state = 13;
@@ -63,9 +62,17 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
     return state;
 }
 
-int statusSingleLinkList(RenderWindow &window, Sprite returnButton, bool &backButtonDark) {
+int statusSingleLinkList(RenderWindow &window, Sprite backButton, bool &backButtonDark, Sprite createButton,
+                        bool &createButtonDark, Sprite addButton, bool &addButtonDark, Sprite deleteButton, bool &deleteButtonDark,
+                        Sprite updateButton, bool &updateButtonDark, Sprite searchButton, bool &searchButtonDark) {
+
     int state = 11;
-    backButtonDark = hoverMouse(returnButton);
+    backButtonDark = hoverMouse(backButton);
+    createButtonDark = hoverMouse(createButton);
+    addButtonDark = hoverMouse(addButton);
+    deleteButtonDark = hoverMouse(deleteButton);
+    updateButtonDark = hoverMouse(updateButton);
+    searchButtonDark = hoverMouse(searchButton);
     while (window.pollEvent(event)) {
         state = 11;
         switch (event.type) {
@@ -76,7 +83,7 @@ int statusSingleLinkList(RenderWindow &window, Sprite returnButton, bool &backBu
                 break;
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
-                    if (Press(returnButton)) state = 1;
+                    if (Press(backButton)) state = 1;
                 }
                 break;
         }

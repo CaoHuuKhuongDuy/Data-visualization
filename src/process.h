@@ -13,8 +13,10 @@ using namespace std;
 int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack);
 
 int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList,
-                       Sprite returnButton, bool &backButtonDark);
+                       Sprite backButton, bool &backButtonDark);
 
-int statusSingleLinkList(RenderWindow &window, Sprite returnButton, bool &backButtonDark);
+int statusSingleLinkList(RenderWindow &window, Sprite backButton, bool &backButtonDark, Sprite createButton,
+                        bool &createButtonDark, Sprite addButton, bool &addButtonDark, Sprite deleteButton, bool &deleteButtonDark,
+                        Sprite updateButton, bool &updateButtonDark, Sprite searchButton, bool &searchButtonDark);
 
 #endif

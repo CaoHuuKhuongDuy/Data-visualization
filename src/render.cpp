@@ -9,6 +9,12 @@ const string imgSource = "../media/img/";
 const int numNode = 10;
 
 bool backButtonDark = false;
+bool createButtonDark = false;
+bool addButtonDark = false;
+bool deleteButtonDark = false;
+bool updateButtonDark = false;
+bool searchButtonDark = false;
+
 
 void resizeSprite(Sprite &sprite, double height, double width) {
     
@@ -52,6 +58,7 @@ void displayText(RenderWindow &window, string content, int x, int y, int sz) {
 int homePage(RenderWindow &window) {
 
     window.clear(Color::White);
+    // Sprite background = addSprite(window, "background.jpg", 1800, 800, 0, 0);
 
     // Texture
     Sprite linkList = addSprite(window, "Linked-list.png", 400, 300, 50, 100);
@@ -78,11 +85,11 @@ int linkListPage(RenderWindow &window) {
     displayText(window, "Doubly Linked List", 620, 430, 20);
     displayText(window, "Circular Linked List", 1050, 430, 20);
 
-    Sprite returnButton = addSprite(window, "backButton.png", 150, 70, 10, 10, backButtonDark);     
+    Sprite backButton = addSprite(window, "backButton.png", 150, 70, 10, 10, backButtonDark);     
 
     window.display();
     return statuslinkListPage(window, singlyLinkList, doublyLinkList, 
-                              circularLinkList, returnButton, backButtonDark);
+                              circularLinkList, backButton, backButtonDark);
 
 }
 
@@ -97,16 +104,23 @@ int singleLinkList(RenderWindow &window) {
     window.clear(Color::White);
     displayText(window, "Singly Linked List", 500, 10, 50);
 
-    Sprite returnButton = addSprite(window, "backButton.png", 150, 70, 10, 10, backButtonDark);     
-    
+    Sprite backButton = addSprite(window, "backButton.png", 150, 70, 10, 10, backButtonDark);     
+    Sprite createButton = addSprite(window, "createButton.png", 90, 42, 100, 500, createButtonDark);
+    Sprite addButton = addSprite(window, "addButton.png", 90, 42, 100, 550, addButtonDark);
+    Sprite deleteButton = addSprite(window, "deleteButton.png", 90, 42, 100, 600, deleteButtonDark);
+    Sprite updateButton = addSprite(window, "updateButton.png", 90, 42, 100, 650, updateButtonDark);
+    Sprite searchButton = addSprite(window, "searchButton.png", 90, 42, 100, 700, searchButtonDark);
+
+
     Font font;
     font.loadFromFile("../media/font/arial.ttf");
 
-    vector <Node> node(numNode);
-    for (int i = 0; i < 10; i++) 
-        drawCircle(window, node[i], 14, Vector2f(120 + 150 * i, 300), "12", font);
+    // vector <Node> node(numNode);
+    // for (int i = 0; i < 10; i++) 
+    //     drawCircle(window, node[i], 14, Vector2f(120 + 150 * i, 300), "12", font);
     
     window.display();
-    return statusSingleLinkList(window, returnButton, backButtonDark);
+    return statusSingleLinkList(window, backButton, backButtonDark, createButton, createButtonDark, addButton, addButtonDark, 
+                                deleteButton, deleteButtonDark, updateButton, updateButtonDark, searchButton, searchButtonDark);
 
 }

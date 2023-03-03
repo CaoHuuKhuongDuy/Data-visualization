@@ -8,10 +8,7 @@ SFML_INCLUDE = -lsfml-graphics -lsfml-window -lsfml-system
 
 all: compile link run
 compile:
-	g++ -c main.cpp -I $(INCLUDE)
-	g++ -c render.cpp -o render.o -I $(INCLUDE)
-	g++ -c process.cpp -o process.o -I $(INCLUDE)
-	g++ -c node.cpp -o node.o -I $(INCLUDE)
+	g++ -c main.cpp render.cpp process.cpp node.cpp -I $(INCLUDE)
 link:
 	g++ main.o render.o process.o node.o -o main.exe -L $(LIBRARY) $(SFMLFLAGS) $(SFML_INCLUDE)
 run:
