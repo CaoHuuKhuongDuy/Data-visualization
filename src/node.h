@@ -9,7 +9,7 @@ using namespace sf;
 
 class Node {
 public:
-    void init(Vector2f position, int radius, string textString, Font &font);
+    void init(Vector2f position, int radius, string textString);
     void draw(sf::RenderWindow& window);
 private:
     CircleShape m_node;

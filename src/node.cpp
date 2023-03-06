@@ -1,6 +1,8 @@
 #include "node.h"
+#include "render.h"
 
-void Node::init(Vector2f position, int radius, string textString, Font &font) {
+
+void Node::init(Vector2f position, int radius, string textString) {
     m_node.setPosition(position);
     m_node.setRadius(radius);
     m_node.setOutlineColor(Color::Black);

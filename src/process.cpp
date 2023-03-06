@@ -2,7 +2,7 @@
 
 Event event;
 
-bool hoverMouse(Sprite sprite) {
+int hoverMouse(Sprite sprite) {
     FloatRect bounds_sprite = sprite.getGlobalBounds();
     return (bounds_sprite.contains(Vector2f(event.mouseMove.x, event.mouseMove.y))); 
 }
@@ -64,7 +64,7 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
 
 int statusSingleLinkList(RenderWindow &window, Sprite backButton, bool &backButtonDark, Sprite createButton,
                         bool &createButtonDark, Sprite addButton, bool &addButtonDark, Sprite deleteButton, bool &deleteButtonDark,
-                        Sprite updateButton, bool &updateButtonDark, Sprite searchButton, bool &searchButtonDark) {
+                        Sprite updateButton, bool &updateButtonDark, Sprite searchButton, bool &searchButtonDark, int &textBox) {
 
     int state = 11;
     backButtonDark = hoverMouse(backButton);
@@ -84,6 +84,11 @@ int statusSingleLinkList(RenderWindow &window, Sprite backButton, bool &backButt
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
                     if (Press(backButton)) state = 1;
+                    if (Press(createButton)) textBox = 1;
+                    if (Press(addButton)) textBox = 2;
+                    if (Press(deleteButton)) textBox = 3;
+                    if (Press(updateButton)) textBox = 4;
+                    if (Press(searchButton)) textBox = 5;
                 }
                 break;
         }

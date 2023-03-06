@@ -17,6 +17,6 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
 
 int statusSingleLinkList(RenderWindow &window, Sprite backButton, bool &backButtonDark, Sprite createButton,
                         bool &createButtonDark, Sprite addButton, bool &addButtonDark, Sprite deleteButton, bool &deleteButtonDark,
-                        Sprite updateButton, bool &updateButtonDark, Sprite searchButton, bool &searchButtonDark);
+                        Sprite updateButton, bool &updateButtonDark, Sprite searchButton, bool &searchButtonDark, int &textBox);
 
 #endif

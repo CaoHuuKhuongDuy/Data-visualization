@@ -1,3 +1,5 @@
 .vscode
 src/test.cpp
 src/example.cpp
+src/exampleTextBox.cpp
+src/displayTextBox.txt

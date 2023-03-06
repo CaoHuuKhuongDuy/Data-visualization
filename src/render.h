@@ -9,6 +9,13 @@
 using namespace sf;
 using namespace std;
 
+extern Font font;
+extern Texture t_submitButton;
+
+void loadStatic();
+
+void resizeSprite(Sprite &sprite, double height, double width);
+
 int homePage(RenderWindow &window);
 
 int linkListPage(RenderWindow &window);

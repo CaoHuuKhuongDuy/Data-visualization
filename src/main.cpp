@@ -11,7 +11,7 @@ RenderWindow window(VideoMode(height, width), "Data visualization", Style::Defau
 int main() {
 
     int status = 0;
-
+    loadStatic();
     while (window.isOpen()) {
         
         Sprite sprite;
@@ -38,4 +38,3 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-
