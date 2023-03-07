@@ -11,10 +11,10 @@ RenderWindow window(VideoMode(height, width), "Data visualization", Style::Defau
 int main() {
 
     int status = 0;
-    loadStatic();
+    // loadFont();
     while (window.isOpen()) {
         
-        Sprite sprite;
+        // Sprite sprite;
         status = singleLinkList(window);
         continue;
         switch (status) {

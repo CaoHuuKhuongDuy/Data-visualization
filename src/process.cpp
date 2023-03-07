@@ -1,4 +1,8 @@
- #include "process.h"
+#include "process.h"
+// #include "textBox.h"
+
+// textBox input;
+
 
 Event event;
 
@@ -37,7 +41,7 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
 }
 
 int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList,
-                       Sprite backButton, bool &backButtonDark) {
+                       Sprite backButton) {
                         
     int state = 1;
     backButtonDark = hoverMouse(backButton);
@@ -62,10 +66,8 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
     return state;
 }
 
-int statusSingleLinkList(RenderWindow &window, Sprite backButton, bool &backButtonDark, Sprite createButton,
-                        bool &createButtonDark, Sprite addButton, bool &addButtonDark, Sprite deleteButton, bool &deleteButtonDark,
-                        Sprite updateButton, bool &updateButtonDark, Sprite searchButton, bool &searchButtonDark, int &textBox) {
-
+int statusSingleLinkList(RenderWindow &window, Sprite backButton, Sprite createButton, Sprite addButton, 
+                         Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input) {
     int state = 11;
     backButtonDark = hoverMouse(backButton);
     createButtonDark = hoverMouse(createButton);
@@ -83,15 +85,21 @@ int statusSingleLinkList(RenderWindow &window, Sprite backButton, bool &backButt
                 break;
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
+                    if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 1;
-                    if (Press(createButton)) textBox = 1;
-                    if (Press(addButton)) textBox = 2;
-                    if (Press(deleteButton)) textBox = 3;
-                    if (Press(updateButton)) textBox = 4;
-                    if (Press(searchButton)) textBox = 5;
+                    if (Press(createButton)) numTextBox = 1;
+                    if (Press(addButton)) numTextBox = 2;
+                    if (Press(deleteButton)) numTextBox = 3;
+                    if (Press(updateButton)) numTextBox = 4;
+                    if (Press(searchButton)) numTextBox = 5;
                 }
                 break;
+            case Event::TextEntered:
+                if (numTextBox != 0) {
+                    input.handleInput(window, event);
+                }
+            
         }
     }
-    return state;
+    return 11;
 }

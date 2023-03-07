@@ -2,12 +2,11 @@
 #include "render.h"
 
 
-void Node::init(Vector2f position, int radius, string textString) {
+void Node::init(Vector2f position, int radius, string textString, Font &font) {
     m_node.setPosition(position);
     m_node.setRadius(radius);
     m_node.setOutlineColor(Color::Black);
     m_node.setOutlineThickness(3);
-
 
     m_text.setFont(font);
     m_text.setString(textString);

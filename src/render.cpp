@@ -1,15 +1,12 @@
 #include "render.h"
-#include "process.h"
-#include "node.h"
-#include "textBox.h"
-#include <vector>
+
 
 
 const string imgSource = "../media/img/";
 
-const int numNode = 10;
 const Vector2f posBackButton = Vector2f(10, 10); 
 
+// int numNode = 5;
 
 bool backButtonDark = false;
 bool createButtonDark = false;
@@ -18,32 +15,21 @@ bool deleteButtonDark = false;
 bool updateButtonDark = false;
 bool searchButtonDark = false;
 int numTextBox = 0;
+string userText = "";
 
 Font font;
 Texture t_submitButton;
 
-void loadStatic() {
-    font.loadFromFile("../media/font/arial.ttf");
-    // Texture t_submitButton;
-    cout << (t_submitButton.loadFromFile("../media/img/submitButton.png")) << endl;
-    t_submitButton.setSmooth(true);
-}
+textBox input;
 
-void resizeSprite(Sprite &sprite, double height, double width) {
-    
-    Vector2f targetSize(height, width); 
 
-    sprite.setScale(
-        targetSize.x / sprite.getLocalBounds().width, 
-        targetSize.y / sprite.getLocalBounds().height);
-}
 
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark = false, bool display = true) {
     
     fileName = imgSource + fileName;
     if (dark) fileName.insert(fileName.size() - 4, "_dark", 5);
     Texture texture;
-    texture.loadFromFile(fileName);
+    loadTexture(texture, fileName);    
     texture.setSmooth(true);
     Sprite sprite;
     sprite.setTexture(texture);
@@ -56,6 +42,7 @@ Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, 
 void displayText(RenderWindow &window, string content, int x, int y, int sz) {
 
     Text title;
+    font.loadFromFile("../media/font/arial.ttf");
     title.setFont(font);
     title.setString(content);
     title.setFillColor(Color::Black);
@@ -67,15 +54,19 @@ void displayText(RenderWindow &window, string content, int x, int y, int sz) {
 }
 
 void drawCircle(RenderWindow &window, Node &node, int radius, Vector2f pos, string text) {
-    node.init(pos, 14, "12");
+    node.init(pos, 14, "12", font);
     node.draw(window);
 }
 
 
-void displayTextBox(RenderWindow &window, Vector2f pos) {
-    
-    textBox input(pos + Vector2f(100, 8));
+textBox displayTextBox(RenderWindow &window, Vector2f pos) {
+    // loadFont();
+    font.loadFromFile("../media/font/arial.ttf");
+    Texture texture;   
+    loadTexture(texture, "../media/img/submitButton.png");
+    textBox input(pos + Vector2f(100, 8), texture, font);
     input.draw(window);
+    return input;
 }
 
 int homePage(RenderWindow &window) {
@@ -112,7 +103,7 @@ int linkListPage(RenderWindow &window) {
 
     window.display();
     return statuslinkListPage(window, singlyLinkList, doublyLinkList, 
-                              circularLinkList, backButton, backButtonDark);
+                              circularLinkList, backButton);
 
 }
 
@@ -136,32 +127,29 @@ int singleLinkList(RenderWindow &window) {
     Sprite updateButton = addSprite(window, "updateButton.png", 90, 42, posUpdateButton, updateButtonDark);
     Sprite searchButton = addSprite(window, "searchButton.png", 90, 42, posSearchButton, searchButtonDark);
 
-
     switch (numTextBox) {
         case 1: 
-            displayTextBox(window, posCreateButton);
+            input = displayTextBox(window, posCreateButton);
             break;
         case 2:
-            displayTextBox(window, posAddButton);
+            input = displayTextBox(window, posAddButton);
             break;
         case 3:
-            displayTextBox(window, posDeleteButton);
+            input = displayTextBox(window, posDeleteButton);
             break;
         case 4:
-            displayTextBox(window, posUpdateButton);
+            input = displayTextBox(window, posUpdateButton);
             break;
         case 5:
-            displayTextBox(window, posSearchButton);
+            input = displayTextBox(window, posSearchButton);
             break;
     }
-    
 
     vector <Node> node(numNode);
-    for (int i = 0; i < 10; i++) 
+    for (int i = 0; i < numNode; i++) 
         drawCircle(window, node[i], 14, Vector2f(120 + 150 * i, 300), "12");
     
     window.display();
-    return statusSingleLinkList(window, backButton, backButtonDark, createButton, createButtonDark, addButton, addButtonDark, 
-                                deleteButton, deleteButtonDark, updateButton, updateButtonDark, searchButton, searchButtonDark, numTextBox);
+    return statusSingleLinkList(window, backButton, createButton, addButton, deleteButton, updateButton, searchButton, input);
 
 }
