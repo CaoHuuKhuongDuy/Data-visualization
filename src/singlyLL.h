@@ -17,6 +17,8 @@ class SinglyLL {
         SinglyLL(int value, int idx);
         void changePosition(Vector2f pos, Font &font);
         void draw(RenderWindow &window);
+        void rightPlace(Font &font);
+        Vector2f getCenter();
         SinglyLL *nxt;
         int id, data;
         Vector2f position;
@@ -33,5 +35,9 @@ void deleteLL(SinglyLL *&root);
 void createLL(SinglyLL *&root, int numNode, Font &font);
 
 void drawSGL(RenderWindow &window, SinglyLL *root);
+
+void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font);
+
+void format(SinglyLL *cur, Font &font);
 
 #endif

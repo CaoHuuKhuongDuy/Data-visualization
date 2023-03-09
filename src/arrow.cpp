@@ -11,10 +11,12 @@ void Arrow::create(Vector2f startPoint, Vector2f endPoint) {
     float thickness = 5.f; // set the thickness of the line segment
     float arrowSize = 20.f; // set the size of the arrow triangle
     Vector2f direction = point2 - point1;
-    Vector2f point3;
-    point3.x = point2.x + 10;
+    Vector2f direction2;
+    direction2 = direction * 0.8f;
+    point2 = direction2 + point1;
+    direction2 = direction * 0.86f;
+    Vector2f point3 = direction2 + point1;
     
-    point3.y = point1.y + direction.y * ((direction.x + 10) / direction.x);     //test
 
     float length = sqrt(direction.x * direction.x + direction.y * direction.y);
 
@@ -56,9 +58,8 @@ void Arrow::create(Vector2f startPoint, Vector2f endPoint) {
     arrow[1].position = arrowP2;
     arrow[2].position = arrowP3;
 
-    arrow[0].color = Color::Black;
-    arrow[1].color = Color::Black;
-    arrow[2].color = Color::Black;
+    for (int i = 0; i <= 2; i++)
+      arrow[i].color = Color::Black;
 }
 
 void Arrow::draw(RenderWindow &window) {

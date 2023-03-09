@@ -1,5 +1,11 @@
 #include "singlyLL.h"
 
+Vector2f upStep = Vector2f(0, -0.75);
+Vector2f straightStep = Vector2f(1, 0);
+
+
+// right place (120 + 120 * id, 200)
+
 SinglyLL::SinglyLL(int value, int idx) {
     nxt = nullptr;
     id = idx;
@@ -10,6 +16,7 @@ void SinglyLL::changePosition(Vector2f pos, Font &font) {
     position = pos;
 
     m_node.setPosition(pos);
+    // m_node.setOrigin({-5, 20});
     m_node.setRadius(14);
     m_node.setOutlineColor(Color::Black);
     m_node.setOutlineThickness(3);
@@ -21,6 +28,11 @@ void SinglyLL::changePosition(Vector2f pos, Font &font) {
     m_text.setFillColor(Color::Black);
     Vector2f justify = (data < 10 ? Vector2f(8, 4) : Vector2f(3, 4));
     m_text.setPosition(pos + justify);
+}
+
+void SinglyLL::rightPlace(Font &font) {
+    if (position.x != 120 + 120 * id) changePosition(position + straightStep, font);
+    else if (position.y != 200) changePosition(position + upStep, font);
 }
 
 void SinglyLL::draw(RenderWindow &window) {
@@ -61,14 +73,54 @@ void createLL(SinglyLL *&root, int numNode, Font &font) {
     }
 }
 
+Vector2f SinglyLL::getCenter() {
+    return m_node.getOrigin();
+}
+
 void drawSGL(RenderWindow &window, SinglyLL *root) {
     while (root) {
-        root->draw(window);
         if (root->nxt != nullptr) {
             Arrow arrow;
-            arrow.create(root->position + Vector2f(30, 15), root->nxt->position + Vector2f(-10, 15));
+            Vector2f pointInc = Vector2f(15, 15);
+            Vector2f p1 = root->position + pointInc;
+            Vector2f p2 = root->nxt->position + pointInc;            
+            arrow.create(p1, p2);
             arrow.draw(window);
         }
+        root->draw(window);
         root = root->nxt;
+    }
+}
+
+void insertBefore(SinglyLL *&root, int value, int idx, Font &font, bool last) {
+    SinglyLL *tmp = createNode(value, idx, Vector2f(120 + 120 * idx, (last ? 200 : 290)), font);
+    tmp->nxt = root;
+    root = tmp;
+}
+
+void incIndex(SinglyLL *cur) {
+    while (cur) {
+        cur->id++;
+        cur = cur->nxt;
+    }
+}
+
+void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font) {
+    numNode++;
+    if (idx == 1) {
+        insertBefore(root, value, idx, font, (numNode == idx));
+        incIndex(root->nxt);
+        return;
+    }
+    SinglyLL *cur = root;
+    while (cur && cur->id != idx - 1) cur = cur->nxt;
+    insertBefore(cur->nxt, value, idx, font, (numNode == idx));
+    incIndex(cur->nxt->nxt);
+}
+
+void format(SinglyLL *cur, Font &font) {
+    while (cur) {
+        cur->rightPlace(font);
+        cur = cur->nxt;
     }
 }

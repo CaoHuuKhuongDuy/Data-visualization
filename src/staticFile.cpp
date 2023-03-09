@@ -2,6 +2,7 @@
 #include <iostream>
 
 int numNode = 5;
+int insertIdx = -1, insertValue; 
 bool remake = true;
 bool displayNote = false;
 void resizeSprite(Sprite &sprite, double height, double width) {

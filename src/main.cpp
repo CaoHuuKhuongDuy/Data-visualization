@@ -44,6 +44,7 @@ int main() {
 // #include <SFML/Graphics.hpp>
 // #include <bits/stdc++.h>
 // using namespace std;
+// using namespace sf;
 
 // int main()
 // {
@@ -51,8 +52,8 @@ int main() {
 
 //     sf::VertexArray line(sf::Quads, 4); // create a vertex array with 4 points
 
-//     sf::Vector2f point1(100.f, 100.f); // set the starting point of the line segment
-//     sf::Vector2f point2(300.f, 300.f); // set the ending point of the line segment
+//     sf::Vector2f point1(100.f, 300.f); // set the starting point of the line segment
+//     sf::Vector2f point2(100.f, 100.f); // set the ending point of the line segment
 //     sf::Vector2f point3;
 //     float thickness = 8.f; // set the thickness of the line segment
 //     float arrowSize = 20.f; // set the size of the arrow triangle
@@ -64,8 +65,7 @@ int main() {
 //         {
 //             if (event.type == sf::Event::Closed)
 //                 window.close();
-//             else if (event.type == sf::Event::KeyPressed)
-//             {
+//             else if (event.type == sf::Event::KeyPressed) {
 //                 // increase or decrease the thickness of the line segment using the arrow keys
 //                 if (event.key.code == sf::Keyboard::Up)
 //                     thickness += 1.f;
@@ -76,13 +76,22 @@ int main() {
 
 //         // calculate the unit vector and normal vector of the line segment
 //         sf::Vector2f direction = point2 - point1;
-//         point3.x = point2.x + 10;
+//         point3 = point2;
+//         Vector2f direction2 = direction * 1.05f;
+//         point3 = direction2 + point1;
         
-//         point3.y = point1.y + direction.y * ((direction.x + 10) / direction.x);     //test
+//         double inc = 0.1;
+
+//         // point3.x = point2.x + inc;
+        
+//         // point3.y = point1.y + direction.y * ((direction.x + point3.x - point2.x) / direction.x);     //test
 
 //         float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
 //         sf::Vector2f unitDirection = direction / length;
+
+//         // sf::Vector2f unitDirection2 = unitDirection;
+//         // point3 = unitDirection2 - point1;
 
 //         sf::Vector2f unitNormal(-unitDirection.y, unitDirection.x);
 
@@ -123,7 +132,10 @@ int main() {
 //         arrow[1].color = sf::Color::Red;
 //         arrow[2].color = sf::Color::Red;
 
-//         // point2 = point2 + sf::Vector2f(0, -0.1f);
+//         if (point2.y < point1.y) {
+//         point2 = point2 + sf::Vector2f(0.1, 0.0);
+//         point1 = point1 + Vector2f(0, -0.1);
+//         }
 //         // draw the line segment and arrow triangle
 //         window.clear();
 //         window.draw(line);

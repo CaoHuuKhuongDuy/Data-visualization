@@ -54,14 +54,9 @@ void displayText(RenderWindow &window, string content, int x, int y, int sz) {
 
 }
 
-// void drawCircle(RenderWindow &window, Node &node, int radius, Vector2f pos, string text) {
-//     node.init(pos, 14, "12", font);
-//     node.draw(window);
-// }
-
 
 textBox displayTextBox(RenderWindow &window, Vector2f pos) {
-    // loadFont();
+
     font.loadFromFile("../media/font/arial.ttf");
     Texture texture;   
     loadTexture(texture, "../media/img/submitButton.png");
@@ -80,7 +75,9 @@ int homePage(RenderWindow &window) {
     Sprite Stack = addSprite(window, "stack.png", 400, 300, Vector2f(500, 100));
     
     displayText(window, "Data visualization", 500, 10, 50);
-
+    Arrow arrow;
+    // arrow.create(Vector2f(270, 215), Vector2f(390, 415));
+    // arrow.draw(window);
     window.display();
     return statusHomePage(window, linkList, Stack);
 
@@ -152,21 +149,14 @@ int singleLinkList(RenderWindow &window) {
         createLL(rootSGL, numNode, font);
     }
 
+    if (insertIdx != -1) {
+        insertLL(rootSGL, insertValue, insertIdx, numNode, font);
+    }
+    format(rootSGL, font);
     drawSGL(window, rootSGL);
 
-    // vector <Node> node(numNode);
-    // for (int i = 0; i < numNode; i++) { 
-    //     drawCircle(window, node[i], 14, Vector2f(120 + 120 * i, 200), "12");
-    //     if (i < numNode - 1) {
-    //         Arrow arrow;
-    //         arrow.create(Vector2f(150 + 120 * i, 215), Vector2f(110 + 120 * (i + 1), 215));
-    //         arrow.draw(window);
-    //     }
-    // }
-    // cout << remake << endl;
-    // if (remake) cout << "sdsd";
-    remake = false;
     window.display();
+    remake = false;
+    insertIdx = -1;
     return statusSingleLinkList(window, backButton, createButton, addButton, deleteButton, updateButton, searchButton, input);
-
 }
