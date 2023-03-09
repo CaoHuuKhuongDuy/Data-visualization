@@ -18,7 +18,7 @@ public:
     textBox();
     void handleInput(RenderWindow &window, Event event);
     void click(RenderWindow &winndow, Event event);
-    void submit();
+    void submit(int lim);
     void draw(RenderWindow &window);
 };
 

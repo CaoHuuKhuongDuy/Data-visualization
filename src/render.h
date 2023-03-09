@@ -8,7 +8,8 @@
 #include <vector>
 #include "staticFile.h"
 #include "process.h"
-#include "node.h"
+#include "arrow.h"
+#include "singlyLL.h"
 
 using namespace sf;
 using namespace std;

@@ -40,7 +40,7 @@ void textBox::handleInput(RenderWindow &window, Event event) {
     if (c == '\r' || c == '\b' || (c >= '0' && c <= '9')) {
 
         if (c == '\b' && userText.size() > 0) userText.erase(userText.size() - 1);
-        else if (c == '\r') submit();
+        else if (c == '\r') submit(10);
         else if (std::isprint(c) && userText.size() < 2) userText += c;
     }
         
@@ -49,19 +49,21 @@ void textBox::handleInput(RenderWindow &window, Event event) {
 void textBox::click(RenderWindow &window, Event event) {
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     sf::FloatRect submitButtonRect = submitButton.getGlobalBounds();
-    if (submitButtonRect.contains(mousePos.x, mousePos.y)) submit();
+    if (submitButtonRect.contains(mousePos.x, mousePos.y)) submit(10);
         
 }
 
-void textBox::submit() {
+void textBox::submit(int lim) {
     if (userText.size() == 0) return;
     std::cout << "User entered: " << userText << std::endl;
     int tmp = stoi(userText);
-    if (tmp <= 10) {
+    if (tmp <= lim) {
         displayNote = false;
         numNode = tmp;
     }
     else displayNote = true;
+    remake = (!displayNote && numTextBox == 1);
+    numTextBox = 0;
     userText = "";
 }
 

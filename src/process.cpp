@@ -101,5 +101,5 @@ int statusSingleLinkList(RenderWindow &window, Sprite backButton, Sprite createB
             
         }
     }
-    return 11;
+    return state;
 }

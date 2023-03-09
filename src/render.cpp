@@ -22,6 +22,7 @@ Texture t_submitButton;
 
 textBox input;
 
+SinglyLL *rootSGL = nullptr;
 
 
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark = false, bool display = true) {
@@ -53,10 +54,10 @@ void displayText(RenderWindow &window, string content, int x, int y, int sz) {
 
 }
 
-void drawCircle(RenderWindow &window, Node &node, int radius, Vector2f pos, string text) {
-    node.init(pos, 14, "12", font);
-    node.draw(window);
-}
+// void drawCircle(RenderWindow &window, Node &node, int radius, Vector2f pos, string text) {
+//     node.init(pos, 14, "12", font);
+//     node.draw(window);
+// }
 
 
 textBox displayTextBox(RenderWindow &window, Vector2f pos) {
@@ -79,7 +80,7 @@ int homePage(RenderWindow &window) {
     Sprite Stack = addSprite(window, "stack.png", 400, 300, Vector2f(500, 100));
     
     displayText(window, "Data visualization", 500, 10, 50);
-    
+
     window.display();
     return statusHomePage(window, linkList, Stack);
 
@@ -110,9 +111,10 @@ int linkListPage(RenderWindow &window) {
 
 
 int singleLinkList(RenderWindow &window) {
-
     window.clear(Color::White);
     displayText(window, "Singly Linked List", 500, 10, 50);
+    font.loadFromFile("../media/font/arial.ttf");
+
 
     Vector2f posCreateButton = Vector2f(100, 500);
     Vector2f posAddButton = Vector2f(100, 550);
@@ -142,13 +144,28 @@ int singleLinkList(RenderWindow &window) {
             break;
         case 5:
             input = displayTextBox(window, posSearchButton);
-            break;
+            break;      
     }
 
-    vector <Node> node(numNode);
-    for (int i = 0; i < numNode; i++) 
-        drawCircle(window, node[i], 14, Vector2f(120 + 150 * i, 300), "12");
-    
+    if (remake) {
+        deleteLL(rootSGL);
+        createLL(rootSGL, numNode, font);
+    }
+
+    drawSGL(window, rootSGL);
+
+    // vector <Node> node(numNode);
+    // for (int i = 0; i < numNode; i++) { 
+    //     drawCircle(window, node[i], 14, Vector2f(120 + 120 * i, 200), "12");
+    //     if (i < numNode - 1) {
+    //         Arrow arrow;
+    //         arrow.create(Vector2f(150 + 120 * i, 215), Vector2f(110 + 120 * (i + 1), 215));
+    //         arrow.draw(window);
+    //     }
+    // }
+    // cout << remake << endl;
+    // if (remake) cout << "sdsd";
+    remake = false;
     window.display();
     return statusSingleLinkList(window, backButton, createButton, addButton, deleteButton, updateButton, searchButton, input);
 
