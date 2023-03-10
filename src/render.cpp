@@ -14,15 +14,18 @@ bool addButtonDark = false;
 bool deleteButtonDark = false;
 bool updateButtonDark = false;
 bool searchButtonDark = false;
+bool formatProcess = false;
 int numTextBox = 0;
-string userText = "";
+string userText = "", notice = "";
+
+Color orange(255, 99, 71);
 
 Font font;
 Texture t_submitButton;
 
 textBox input;
 
-SinglyLL *rootSGL = nullptr;
+SinglyLL *rootSGL = nullptr, *cur = nullptr;
 
 
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark = false, bool display = true) {
@@ -105,7 +108,13 @@ int linkListPage(RenderWindow &window) {
 
 }
 
+void goAndColor(SinglyLL *&cur, int idx) {
+    
+    cur->changeColor(orange);
+    usleep(500000);
+    cur = cur->nxt;
 
+}
 
 int singleLinkList(RenderWindow &window) {
     window.clear(Color::White);
@@ -147,16 +156,43 @@ int singleLinkList(RenderWindow &window) {
     if (remake) {
         deleteLL(rootSGL);
         createLL(rootSGL, numNode, font);
+        cur = rootSGL;
     }
+    bool firstTime = false;
+    bool insert_at_end = false;
 
     if (insertIdx != -1) {
-        insertLL(rootSGL, insertValue, insertIdx, numNode, font);
+        if (cur && cur->id < insertIdx) goAndColor(cur, insertIdx);
+        else {
+            insertLL(rootSGL, insertValue, insertIdx, numNode, font);
+            insert_at_end = (insertIdx == numNode); 
+            insertIdx = -1;
+            usleep(800000);
+            firstTime = true;
+            cur = rootSGL;
+        }
     }
-    format(rootSGL, font);
-    drawSGL(window, rootSGL);
 
+    if (deleteIdx != -1) {
+        if (cur && cur->id < deleteIdx) goAndColor(cur, insertIdx);
+        else {
+            deleteNodeLL(rootSGL, deleteIdx, numNode);
+            deleteIdx = -1;
+            usleep(800000);
+            cur = rootSGL;
+        }
+    }
+
+
+    bool tmp = format(rootSGL, font, insert_at_end);
+    if (!tmp && formatProcess) clearColorLL(rootSGL);
+    formatProcess = tmp;
+
+    
+    drawSGL(window, rootSGL);
     window.display();
+    if (firstTime) usleep(500000);
+    firstTime = false;
     remake = false;
-    insertIdx = -1;
     return statusSingleLinkList(window, backButton, createButton, addButton, deleteButton, updateButton, searchButton, input);
 }

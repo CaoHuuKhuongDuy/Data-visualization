@@ -6,6 +6,7 @@
 #include <string>
 #include <random>
 #include <time.h>
+#include <unistd.h>
 #include "arrow.h"
 
 using namespace sf;
@@ -16,8 +17,9 @@ class SinglyLL {
     public:
         SinglyLL(int value, int idx);
         void changePosition(Vector2f pos, Font &font);
+        void changeColor(Color color);
         void draw(RenderWindow &window);
-        void rightPlace(Font &font);
+        bool rightPlace(Font &font);
         Vector2f getCenter();
         SinglyLL *nxt;
         int id, data;
@@ -38,6 +40,10 @@ void drawSGL(RenderWindow &window, SinglyLL *root);
 
 void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font);
 
-void format(SinglyLL *cur, Font &font);
+void deleteNodeLL(SinglyLL *&root, int idx, int &numNode);
+
+bool format(SinglyLL *cur, Font &font, bool insert_at_end);
+
+void clearColorLL(SinglyLL *cur);
 
 #endif

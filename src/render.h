@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unistd.h>
 #include "staticFile.h"
 #include "process.h"
 #include "arrow.h"

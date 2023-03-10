@@ -1,7 +1,7 @@
 #include "singlyLL.h"
 
-Vector2f upStep = Vector2f(0, -0.75);
-Vector2f straightStep = Vector2f(1, 0);
+Vector2f upStep = Vector2f(0, -1.5);
+Vector2f straightStep = Vector2f(2, 0);
 
 
 // right place (120 + 120 * id, 200)
@@ -16,10 +16,11 @@ void SinglyLL::changePosition(Vector2f pos, Font &font) {
     position = pos;
 
     m_node.setPosition(pos);
-    // m_node.setOrigin({-5, 20});
     m_node.setRadius(14);
     m_node.setOutlineColor(Color::Black);
     m_node.setOutlineThickness(3);
+    // Color color(255, 140, 0);
+    m_node.setFillColor(Color::White);
 
     m_text.setFont(font);
     m_text.setString(to_string(data));
@@ -30,9 +31,17 @@ void SinglyLL::changePosition(Vector2f pos, Font &font) {
     m_text.setPosition(pos + justify);
 }
 
-void SinglyLL::rightPlace(Font &font) {
-    if (position.x != 120 + 120 * id) changePosition(position + straightStep, font);
-    else if (position.y != 200) changePosition(position + upStep, font);
+void SinglyLL::changeColor(Color color) {
+    m_node.setFillColor(color);
+}
+
+bool SinglyLL::rightPlace(Font &font) {
+    if (position.x == 120 + 120 * id && position.y == 200) return false;
+    float tmp = 1.f;
+    if (position.x > 120 + 120 * id) tmp = -1.f;
+    if (position.x != 120 + 120 * id) changePosition(position + (straightStep * tmp), font);
+    else changePosition(position + upStep, font);
+    return true;
 }
 
 void SinglyLL::draw(RenderWindow &window) {
@@ -98,9 +107,15 @@ void insertBefore(SinglyLL *&root, int value, int idx, Font &font, bool last) {
     root = tmp;
 }
 
-void incIndex(SinglyLL *cur) {
+void deleteBefore(SinglyLL *&root, int idx) {
+    SinglyLL *tmp = root;
+    root = root->nxt;
+    delete tmp;
+}
+
+void changeIndex(SinglyLL *cur, int val = 1) {
     while (cur) {
-        cur->id++;
+        cur->id += val;
         cur = cur->nxt;
     }
 }
@@ -109,18 +124,49 @@ void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font) {
     numNode++;
     if (idx == 1) {
         insertBefore(root, value, idx, font, (numNode == idx));
-        incIndex(root->nxt);
+        changeIndex(root->nxt);
         return;
     }
     SinglyLL *cur = root;
     while (cur && cur->id != idx - 1) cur = cur->nxt;
     insertBefore(cur->nxt, value, idx, font, (numNode == idx));
-    incIndex(cur->nxt->nxt);
+    changeIndex(cur->nxt->nxt);
 }
 
-void format(SinglyLL *cur, Font &font) {
+void deleteNodeLL(SinglyLL *&root, int idx, int &numNode) {
+    numNode--;
+    if (idx == 1) {
+        deleteBefore(root, idx);
+        changeIndex(root->nxt, -1);
+        return;
+    }
+    SinglyLL *cur = root;
+    while (cur && cur->id != idx - 1) cur = cur->nxt;
+    deleteBefore(cur->nxt, idx);
+    changeIndex(cur->nxt, -1);
+}
+
+bool format(SinglyLL *cur, Font &font, bool insert_at_end) {
+    int tmp = 0;
     while (cur) {
-        cur->rightPlace(font);
+        if (insert_at_end && !cur->nxt) {
+            cur->changeColor(Color::Green);
+        }
+        tmp += (cur->rightPlace(font));
+        if (tmp == 1) {
+            cur->changeColor(Color::Green);
+        }
+        if (tmp == 2) cur->changeColor(Color::Blue);
         cur = cur->nxt;
     }
+    return (tmp || insert_at_end);
+}
+
+
+void clearColorLL(SinglyLL *cur) {
+    while (cur) {
+        cur->changeColor(Color::White);
+        cur = cur->nxt;
+    }
+    usleep(1000000);
 }

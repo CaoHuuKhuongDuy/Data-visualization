@@ -10,8 +10,9 @@ using namespace std;
 extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark;
 extern bool updateButtonDark, searchButtonDark, displayNote;
 extern int numTextBox, numNode, insertIdx, insertValue;
+extern int deleteIdx;
 extern bool remake;
-extern string userText;
+extern string userText, notice;
 
 
 void resizeSprite(Sprite &sprite, double height, double width);
