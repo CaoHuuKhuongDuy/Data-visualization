@@ -119,6 +119,64 @@ void goAndColor(SinglyLL *&cur) {
 
 }
 
+void insertAnimationSGL() {
+    if (cur && cur->id < insertIdx) goAndColor(cur);
+    else {
+        if (addProcess == 3) {
+            insertLL(rootSGL, insertValue, insertIdx, numNode, font);
+            usleep(500000);
+            firstTimeAdd = true;
+            insert_at_end = (insertIdx == numNode); 
+            addProcess--;
+        }
+        else if (addProcess == 2) {
+            if (firstTimeAdd) usleep(100000);
+            firstTimeAdd = false;
+            if (!format(rootSGL, font, insert_at_end)) addProcess--;
+        }
+        else {
+            clearColorLL(rootSGL);
+            addProcess--;
+            insertIdx = -1;
+            cur = rootSGL;
+            insert_at_end = false;
+        }
+    }
+}
+
+void deleteAnimationSGL() {
+    if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur);
+    else {
+        if (deleteProcess == 5) {
+            if (deleteIdx == 1 || deleteIdx == numNode) deleteProcess--;
+            else {
+                cur->changePosition(cur->position + Vector2f(0, 6));
+                if (cur->position.y == 290) deleteProcess--;
+            }
+        }
+        else if (deleteProcess == 4) {
+            cur->changeRadius(radiusAnimation--);
+            if (radiusAnimation == 9) deleteProcess--;
+            usleep(10000);
+        }
+        else if (deleteProcess == 3) {
+            deleteNodeLL(rootSGL, deleteIdx, numNode);  
+            cur = rootSGL;
+            deleteProcess--;
+        }
+        else if (deleteProcess == 2) {
+            if (!format(rootSGL, font, insert_at_end)) {
+                deleteProcess--;
+            }
+        }
+        else {
+            clearColorLL(rootSGL);
+            deleteProcess--;
+            deleteIdx = -1;
+            radiusAnimation = 13;
+        }
+    }
+}
 
 int singleLinkList(RenderWindow &window) {
     window.clear(Color::White);
@@ -163,66 +221,9 @@ int singleLinkList(RenderWindow &window) {
         cur = rootSGL;
     }
 
-    if (insertIdx != -1) {
-        if (cur && cur->id < insertIdx) goAndColor(cur);
-        else {
-            if (addProcess == 3) {
-                insertLL(rootSGL, insertValue, insertIdx, numNode, font);
-                usleep(500000);
-                firstTimeAdd = true;
-                insert_at_end = (insertIdx == numNode); 
-                addProcess--;
-            }
-            else if (addProcess == 2) {
-                if (firstTimeAdd) usleep(100000);
-                firstTimeAdd = false;
-                if (!format(rootSGL, font, insert_at_end)) addProcess--;
-            }
-            else {
-                clearColorLL(rootSGL);
-                addProcess--;
-                insertIdx = -1;
-                cur = rootSGL;
-                insert_at_end = false;
-            }
+    if (insertIdx != -1) insertAnimationSGL();
+    if (deleteIdx != -1) deleteAnimationSGL();
 
-        }
-    }
-
-    
-    if (deleteIdx != -1) {
-        if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur);
-        else {
-            if (deleteProcess == 5) {
-                if (deleteIdx == 1 || deleteIdx == numNode) deleteProcess--;
-                else {
-                    cur->changePosition(cur->position + Vector2f(0, 6));
-                    if (cur->position.y == 290) deleteProcess--;
-                }
-            }
-            else if (deleteProcess == 4) {
-                cur->changeRadius(radiusAnimation--);
-                if (radiusAnimation == 9) deleteProcess--;
-                usleep(10000);
-            }
-            else if (deleteProcess == 3) {
-                deleteNodeLL(rootSGL, deleteIdx, numNode);  
-                cur = rootSGL;
-                deleteProcess--;
-            }
-            else if (deleteProcess == 2) {
-                if (!format(rootSGL, font, insert_at_end)) {
-                    deleteProcess--;
-                }
-            }
-            else {
-                clearColorLL(rootSGL);
-                deleteProcess--;
-                deleteIdx = -1;
-                radiusAnimation = 13;
-            }
-        }
-    }
     drawSGL(window, rootSGL);
     window.display();
     
