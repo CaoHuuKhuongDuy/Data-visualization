@@ -78,6 +78,10 @@ void textBox::submit() {
         if (numNode == 0) notice = "Note: The linked list is empty";
         else notice = "Note: a valid index between [1.." + to_string(numNode) + "]"; 
         break;
+    case 4:
+        break;
+    case 5:
+        break;
     }
     userText = "";
     if (displayNote) return;
@@ -90,9 +94,16 @@ void textBox::submit() {
     case 2:
         insertIdx = tmp;
         insertValue = rand() % 100;
+        addProcess = 3;
         break;
     case 3:
         deleteIdx = tmp;
+        deleteProcess = 5;
+        break;
+    case 4:
+        break;
+    case 5:
+        searchValue = tmp;
         break;
     }
     numTextBox = 0;

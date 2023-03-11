@@ -15,9 +15,10 @@ using namespace std;
 class SinglyLL {
 
     public:
-        SinglyLL(int value, int idx);
-        void changePosition(Vector2f pos, Font &font);
+        SinglyLL(int value, int idx, Font &font);
+        void changePosition(Vector2f pos);
         void changeColor(Color color);
+        void changeRadius(double radius);
         void draw(RenderWindow &window);
         bool rightPlace(Font &font);
         Vector2f getCenter();

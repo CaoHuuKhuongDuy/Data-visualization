@@ -9,7 +9,8 @@ using namespace std;
 
 extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark;
 extern bool updateButtonDark, searchButtonDark, displayNote;
-extern int numTextBox, numNode, insertIdx, insertValue;
+extern int numTextBox, numNode, insertIdx, insertValue, searchValue;
+extern int addProcess, deleteProcess; 
 extern int deleteIdx;
 extern bool remake;
 extern string userText, notice;

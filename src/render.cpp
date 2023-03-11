@@ -6,7 +6,6 @@ const string imgSource = "../media/img/";
 
 const Vector2f posBackButton = Vector2f(10, 10); 
 
-// int numNode = 5;
 
 bool backButtonDark = false;
 bool createButtonDark = false;
@@ -14,8 +13,12 @@ bool addButtonDark = false;
 bool deleteButtonDark = false;
 bool updateButtonDark = false;
 bool searchButtonDark = false;
-bool formatProcess = false;
+bool firstTimeAdd = false;
+bool insert_at_end = false;
+
+
 int numTextBox = 0;
+int radiusAnimation = 13;
 string userText = "", notice = "";
 
 Color orange(255, 99, 71);
@@ -108,13 +111,14 @@ int linkListPage(RenderWindow &window) {
 
 }
 
-void goAndColor(SinglyLL *&cur, int idx) {
+void goAndColor(SinglyLL *&cur) {
     
     cur->changeColor(orange);
     usleep(500000);
     cur = cur->nxt;
 
 }
+
 
 int singleLinkList(RenderWindow &window) {
     window.clear(Color::White);
@@ -158,41 +162,70 @@ int singleLinkList(RenderWindow &window) {
         createLL(rootSGL, numNode, font);
         cur = rootSGL;
     }
-    bool firstTime = false;
-    bool insert_at_end = false;
 
     if (insertIdx != -1) {
-        if (cur && cur->id < insertIdx) goAndColor(cur, insertIdx);
+        if (cur && cur->id < insertIdx) goAndColor(cur);
         else {
-            insertLL(rootSGL, insertValue, insertIdx, numNode, font);
-            insert_at_end = (insertIdx == numNode); 
-            insertIdx = -1;
-            usleep(800000);
-            firstTime = true;
-            cur = rootSGL;
+            if (addProcess == 3) {
+                insertLL(rootSGL, insertValue, insertIdx, numNode, font);
+                usleep(500000);
+                firstTimeAdd = true;
+                insert_at_end = (insertIdx == numNode); 
+                addProcess--;
+            }
+            else if (addProcess == 2) {
+                if (firstTimeAdd) usleep(100000);
+                firstTimeAdd = false;
+                if (!format(rootSGL, font, insert_at_end)) addProcess--;
+            }
+            else {
+                clearColorLL(rootSGL);
+                addProcess--;
+                insertIdx = -1;
+                cur = rootSGL;
+                insert_at_end = false;
+            }
+
         }
     }
-
-    if (deleteIdx != -1) {
-        if (cur && cur->id < deleteIdx) goAndColor(cur, insertIdx);
-        else {
-            deleteNodeLL(rootSGL, deleteIdx, numNode);
-            deleteIdx = -1;
-            usleep(800000);
-            cur = rootSGL;
-        }
-    }
-
-
-    bool tmp = format(rootSGL, font, insert_at_end);
-    if (!tmp && formatProcess) clearColorLL(rootSGL);
-    formatProcess = tmp;
 
     
+    if (deleteIdx != -1) {
+        if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur);
+        else {
+            if (deleteProcess == 5) {
+                if (deleteIdx == 1 || deleteIdx == numNode) deleteProcess--;
+                else {
+                    cur->changePosition(cur->position + Vector2f(0, 6));
+                    if (cur->position.y == 290) deleteProcess--;
+                }
+            }
+            else if (deleteProcess == 4) {
+                cur->changeRadius(radiusAnimation--);
+                if (radiusAnimation == 9) deleteProcess--;
+                usleep(10000);
+            }
+            else if (deleteProcess == 3) {
+                deleteNodeLL(rootSGL, deleteIdx, numNode);  
+                cur = rootSGL;
+                deleteProcess--;
+            }
+            else if (deleteProcess == 2) {
+                if (!format(rootSGL, font, insert_at_end)) {
+                    deleteProcess--;
+                }
+            }
+            else {
+                clearColorLL(rootSGL);
+                deleteProcess--;
+                deleteIdx = -1;
+                radiusAnimation = 13;
+            }
+        }
+    }
     drawSGL(window, rootSGL);
     window.display();
-    if (firstTime) usleep(500000);
-    firstTime = false;
+    
     remake = false;
     return statusSingleLinkList(window, backButton, createButton, addButton, deleteButton, updateButton, searchButton, input);
 }

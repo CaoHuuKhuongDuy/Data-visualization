@@ -6,20 +6,14 @@ Vector2f straightStep = Vector2f(2, 0);
 
 // right place (120 + 120 * id, 200)
 
-SinglyLL::SinglyLL(int value, int idx) {
+SinglyLL::SinglyLL(int value, int idx, Font &font) {
     nxt = nullptr;
     id = idx;
     data = value;
-}
-
-void SinglyLL::changePosition(Vector2f pos, Font &font) {
-    position = pos;
-
-    m_node.setPosition(pos);
+    
     m_node.setRadius(14);
     m_node.setOutlineColor(Color::Black);
     m_node.setOutlineThickness(3);
-    // Color color(255, 140, 0);
     m_node.setFillColor(Color::White);
 
     m_text.setFont(font);
@@ -27,9 +21,23 @@ void SinglyLL::changePosition(Vector2f pos, Font &font) {
     m_text.setCharacterSize(18);
     m_text.setStyle(Text::Bold);
     m_text.setFillColor(Color::Black);
+}
+
+void SinglyLL::changePosition(Vector2f pos) {
+    position = pos;
+
+    m_node.setPosition(pos);
+    // m_node.setOrigin(pos);
+
     Vector2f justify = (data < 10 ? Vector2f(8, 4) : Vector2f(3, 4));
     m_text.setPosition(pos + justify);
 }
+
+void SinglyLL::changeRadius(double radius) {
+    m_node.setRadius(radius);
+    m_text.setCharacterSize(radius * 1.2);
+}
+
 
 void SinglyLL::changeColor(Color color) {
     m_node.setFillColor(color);
@@ -39,8 +47,8 @@ bool SinglyLL::rightPlace(Font &font) {
     if (position.x == 120 + 120 * id && position.y == 200) return false;
     float tmp = 1.f;
     if (position.x > 120 + 120 * id) tmp = -1.f;
-    if (position.x != 120 + 120 * id) changePosition(position + (straightStep * tmp), font);
-    else changePosition(position + upStep, font);
+    if (position.x != 120 + 120 * id) changePosition(position + (straightStep * tmp));
+    else changePosition(position + upStep);
     return true;
 }
 
@@ -50,8 +58,8 @@ void SinglyLL::draw(RenderWindow &window) {
 }
 
 SinglyLL *createNode(int value, int idx, Vector2f pos, Font &font) {
-    SinglyLL *cur = new SinglyLL(value, idx);
-    cur->changePosition(pos, font);
+    SinglyLL *cur = new SinglyLL(value, idx, font);
+    cur->changePosition(pos);
     return cur;
 }
 
@@ -137,7 +145,7 @@ void deleteNodeLL(SinglyLL *&root, int idx, int &numNode) {
     numNode--;
     if (idx == 1) {
         deleteBefore(root, idx);
-        changeIndex(root->nxt, -1);
+        changeIndex(root, -1);
         return;
     }
     SinglyLL *cur = root;
@@ -153,13 +161,11 @@ bool format(SinglyLL *cur, Font &font, bool insert_at_end) {
             cur->changeColor(Color::Green);
         }
         tmp += (cur->rightPlace(font));
-        if (tmp == 1) {
-            cur->changeColor(Color::Green);
-        }
+        if (tmp == 1) cur->changeColor(Color::Green);
         if (tmp == 2) cur->changeColor(Color::Blue);
         cur = cur->nxt;
     }
-    return (tmp || insert_at_end);
+    return (tmp);
 }
 
 
