@@ -178,6 +178,21 @@ void deleteAnimationSGL() {
     }
 }
 
+void searchAnimationSGL() {
+    if (!cur) {
+        searchProcess--;
+        clearColorLL(rootSGL);
+        cur = rootSGL;
+        return;
+    }
+    if (cur->data != searchValue) goAndColor(cur);
+    else {
+        cur->changeColor(Color::Green);
+        cur = nullptr;
+        usleep(500000);
+    }
+}
+
 int singleLinkList(RenderWindow &window) {
     window.clear(Color::White);
     displayText(window, "Singly Linked List", 500, 10, 50);
@@ -221,8 +236,9 @@ int singleLinkList(RenderWindow &window) {
         cur = rootSGL;
     }
 
-    if (insertIdx != -1) insertAnimationSGL();
-    if (deleteIdx != -1) deleteAnimationSGL();
+    if (addProcess) insertAnimationSGL();
+    if (deleteProcess) deleteAnimationSGL();
+    if (searchProcess) searchAnimationSGL();
 
     drawSGL(window, rootSGL);
     window.display();

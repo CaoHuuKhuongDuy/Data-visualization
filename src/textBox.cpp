@@ -104,6 +104,7 @@ void textBox::submit() {
         break;
     case 5:
         searchValue = tmp;
+        searchProcess = 1;
         break;
     }
     numTextBox = 0;
