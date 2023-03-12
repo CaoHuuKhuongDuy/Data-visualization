@@ -1,7 +1,7 @@
 #include "singlyLL.h"
 
-Vector2f upStep = Vector2f(0, -1.5);
-Vector2f straightStep = Vector2f(2, 0);
+Vector2f upStep = Vector2f(0, -2.25);
+Vector2f straightStep = Vector2f(3, 0);
 
 
 // right place (120 + 120 * id, 200)
@@ -41,6 +41,13 @@ void SinglyLL::changeRadius(double radius) {
 
 void SinglyLL::changeColor(Color color) {
     m_node.setFillColor(color);
+}
+
+void SinglyLL::changeData(int x) {
+    data = x;
+    m_text.setString(to_string(data));
+    Vector2f justify = (data < 10 ? Vector2f(8, 4) : Vector2f(3, 4));
+    m_text.setPosition(m_node.getPosition() + justify);
 }
 
 bool SinglyLL::rightPlace(Font &font) {

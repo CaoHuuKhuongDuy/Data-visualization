@@ -61,12 +61,12 @@ void displayText(RenderWindow &window, string content, int x, int y, int sz) {
 }
 
 
-textBox displayTextBox(RenderWindow &window, Vector2f pos) {
+textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos) {
 
     font.loadFromFile("../media/font/arial.ttf");
     Texture texture;   
     loadTexture(texture, "../media/img/submitButton.png");
-    textBox input(pos + Vector2f(100, 8), texture, font);
+    textBox input(pos + Vector2f(100, 8), texture, nameText, font);
     input.draw(window);
     return input;
 }
@@ -111,9 +111,9 @@ int linkListPage(RenderWindow &window) {
 
 }
 
-void goAndColor(SinglyLL *&cur) {
+void goAndColor(SinglyLL *&cur, int specialData = -1) {
     
-    cur->changeColor(orange);
+    cur->changeColor((cur->data == specialData) ? Color::Green : orange);
     usleep(500000);
     cur = cur->nxt;
 
@@ -157,7 +157,7 @@ void deleteAnimationSGL() {
         else if (deleteProcess == 4) {
             cur->changeRadius(radiusAnimation--);
             if (radiusAnimation == 9) deleteProcess--;
-            usleep(10000);
+            usleep(20000);
         }
         else if (deleteProcess == 3) {
             deleteNodeLL(rootSGL, deleteIdx, numNode);  
@@ -178,19 +178,36 @@ void deleteAnimationSGL() {
     }
 }
 
+void updateAnimationSGL() {
+    if (cur && cur->id < updateIdx) goAndColor(cur);
+    else {
+        if (updateProcess == 3) {
+            usleep(600000);
+            cur->changeColor(Color::Green);
+            updateProcess--;
+        }
+        else if (updateProcess == 2) {
+            usleep(800000);
+            cur->changeData(updateValue);
+            updateProcess--;
+        }
+        else {
+            clearColorLL(rootSGL);
+            updateProcess--;
+            cur = rootSGL;
+        }
+    }
+}
+
 void searchAnimationSGL() {
     if (!cur) {
+        usleep(500000);
         searchProcess--;
         clearColorLL(rootSGL);
         cur = rootSGL;
         return;
     }
-    if (cur->data != searchValue) goAndColor(cur);
-    else {
-        cur->changeColor(Color::Green);
-        cur = nullptr;
-        usleep(500000);
-    }
+    if (cur) goAndColor(cur, searchValue);
 }
 
 int singleLinkList(RenderWindow &window) {
@@ -214,19 +231,19 @@ int singleLinkList(RenderWindow &window) {
 
     switch (numTextBox) {
         case 1: 
-            input = displayTextBox(window, posCreateButton);
+            input = displayTextBox(window, " Size", posCreateButton);
             break;
         case 2:
-            input = displayTextBox(window, posAddButton);
+            input = displayTextBox(window, ((!secondTextBox) ? "Index" : "Value"), posAddButton);
             break;
         case 3:
-            input = displayTextBox(window, posDeleteButton);
+            input = displayTextBox(window, "Index", posDeleteButton);
             break;
         case 4:
-            input = displayTextBox(window, posUpdateButton);
+            input = displayTextBox(window, ((!secondTextBox) ? "Index" : "Value"), posUpdateButton);
             break;
         case 5:
-            input = displayTextBox(window, posSearchButton);
+            input = displayTextBox(window, "Value", posSearchButton);
             break;      
     }
 
@@ -238,6 +255,7 @@ int singleLinkList(RenderWindow &window) {
 
     if (addProcess) insertAnimationSGL();
     if (deleteProcess) deleteAnimationSGL();
+    if (updateProcess) updateAnimationSGL();
     if (searchProcess) searchAnimationSGL();
 
     drawSGL(window, rootSGL);

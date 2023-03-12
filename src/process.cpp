@@ -87,11 +87,11 @@ int statusSingleLinkList(RenderWindow &window, Sprite backButton, Sprite createB
                 if (event.mouseButton.button == Mouse::Left) {
                     if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 1;
-                    if (Press(createButton)) numTextBox = 1;
-                    if (Press(addButton)) numTextBox = 2;
-                    if (Press(deleteButton)) numTextBox = 3;
-                    if (Press(updateButton)) numTextBox = 4;
-                    if (Press(searchButton)) numTextBox = 5;
+                    if (Press(createButton)) numTextBox = 1, secondTextBox = 0;
+                    if (Press(addButton)) numTextBox = 2, secondTextBox = 0;
+                    if (Press(deleteButton)) numTextBox = 3, secondTextBox = 0;
+                    if (Press(updateButton)) numTextBox = 4, secondTextBox = 0;
+                    if (Press(searchButton)) numTextBox = 5, secondTextBox = 0;
                 }
                 break;
             case Event::TextEntered:

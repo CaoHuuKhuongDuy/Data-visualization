@@ -4,8 +4,15 @@
 
 textBox::textBox(){}
 
-textBox::textBox(Vector2f posChatBox, Texture &t_submitButton, Font &t_font) {
+textBox::textBox(Vector2f posChatBox, Texture &t_submitButton, string descrip, Font &t_font) {
     
+    description.setFont(t_font);
+    description.setString(descrip);
+    description.setCharacterSize(18);
+    description.setFillColor(Color::Black);
+    description.setPosition(posChatBox);
+
+    posChatBox = posChatBox + Vector2f(50, 0);
     chatbox.setSize(Vector2f(50, 25));
     chatbox.setFillColor(Color::White);
     chatbox.setOutlineThickness(2);
@@ -13,6 +20,7 @@ textBox::textBox(Vector2f posChatBox, Texture &t_submitButton, Font &t_font) {
     chatbox.setPosition(posChatBox);
 
 
+     
     text.setFont(t_font);
     text.setString(userText);
     text.setCharacterSize(24);
@@ -67,7 +75,7 @@ void textBox::submit() {
         break;
     
     case 2:
-        displayNote = (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
+        displayNote = (!secondTextBox) && (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
         if (!displayNote) break;
         if (numNode == 10) notice = "Note: The maximum number of vertex allowed is 10";
         else notice = "Note: a valid index between [1.." + to_string(numNode + 1) + "]";
@@ -79,6 +87,9 @@ void textBox::submit() {
         else notice = "Note: a valid index between [1.." + to_string(numNode) + "]"; 
         break;
     case 4:
+        displayNote = (!secondTextBox) && (tmp == 0 || tmp > numNode); 
+        if (!displayNote) break;
+        else notice = "Note: a valid index between [1.." + to_string(numNode) + "]";
         break;
     case 5:
         break;
@@ -92,26 +103,36 @@ void textBox::submit() {
         numNode = tmp;
         break;
     case 2:
-        insertIdx = tmp;
-        insertValue = rand() % 100;
-        addProcess = 3;
+        if (!secondTextBox) insertIdx = tmp;
+        else {
+            insertValue = tmp;
+            addProcess = 3;
+        }
+        secondTextBox ^= 1;
         break;
     case 3:
         deleteIdx = tmp;
         deleteProcess = 5;
         break;
     case 4:
+        if (!secondTextBox) updateIdx = tmp;
+        else {
+            updateValue = tmp;
+            updateProcess = 3;
+        }
+        secondTextBox ^= 1;
         break;
     case 5:
         searchValue = tmp;
         searchProcess = 1;
         break;
     }
-    numTextBox = 0;
+    if (!secondTextBox) numTextBox = 0;
 }
 
 void textBox::draw(RenderWindow &window) {
 
+    window.draw(description);
     window.draw(chatbox);
     window.draw(text);
     if (displayNote) window.draw(note);

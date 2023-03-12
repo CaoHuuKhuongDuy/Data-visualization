@@ -19,6 +19,7 @@ class SinglyLL {
         void changePosition(Vector2f pos);
         void changeColor(Color color);
         void changeRadius(double radius);
+        void changeData(int x);
         void draw(RenderWindow &window);
         bool rightPlace(Font &font);
         Vector2f getCenter();

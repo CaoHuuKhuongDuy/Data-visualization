@@ -11,10 +11,10 @@ using namespace std;
 class textBox {
 private:
     RectangleShape chatbox;
-    Text text, note;
+    Text text, note, description;
     Sprite submitButton;
 public:
-    textBox(Vector2f posChatBox, Texture &t_submitButton, Font &font);
+    textBox(Vector2f posChatBox, Texture &t_submitButton, string descrip, Font &font);
     textBox();
     void handleInput(RenderWindow &window, Event event);
     void click(RenderWindow &winndow, Event event);
