@@ -81,9 +81,6 @@ int homePage(RenderWindow &window) {
     Sprite Stack = addSprite(window, "stack.png", 400, 300, Vector2f(500, 100));
     
     displayText(window, "Data visualization", 500, 10, 50);
-    Arrow arrow;
-    // arrow.create(Vector2f(270, 215), Vector2f(390, 415));
-    // arrow.draw(window);
     window.display();
     return statusHomePage(window, linkList, Stack);
 
@@ -189,6 +186,7 @@ void updateAnimationSGL() {
         else if (updateProcess == 2) {
             usleep(800000);
             cur->changeData(updateValue);
+            cur->changeColor(Color::Cyan);
             updateProcess--;
         }
         else {
