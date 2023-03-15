@@ -15,13 +15,29 @@
 using namespace sf;
 using namespace std;
 
+extern Vector2f posBackButton;
+extern bool insert_at_end, firstTimeAdd;
+extern int radiusAnimation;
+extern Color orange;
+extern Font font;
+extern Texture t_submitButton;
+extern textBox input;
+extern SinglyLL *rootSGL, *cur;
+
+Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark = false, bool display = true);
+
+void displayText(RenderWindow &window, string content, Vector2f pos, int sz);
+
+textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos);
+
+void goAndColor(SinglyLL *&cur, int specialData = -1);
 
 void resizeSprite(Sprite &sprite, double height, double width);
 
 int homePage(RenderWindow &window);
 
-int linkListPage(RenderWindow &window);
+// int linkListPage(RenderWindow &window);
 
-int singleLinkList(RenderWindow &window);
+// int singleLinkList(RenderWindow &window);
 
 #endif

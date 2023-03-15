@@ -1,3 +1,4 @@
+#include "renderLinkedList.h"
 #include "render.h"
 
 const int height = 1400;
@@ -16,8 +17,8 @@ int main() {
         
         // Sprite sprite;
         // status = homePage(window);
-        status = singleLinkList(window);
-        continue;
+        // status = singleLinkList(window);
+        // continue;
         switch (status) {
             case -1: return EXIT_SUCCESS;
             case 0: 
