@@ -1,7 +1,4 @@
 #include "process.h"
-// #include "textBox.h"
-
-// textBox input;
 
 
 Event event;
@@ -66,11 +63,20 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
     return state;
 }
 
-int statusSingleLinkList(RenderWindow &window, Sprite backButton, Sprite createButton, Sprite addButton, 
-                         Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input) {
+void initPressState(int x, bool resetCreateProcess = true) {
+    numTextBox = x;
+    noTextBox = 0;
+    userText = "";
+    if (resetCreateProcess) createProcess = 0;
+}
+
+int statusSinglyLinkList(RenderWindow &window, Sprite backButton, Sprite createButton, Sprite addButton, Sprite deleteButton, 
+                        Sprite updateButton, Sprite searchButton, textBox &input, Sprite *randomButton, Sprite *inputButton) {
     int state = 11;
     backButtonDark = hoverMouse(backButton);
     createButtonDark = hoverMouse(createButton);
+    randomButtonDark = (randomButton && hoverMouse(*randomButton));
+    inputButtonDark = (inputButton && hoverMouse(*inputButton));
     addButtonDark = hoverMouse(addButton);
     deleteButtonDark = hoverMouse(deleteButton);
     updateButtonDark = hoverMouse(updateButton);
@@ -87,11 +93,19 @@ int statusSingleLinkList(RenderWindow &window, Sprite backButton, Sprite createB
                 if (event.mouseButton.button == Mouse::Left) {
                     if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 1;
-                    if (Press(createButton)) numTextBox = 1, secondTextBox = 0;
-                    if (Press(addButton)) numTextBox = 2, secondTextBox = 0;
-                    if (Press(deleteButton)) numTextBox = 3, secondTextBox = 0;
-                    if (Press(updateButton)) numTextBox = 4, secondTextBox = 0;
-                    if (Press(searchButton)) numTextBox = 5, secondTextBox = 0;
+                    if (Press(createButton)) initPressState(1);
+                    if (randomButton && Press(*randomButton)) {
+                        initPressState(11, false);
+                        createProcess -= 2;
+                    }
+                    if (inputButton && Press(*inputButton)) {
+                        initPressState(12, false);
+                        createProcess--;
+                    }
+                    if (Press(addButton)) initPressState(2);
+                    if (Press(deleteButton)) initPressState(3);
+                    if (Press(updateButton)) initPressState(4); 
+                    if (Press(searchButton)) initPressState(5); 
                 }
                 break;
             case Event::TextEntered:

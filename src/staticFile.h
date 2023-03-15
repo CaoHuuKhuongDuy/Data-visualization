@@ -6,16 +6,17 @@
 using namespace sf;
 using namespace std;
 
-
+extern int valueNewNode[11];
 extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark;
-extern bool updateButtonDark, searchButtonDark, displayNote, secondTextBox;
-extern int numTextBox, numNode, insertIdx, insertValue, searchValue, updateIdx, updateValue;
-extern int addProcess, deleteProcess, searchProcess, updateProcess; 
+extern bool randomButtonDark, inputButtonDark;
+extern bool updateButtonDark, searchButtonDark, displayNote;
+extern int numTextBox, noTextBox, numNode, insertIdx, insertValue, searchValue, updateIdx, updateValue;
+extern int createProcess, addProcess, deleteProcess, searchProcess, updateProcess; 
 extern int deleteIdx;
 extern bool remake;
 extern string userText, notice;
 
-
+void initValueNode();
 void resizeSprite(Sprite &sprite, double height, double width);
 Texture loadTexture(Texture &texture, string fileName);
 

@@ -1,7 +1,7 @@
 #include "singlyLL.h"
 
-Vector2f upStep = Vector2f(0, -2.25);
-Vector2f straightStep = Vector2f(3, 0);
+Vector2f upStep = Vector2f(0, -2.8125);
+Vector2f straightStep = Vector2f(3.75, 0);
 
 
 // right place (120 + 120 * id, 200)
@@ -79,12 +79,12 @@ void deleteLL(SinglyLL *&root) {
     root = nullptr;
 }
 
-void createLL(SinglyLL *&root, int numNode, Font &font) {
+void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font) {
     srand(time(nullptr));
     int cnt = 1;
     SinglyLL *cur = root;
     while (cnt <= numNode) {
-        SinglyLL *tmp = createNode(rand() % 100, cnt, Vector2f(120 + 120 * cnt, 200), font);
+        SinglyLL *tmp = createNode(valueNewNode[cnt], cnt, Vector2f(120 + 120 * cnt, 200), font);
         if (cnt == 1) {
             root = tmp;
             cur = root;

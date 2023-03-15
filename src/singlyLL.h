@@ -36,7 +36,7 @@ SinglyLL *createNode(int value, int idx, Vector2f pos, Font &font);
 
 void deleteLL(SinglyLL *&root);
 
-void createLL(SinglyLL *&root, int numNode, Font &font);
+void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font);
 
 void drawSGL(RenderWindow &window, SinglyLL *root);
 

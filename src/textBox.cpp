@@ -75,7 +75,7 @@ void textBox::submit() {
         break;
     
     case 2:
-        displayNote = (!secondTextBox) && (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
+        displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
         if (!displayNote) break;
         if (numNode == 10) notice = "Note: The maximum number of vertex allowed is 10";
         else notice = "Note: a valid index between [1.." + to_string(numNode + 1) + "]";
@@ -87,7 +87,7 @@ void textBox::submit() {
         else notice = "Note: a valid index between [1.." + to_string(numNode) + "]"; 
         break;
     case 4:
-        displayNote = (!secondTextBox) && (tmp == 0 || tmp > numNode); 
+        displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode); 
         if (!displayNote) break;
         else notice = "Note: a valid index between [1.." + to_string(numNode) + "]";
         break;
@@ -99,35 +99,40 @@ void textBox::submit() {
 
     switch (numTextBox) {
     case 1:
-        remake = true;
+        createProcess = 3;
         numNode = tmp;
         break;
+    case 12:
+        valueNewNode[noTextBox + 1] = tmp;
+        (noTextBox += 1) %= numNode;
+        if (noTextBox == 0) createProcess--;
+        break;
     case 2:
-        if (!secondTextBox) insertIdx = tmp;
+        if (noTextBox == 0) insertIdx = tmp;
         else {
             insertValue = tmp;
             addProcess = 3;
         }
-        secondTextBox ^= 1;
+        (noTextBox += 1) %= 2;
         break;
     case 3:
         deleteIdx = tmp;
         deleteProcess = 5;
         break;
     case 4:
-        if (!secondTextBox) updateIdx = tmp;
+        if (noTextBox == 0) updateIdx = tmp;
         else {
             updateValue = tmp;
             updateProcess = 3;
         }
-        secondTextBox ^= 1;
+        (noTextBox += 1) %= 2;
         break;
     case 5:
         searchValue = tmp;
         searchProcess = 1;
         break;
     }
-    if (!secondTextBox) numTextBox = 0;
+    if (noTextBox == 0) numTextBox = 0;
 }
 
 void textBox::draw(RenderWindow &window) {

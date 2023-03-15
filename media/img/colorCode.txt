@@ -1,3 +1,7 @@
 create / add / .... 
 	light : 40ff5d
 	dark  : 1a9c27
+
+random / user define
+	light : 2c4ad1
+	dark  : 101e5e

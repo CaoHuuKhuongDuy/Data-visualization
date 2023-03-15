@@ -5,3 +5,5 @@ src/example.exe
 src/arrowExample.cpp
 src/exampleTextBox.cpp
 src/displayTextBox.txt
+src/*.exe
+src/*.o

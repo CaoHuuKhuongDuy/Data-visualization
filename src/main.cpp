@@ -11,7 +11,7 @@ RenderWindow window(VideoMode(height, width), "Data visualization", Style::Defau
 int main() {
 
     int status = 0;
-    // loadFont();
+    initValueNode();
     while (window.isOpen()) {
         
         // Sprite sprite;

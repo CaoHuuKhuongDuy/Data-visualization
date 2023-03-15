@@ -9,6 +9,8 @@ const Vector2f posBackButton = Vector2f(10, 10);
 
 bool backButtonDark = false;
 bool createButtonDark = false;
+bool randomButtonDark = false;
+bool inputButtonDark = false;
 bool addButtonDark = false;
 bool deleteButtonDark = false;
 bool updateButtonDark = false;
@@ -46,7 +48,7 @@ Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, 
     return sprite;
 }
 
-void displayText(RenderWindow &window, string content, int x, int y, int sz) {
+void displayText(RenderWindow &window, string content, Vector2f pos, int sz) {
 
     Text title;
     font.loadFromFile("../media/font/arial.ttf");
@@ -55,7 +57,7 @@ void displayText(RenderWindow &window, string content, int x, int y, int sz) {
     title.setFillColor(Color::Black);
     title.setStyle(Text::Bold);
     title.setCharacterSize(sz);
-    title.setPosition(x, y);
+    title.setPosition(pos);
     window.draw(title);
 
 }
@@ -71,42 +73,6 @@ textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos) {
     return input;
 }
 
-int homePage(RenderWindow &window) {
-
-    window.clear(Color::White);
-    // Sprite background = addSprite(window, "background.jpg", 1800, 800, 0, 0);
-
-    // Texture
-    Sprite linkList = addSprite(window, "Linked-list.png", 400, 300, Vector2f(50, 100));
-    Sprite Stack = addSprite(window, "stack.png", 400, 300, Vector2f(500, 100));
-    
-    displayText(window, "Data visualization", 500, 10, 50);
-    window.display();
-    return statusHomePage(window, linkList, Stack);
-
-}
-
-int linkListPage(RenderWindow &window) {
-
-    window.clear(Color::White);
-    displayText(window, "Linked List", 550, 10, 50);
-
-
-    Sprite singlyLinkList = addSprite(window, "singlyLinkList.png", 450, 300, Vector2f(20, 220));
-    Sprite doublyLinkList = addSprite(window, "doublyLinkList.png", 400, 340, Vector2f(520, 160));
-    Sprite circularLinkList = addSprite(window, "circular_singlyLinkList.png", 400, 300, Vector2f(930, 210));
-
-    displayText(window, "Singly Linked List", 135, 430, 20);
-    displayText(window, "Doubly Linked List", 620, 430, 20);
-    displayText(window, "Circular Linked List", 1050, 430, 20);
-
-    Sprite backButton = addSprite(window, "backButton.png", 150, 70, posBackButton, backButtonDark);     
-
-    window.display();
-    return statuslinkListPage(window, singlyLinkList, doublyLinkList, 
-                              circularLinkList, backButton);
-
-}
 
 void goAndColor(SinglyLL *&cur, int specialData = -1) {
     
@@ -114,6 +80,28 @@ void goAndColor(SinglyLL *&cur, int specialData = -1) {
     usleep(500000);
     cur = cur->nxt;
 
+}
+
+void createAnimationSGL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
+    if (createProcess == 3) {
+        
+        Vector2f posRandomButton = Vector2f(220, 500);
+        Vector2f posInputButton = Vector2f(360, 500);
+        displayText(window, "Size = " + to_string(numNode), Vector2f(240, 460), 18);
+        p_randomButton = new Sprite(addSprite(window, "randomButton.png", 120, 42, posRandomButton, randomButtonDark));
+        p_inputButton = new Sprite(addSprite(window, "inputButton.png", 120, 42, posInputButton, inputButtonDark));    
+    }
+    if (createProcess == 1) {
+        deleteLL(rootSGL);
+        if (numTextBox == 11) {
+            for (int i = 1; i <= numNode; i++)
+              valueNewNode[i] = rand() % 100;
+        }
+        createLL(rootSGL, numNode, valueNewNode, font);
+        cur = rootSGL;
+        createProcess--;
+    }
+    
 }
 
 void insertAnimationSGL() {
@@ -208,11 +196,48 @@ void searchAnimationSGL() {
     if (cur) goAndColor(cur, searchValue);
 }
 
+int homePage(RenderWindow &window) {
+
+    window.clear(Color::White);
+    // Sprite background = addSprite(window, "background.jpg", 1800, 800, 0, 0);
+
+    // Texture
+    Sprite linkList = addSprite(window, "Linked-list.png", 400, 300, Vector2f(50, 100));
+    Sprite Stack = addSprite(window, "stack.png", 400, 300, Vector2f(500, 100));
+    
+    displayText(window, "Data visualization", Vector2f(500, 10), 50);
+    window.display();
+    return statusHomePage(window, linkList, Stack);
+
+}
+
+int linkListPage(RenderWindow &window) {
+
+    window.clear(Color::White);
+    displayText(window, "Linked List", Vector2f(550, 10), 50);
+
+
+    Sprite singlyLinkList = addSprite(window, "singlyLinkList.png", 450, 300, Vector2f(20, 220));
+    Sprite doublyLinkList = addSprite(window, "doublyLinkList.png", 400, 340, Vector2f(520, 160));
+    Sprite circularLinkList = addSprite(window, "circular_singlyLinkList.png", 400, 300, Vector2f(930, 210));
+
+    displayText(window, "Singly Linked List", Vector2f(135, 430), 20);
+    displayText(window, "Doubly Linked List", Vector2f(620, 430), 20);
+    displayText(window, "Circular Linked List", Vector2f(1050, 430), 20);
+
+    Sprite backButton = addSprite(window, "backButton.png", 150, 70, posBackButton, backButtonDark);     
+
+    window.display();
+    return statuslinkListPage(window, singlyLinkList, doublyLinkList, 
+                              circularLinkList, backButton);
+
+}
+
+
 int singleLinkList(RenderWindow &window) {
     window.clear(Color::White);
-    displayText(window, "Singly Linked List", 500, 10, 50);
+    displayText(window, "Singly Linked List", Vector2f(500, 10), 50);
     font.loadFromFile("../media/font/arial.ttf");
-
 
     Vector2f posCreateButton = Vector2f(100, 500);
     Vector2f posAddButton = Vector2f(100, 550);
@@ -227,30 +252,33 @@ int singleLinkList(RenderWindow &window) {
     Sprite updateButton = addSprite(window, "updateButton.png", 90, 42, posUpdateButton, updateButtonDark);
     Sprite searchButton = addSprite(window, "searchButton.png", 90, 42, posSearchButton, searchButtonDark);
 
+    Sprite *p_randomButton = nullptr, *p_inputButton = nullptr;
+
+
+
     switch (numTextBox) {
         case 1: 
             input = displayTextBox(window, " Size", posCreateButton);
             break;
+        case 12:
+            input = displayTextBox(window, "v[" + to_string(noTextBox + 1) + "] = ", posCreateButton);
+            break;
         case 2:
-            input = displayTextBox(window, ((!secondTextBox) ? "Index" : "Value"), posAddButton);
+            input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
             break;
         case 3:
             input = displayTextBox(window, "Index", posDeleteButton);
             break;
         case 4:
-            input = displayTextBox(window, ((!secondTextBox) ? "Index" : "Value"), posUpdateButton);
+            input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posUpdateButton);
             break;
         case 5:
             input = displayTextBox(window, "Value", posSearchButton);
             break;      
     }
 
-    if (remake) {
-        deleteLL(rootSGL);
-        createLL(rootSGL, numNode, font);
-        cur = rootSGL;
-    }
 
+    if (createProcess) createAnimationSGL(window, p_randomButton, p_inputButton);
     if (addProcess) insertAnimationSGL();
     if (deleteProcess) deleteAnimationSGL();
     if (updateProcess) updateAnimationSGL();
@@ -259,6 +287,7 @@ int singleLinkList(RenderWindow &window) {
     drawSGL(window, rootSGL);
     window.display();
     
-    remake = false;
-    return statusSingleLinkList(window, backButton, createButton, addButton, deleteButton, updateButton, searchButton, input);
+    // remake = false;
+    return statusSinglyLinkList(window, backButton,createButton, addButton, deleteButton, updateButton, searchButton, input,
+                                p_randomButton, p_inputButton);
 }

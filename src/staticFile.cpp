@@ -1,17 +1,25 @@
 #include "staticFile.h"
 #include <iostream>
 
+int valueNewNode[11];
 int numNode = 5;
 int insertIdx = -1, insertValue;
 int updateIdx = -1, updateValue; 
 int deleteIdx = -1;
 int searchValue = -1;
+int createProcess = 1;
 int addProcess = 0;
 int deleteProcess = 0; 
 int searchProcess = 0;
 int updateProcess = 0;
-bool remake = true, secondTextBox = false;
+int noTextBox = 0;
 bool displayNote = false;
+
+void initValueNode() {
+    for (int i = 1; i <= 10; i++)
+      valueNewNode[i] = rand() % 100;
+}
+
 void resizeSprite(Sprite &sprite, double height, double width) {
     
     Vector2f targetSize(height, width); 
