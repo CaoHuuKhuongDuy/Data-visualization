@@ -101,10 +101,10 @@ Vector2f SinglyLL::getCenter() {
     return m_node.getOrigin();
 }
 
-void drawSGL(RenderWindow &window, SinglyLL *root) {
+void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL) {
     while (root) {
         if (root->nxt != nullptr) {
-            Arrow arrow;
+            Arrow arrow(1 + doublyLL);
             Vector2f pointInc = Vector2f(15, 15);
             Vector2f p1 = root->position + pointInc;
             Vector2f p2 = root->nxt->position + pointInc;            

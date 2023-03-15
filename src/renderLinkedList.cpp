@@ -1,5 +1,7 @@
 #include "renderLinkedList.h"
 
+string styleName[4] = {"", "Singly Linked List", "Doubly Linked List", "Circular Linked List"};
+
 void createAnimationSGL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
     if (createProcess == 3) {
         
@@ -137,9 +139,9 @@ int linkListPage(RenderWindow &window) {
 }
 
 
-int singleLinkList(RenderWindow &window) {
+int singleLinkList(RenderWindow &window, int styleLL) {
     window.clear(Color::White);
-    displayText(window, "Singly Linked List", Vector2f(500, 10), 50);
+    displayText(window, styleName[styleLL], Vector2f(500, 10), 50);
     font.loadFromFile("../media/font/arial.ttf");
 
     Vector2f posCreateButton = Vector2f(100, 500);
@@ -187,10 +189,10 @@ int singleLinkList(RenderWindow &window) {
     if (updateProcess) updateAnimationSGL();
     if (searchProcess) searchAnimationSGL();
 
-    drawSGL(window, rootSGL);
+    drawLL(window, rootSGL, (styleLL == 2));
     window.display();
     
     // remake = false;
-    return statusSinglyLinkList(window, backButton,createButton, addButton, deleteButton, updateButton, searchButton, input,
-                                p_randomButton, p_inputButton);
+    return statusLinkList(window, backButton,createButton, addButton, deleteButton, updateButton, searchButton, input, 
+                          styleLL + 10, p_randomButton, p_inputButton);
 }

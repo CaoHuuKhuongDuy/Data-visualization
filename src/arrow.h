@@ -10,12 +10,15 @@ using namespace sf;
 
 class Arrow {
     public:
-        Arrow();
+        Arrow(int num = 1);
         void create(Vector2f startPoint, Vector2f endPoint);
+        void createLine(Vector2f startPoint, Vector2f endPoint);
+        void createArrow(VertexArray &arrow);
         void draw(RenderWindow &window);
     private:
+        int numArrow;
         VertexArray line;
-        VertexArray arrow;
+        VertexArray arrow1, arrow2;
         Vector2f point1, point2;
 };
 

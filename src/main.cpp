@@ -5,7 +5,7 @@ const int height = 1400;
 const int width = 780;
 
 
-RenderWindow window(VideoMode(height, width), "Data visualization", Style::Default);
+RenderWindow window(VideoMode(height, width), "Data visualization", Style::Close);
 
 
 
@@ -30,6 +30,9 @@ int main() {
             case 11:
                 status = singleLinkList(window);
                 break; 
+            case 12:
+                status = singleLinkList(window, 2);
+                break;
             default: 
                 status = 0;
                 break;

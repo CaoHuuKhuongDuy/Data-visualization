@@ -38,7 +38,7 @@ void deleteLL(SinglyLL *&root);
 
 void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font);
 
-void drawSGL(RenderWindow &window, SinglyLL *root);
+void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL = false);
 
 void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font);
 
