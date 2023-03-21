@@ -1,7 +1,10 @@
 #include "singlyLL.h"
 
-Vector2f upStep = Vector2f(0, -2.8125);
-Vector2f straightStep = Vector2f(3.75, 0);
+Vector2f upStep = Vector2f(0, -3.75);
+Vector2f straightStep = Vector2f(5, 0);
+int firstPosX = 200;
+int firstPosY = 350;
+
 
 
 // right place (120 + 120 * id, 200)
@@ -27,7 +30,6 @@ void SinglyLL::changePosition(Vector2f pos) {
     position = pos;
 
     m_node.setPosition(pos);
-    // m_node.setOrigin(pos);
 
     Vector2f justify = (data < 10 ? Vector2f(8, 4) : Vector2f(3, 4));
     m_text.setPosition(pos + justify);
@@ -51,10 +53,10 @@ void SinglyLL::changeData(int x) {
 }
 
 bool SinglyLL::rightPlace(Font &font) {
-    if (position.x == 120 + 120 * id && position.y == 200) return false;
+    if (position.x == firstPosX + 120 * id && position.y == firstPosY) return false;
     float tmp = 1.f;
-    if (position.x > 120 + 120 * id) tmp = -1.f;
-    if (position.x != 120 + 120 * id) changePosition(position + (straightStep * tmp));
+    if (position.x > firstPosX + 120 * id) tmp = -1.f;
+    if (position.x != firstPosX + 120 * id) changePosition(position + (straightStep * tmp));
     else changePosition(position + upStep);
     return true;
 }
@@ -84,7 +86,7 @@ void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font) {
     int cnt = 1;
     SinglyLL *cur = root;
     while (cnt <= numNode) {
-        SinglyLL *tmp = createNode(valueNewNode[cnt], cnt, Vector2f(120 + 120 * cnt, 200), font);
+        SinglyLL *tmp = createNode(valueNewNode[cnt], cnt, Vector2f(firstPosX + 120 * cnt, firstPosY), font);
         if (cnt == 1) {
             root = tmp;
             cur = root;
@@ -101,8 +103,35 @@ Vector2f SinglyLL::getCenter() {
     return m_node.getOrigin();
 }
 
-void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL) {
+void drawReturnLine(RenderWindow &window, Vector2f pos) {
+    Arrow arrow1(0);
+    Arrow arrow2(0);
+    Arrow arrow3(0);
+    Arrow arrow4(1);
+    pos = pos + Vector2f(30, 15);
+    Vector2f p1 = pos;
+    Vector2f p2 = pos + Vector2f(100, 0);
+    arrow1.create(p1, p2, false);
+    p2 = p2 + Vector2f(-2, 0);
+    Vector2f p3 = p2 + Vector2f(0, -150);
+    arrow2.create(p2, p3, false);
+    p3 = p3 + Vector2f(1, 2);
+    Vector2f p4 = Vector2f(firstPosX + 130, p3.y);
+    arrow3.create(p3, p4, false);
+    // cout << firstPosX << endl;
+    p4 = p4 + Vector2f(3, 0);
+    Vector2f p5 = Vector2f(p4.x, firstPosY - 10);
+    arrow4.create(p4, p5, false);
+    arrow1.draw(window);
+    arrow2.draw(window);
+    arrow3.draw(window);
+    arrow4.draw(window);
+}
+
+void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL, bool circular) {
+    Vector2f endPoint;
     while (root) {
+        endPoint = root->position;
         if (root->nxt != nullptr) {
             Arrow arrow(1 + doublyLL);
             Vector2f pointInc = Vector2f(15, 15);
@@ -114,10 +143,11 @@ void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL) {
         root->draw(window);
         root = root->nxt;
     }
+    if (circular) drawReturnLine(window, endPoint);
 }
 
 void insertBefore(SinglyLL *&root, int value, int idx, Font &font, bool last) {
-    SinglyLL *tmp = createNode(value, idx, Vector2f(120 + 120 * idx, (last ? 200 : 290)), font);
+    SinglyLL *tmp = createNode(value, idx, Vector2f(firstPosX + 120 * idx, (last ? firstPosY : firstPosY + 90)), font);
     tmp->nxt = root;
     root = tmp;
 }

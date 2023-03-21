@@ -2,12 +2,12 @@
 
 string styleName[4] = {"", "Singly Linked List", "Doubly Linked List", "Circular Linked List"};
 
-void createAnimationSGL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
+void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
     if (createProcess == 3) {
         
-        Vector2f posRandomButton = Vector2f(220, 500);
-        Vector2f posInputButton = Vector2f(360, 500);
-        displayText(window, "Size = " + to_string(numNode), Vector2f(240, 460), 18);
+        Vector2f posRandomButton = Vector2f(220, 700);
+        Vector2f posInputButton = Vector2f(360, 700);
+        displayText(window, "Size = " + to_string(numNode), Vector2f(240, 660), 18);
         p_randomButton = new Sprite(addSprite(window, "randomButton.png", 120, 42, posRandomButton, randomButtonDark));
         p_inputButton = new Sprite(addSprite(window, "inputButton.png", 120, 42, posInputButton, inputButtonDark));    
     }
@@ -24,7 +24,7 @@ void createAnimationSGL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&
     
 }
 
-void insertAnimationSGL() {
+void insertAnimationLL() {
     if (cur && cur->id < insertIdx) goAndColor(cur);
     else {
         if (addProcess == 3) {
@@ -49,14 +49,14 @@ void insertAnimationSGL() {
     }
 }
 
-void deleteAnimationSGL() {
+void deleteAnimationLL() {
     if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur);
     else {
         if (deleteProcess == 5) {
             if (deleteIdx == 1 || deleteIdx == numNode) deleteProcess--;
             else {
                 cur->changePosition(cur->position + Vector2f(0, 6));
-                if (cur->position.y == 290) deleteProcess--;
+                if (cur->position.y == firstPosY + 90) deleteProcess--;
             }
         }
         else if (deleteProcess == 4) {
@@ -83,7 +83,7 @@ void deleteAnimationSGL() {
     }
 }
 
-void updateAnimationSGL() {
+void updateAnimationLL() {
     if (cur && cur->id < updateIdx) goAndColor(cur);
     else {
         if (updateProcess == 3) {
@@ -105,7 +105,7 @@ void updateAnimationSGL() {
     }
 }
 
-void searchAnimationSGL() {
+void searchAnimationLL() {
     if (!cur) {
         usleep(500000);
         searchProcess--;
@@ -119,16 +119,16 @@ void searchAnimationSGL() {
 int linkListPage(RenderWindow &window) {
 
     window.clear(Color::White);
-    displayText(window, "Linked List", Vector2f(550, 10), 50);
+    displayText(window, "Linked List", Vector2f(800, 10), 50);
 
 
-    Sprite singlyLinkList = addSprite(window, "singlyLinkList.png", 450, 300, Vector2f(20, 220));
-    Sprite doublyLinkList = addSprite(window, "doublyLinkList.png", 400, 340, Vector2f(520, 160));
-    Sprite circularLinkList = addSprite(window, "circular_singlyLinkList.png", 400, 300, Vector2f(930, 210));
+    Sprite singlyLinkList = addSprite(window, "singlyLinkList.png", 450, 300, Vector2f(200, 220));
+    Sprite doublyLinkList = addSprite(window, "doublyLinkList.png", 400, 340, Vector2f(760, 160));
+    Sprite circularLinkList = addSprite(window, "circular_singlyLinkList.png", 400, 300, Vector2f(1200, 210));
 
-    displayText(window, "Singly Linked List", Vector2f(135, 430), 20);
-    displayText(window, "Doubly Linked List", Vector2f(620, 430), 20);
-    displayText(window, "Circular Linked List", Vector2f(1050, 430), 20);
+    displayText(window, "Singly Linked List", Vector2f(330, 430), 20);
+    displayText(window, "Doubly Linked List", Vector2f(860, 430), 20);
+    displayText(window, "Circular Linked List", Vector2f(1310, 430), 20);
 
     Sprite backButton = addSprite(window, "backButton.png", 150, 70, posBackButton, backButtonDark);     
 
@@ -139,16 +139,16 @@ int linkListPage(RenderWindow &window) {
 }
 
 
-int singleLinkList(RenderWindow &window, int styleLL) {
+int LinkList(RenderWindow &window, int styleLL) {
     window.clear(Color::White);
-    displayText(window, styleName[styleLL], Vector2f(500, 10), 50);
+    displayText(window, styleName[styleLL], Vector2f(750, 10), 50);
     font.loadFromFile("../media/font/arial.ttf");
 
-    Vector2f posCreateButton = Vector2f(100, 500);
-    Vector2f posAddButton = Vector2f(100, 550);
-    Vector2f posDeleteButton = Vector2f(100, 600);
-    Vector2f posUpdateButton = Vector2f(100, 650);
-    Vector2f posSearchButton = Vector2f(100, 700);  
+    Vector2f posCreateButton = Vector2f(100, 700);
+    Vector2f posAddButton = Vector2f(100, 750);
+    Vector2f posDeleteButton = Vector2f(100, 800);
+    Vector2f posUpdateButton = Vector2f(100, 850);
+    Vector2f posSearchButton = Vector2f(100, 900);  
 
     Sprite backButton = addSprite(window, "backButton.png", 150, 70, posBackButton, backButtonDark);     
     Sprite createButton = addSprite(window, "createButton.png", 90, 42, posCreateButton, createButtonDark);
@@ -160,13 +160,12 @@ int singleLinkList(RenderWindow &window, int styleLL) {
     Sprite *p_randomButton = nullptr, *p_inputButton = nullptr;
 
 
-
     switch (numTextBox) {
         case 1: 
             input = displayTextBox(window, " Size", posCreateButton);
             break;
         case 12:
-            input = displayTextBox(window, "v[" + to_string(noTextBox + 1) + "] = ", posCreateButton);
+            input = displayTextBox(window, "v[" + to_string(noTextBox + 1) + "] = ", posCreateButton + Vector2f((noTextBox == 9 ? 0 : 10), 0));
             break;
         case 2:
             input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
@@ -183,13 +182,13 @@ int singleLinkList(RenderWindow &window, int styleLL) {
     }
 
 
-    if (createProcess) createAnimationSGL(window, p_randomButton, p_inputButton);
-    if (addProcess) insertAnimationSGL();
-    if (deleteProcess) deleteAnimationSGL();
-    if (updateProcess) updateAnimationSGL();
-    if (searchProcess) searchAnimationSGL();
+    if (createProcess) createAnimationLL(window, p_randomButton, p_inputButton);
+    if (addProcess) insertAnimationLL();
+    if (deleteProcess) deleteAnimationLL();
+    if (updateProcess) updateAnimationLL();
+    if (searchProcess) searchAnimationLL();
 
-    drawLL(window, rootSGL, (styleLL == 2));
+    drawLL(window, rootSGL, (styleLL == 2), (styleLL == 3));
     window.display();
     
     // remake = false;

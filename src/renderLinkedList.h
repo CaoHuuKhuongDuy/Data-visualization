@@ -3,8 +3,9 @@
 
 #include "render.h"
 
+
 int linkListPage(RenderWindow &window);
 
-int singleLinkList(RenderWindow &window, int styleLL = 1);
+int LinkList(RenderWindow &window, int styleLL = 1);
 
 #endif 

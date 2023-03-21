@@ -7,18 +7,20 @@ Arrow::Arrow(int num) {
     numArrow = num;
 }
 
-void Arrow::createLine(Vector2f startPoint, Vector2f endPoint) {
+void Arrow::createLine(Vector2f startPoint, Vector2f endPoint, bool change) {
     point1 = startPoint;
     point2 = endPoint;
     float thickness = 5.f;
     Vector2f direction = point2 - point1;
-    Vector2f direction2;
-    direction2 = direction * 0.8f;
-    Vector2f tmp = point2;
-    point2 = direction2 + point1;
-    if (numArrow == 2) {
-        direction2 = direction2 * -1.f;
-        point1 = direction2 + tmp;
+    if (change) {
+        Vector2f direction2;
+        direction2 = direction * 0.8f;
+        Vector2f tmp = point2;
+        point2 = direction2 + point1;
+        if (numArrow == 2) {
+            direction2 = direction2 * -1.f;
+            point1 = direction2 + tmp;
+        }
     }
     float length = sqrt(direction.x * direction.x + direction.y * direction.y);
     Vector2f unitDirection = direction / length;
@@ -81,9 +83,9 @@ void Arrow::createArrow(VertexArray &arrow) {
       arrow[i].color = Color::Black;
 }
 
-void Arrow::create(Vector2f startPoint, Vector2f endPoint) {
-    createLine(startPoint, endPoint);
-    createArrow(arrow1);
+void Arrow::create(Vector2f startPoint, Vector2f endPoint, bool change) {
+    createLine(startPoint, endPoint, change);
+    if (numArrow >= 1) createArrow(arrow1);
     if (numArrow == 2) {
         swap(point1, point2);
         createArrow(arrow2);

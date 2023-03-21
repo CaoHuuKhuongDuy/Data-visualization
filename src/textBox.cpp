@@ -12,7 +12,7 @@ textBox::textBox(Vector2f posChatBox, Texture &t_submitButton, string descrip, F
     description.setFillColor(Color::Black);
     description.setPosition(posChatBox);
 
-    posChatBox = posChatBox + Vector2f(50, 0);
+    posChatBox = posChatBox + Vector2f(60, 0);
     chatbox.setSize(Vector2f(50, 25));
     chatbox.setFillColor(Color::White);
     chatbox.setOutlineThickness(2);

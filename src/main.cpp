@@ -1,8 +1,8 @@
 #include "renderLinkedList.h"
 #include "render.h"
 
-const int height = 1400;
-const int width = 780;
+const int height = 1920;
+const int width = 1080;
 
 
 RenderWindow window(VideoMode(height, width), "Data visualization", Style::Close);
@@ -18,6 +18,7 @@ int main() {
         // Sprite sprite;
         // status = homePage(window);
         // status = singleLinkList(window);
+        // status = LinkList(window, 3);
         // continue;
         switch (status) {
             case -1: return EXIT_SUCCESS;
@@ -28,10 +29,13 @@ int main() {
                 status = linkListPage(window);
                 break; 
             case 11:
-                status = singleLinkList(window);
+                status = LinkList(window);
                 break; 
             case 12:
-                status = singleLinkList(window, 2);
+                status = LinkList(window, 2);
+                break;
+            case 13:
+                status = LinkList(window, 3);
                 break;
             default: 
                 status = 0;

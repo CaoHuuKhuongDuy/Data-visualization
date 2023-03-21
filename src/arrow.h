@@ -11,8 +11,8 @@ using namespace sf;
 class Arrow {
     public:
         Arrow(int num = 1);
-        void create(Vector2f startPoint, Vector2f endPoint);
-        void createLine(Vector2f startPoint, Vector2f endPoint);
+        void create(Vector2f startPoint, Vector2f endPoint, bool change = true);
+        void createLine(Vector2f startPoint, Vector2f endPoint, bool change = true);
         void createArrow(VertexArray &arrow);
         void draw(RenderWindow &window);
     private:

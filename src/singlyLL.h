@@ -12,6 +12,9 @@
 using namespace sf;
 using namespace std;
 
+extern int firstPosX;
+extern int firstPosY;
+
 class SinglyLL {
 
     public:
@@ -38,7 +41,7 @@ void deleteLL(SinglyLL *&root);
 
 void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font);
 
-void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL = false);
+void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL = false, bool circular = false);
 
 void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font);
 
