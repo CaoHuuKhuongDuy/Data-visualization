@@ -99,8 +99,8 @@ void textBox::submit() {
 
     switch (numTextBox) {
     case 1:
-        createProcess = 3;
         numNode = tmp;
+        createProcess = (tmp != 0 ? 3 : 1);
         break;
     case 12:
         valueNewNode[noTextBox + 1] = tmp;

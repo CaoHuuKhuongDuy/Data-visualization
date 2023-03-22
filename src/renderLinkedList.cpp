@@ -4,7 +4,6 @@ string styleName[4] = {"", "Singly Linked List", "Doubly Linked List", "Circular
 
 void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
     if (createProcess == 3) {
-        
         Vector2f posRandomButton = Vector2f(220, 700);
         Vector2f posInputButton = Vector2f(360, 700);
         displayText(window, "Size = " + to_string(numNode), Vector2f(240, 660), 18);
@@ -18,6 +17,7 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
               valueNewNode[i] = rand() % 100;
         }
         createLL(rootSGL, numNode, valueNewNode, font);
+        if (numNode == 0) cout << "sdsdssd";
         cur = rootSGL;
         createProcess--;
     }
