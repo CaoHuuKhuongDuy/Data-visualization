@@ -51,11 +51,14 @@ void insertAnimationLL() {
 }
 
 void deleteAnimationLL() {
-    if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur);
+    if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur, "pre");
     else {
         if (deleteProcess == 5) {
             if (deleteIdx == 1 || deleteIdx == numNode) deleteProcess--;
             else {
+                cur->changeDes("del");
+                cur->changeColor(Color::Blue);
+                if (cur->nxt) cur->nxt->changeDes("aft");
                 cur->changePosition(cur->position + Vector2f(0, 6));
                 if (cur->position.y == firstPosY + 90) deleteProcess--;
             }
@@ -86,11 +89,13 @@ void deleteAnimationLL() {
 }
 
 void updateAnimationLL() {
-    if (cur && cur->id < updateIdx) goAndColor(cur);
+    if (cur && cur->id < updateIdx) goAndColor(cur, "temp");
     else {
         if (updateProcess == 3) {
             usleep(600000);
+            if (oldP) oldP->changeDes("", true);
             cur->changeColor(Color::Green);
+            cur->changeDes("temp");
             updateProcess--;
         }
         else if (updateProcess == 2) {
