@@ -49,7 +49,7 @@ void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font);
 
 void deleteNodeLL(SinglyLL *&root, int idx, int &numNode);
 
-bool format(SinglyLL *cur, Font &font, bool insert_at_end);
+bool format(SinglyLL *cur, Font &font, bool insert_at_end, bool deleteProcess = false);
 
 void clearColorLL(SinglyLL *cur);
 

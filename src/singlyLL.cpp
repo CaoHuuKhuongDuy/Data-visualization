@@ -1,7 +1,7 @@
 #include "singlyLL.h"
 
-Vector2f upStep = Vector2f(0, -3.75);
-Vector2f straightStep = Vector2f(5, 0);
+Vector2f upStep = Vector2f(0, -3);
+Vector2f straightStep = Vector2f(4, 0);
 int firstPosX = 320;
 int firstPosY = 350;
 
@@ -178,6 +178,7 @@ void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL, bool circular) 
 
 void insertBefore(SinglyLL *&root, int value, int idx, Font &font, bool last) {
     SinglyLL *tmp = createNode(value, idx, Vector2f(firstPosX + 120 * (idx - 1), (last ? firstPosY : firstPosY + 90)), font);
+    tmp->changeDes("vtx");
     tmp->nxt = root;
     root = tmp;
 }
@@ -191,7 +192,7 @@ void deleteBefore(SinglyLL *&root, int idx) {
 void changeIndex(SinglyLL *cur, int val = 1) {
     while (cur) {
         cur->id += val;
-        if (cur->id != 1) cur->changeDes("", true);
+        // if (cur->id != 1) cur->changeDes("", true);
         cur = cur->nxt;
     }
 }
@@ -222,15 +223,13 @@ void deleteNodeLL(SinglyLL *&root, int idx, int &numNode) {
     changeIndex(cur->nxt, -1);
 }
 
-bool format(SinglyLL *cur, Font &font, bool insert_at_end) {
+bool format(SinglyLL *cur, Font &font, bool insert_at_end, bool deleteProcess) {
     int tmp = 0;
     while (cur) {
-        if (insert_at_end && !cur->nxt) {
-            cur->changeColor(Color::Green);
-        }
+        if (insert_at_end && !cur->nxt) cur->changeColor(Color::Green);
         tmp += (cur->rightPlace(font));
         if (tmp == 1) cur->changeColor(Color::Green);
-        if (tmp == 2) cur->changeColor(Color::Blue);
+        if (!deleteProcess && tmp == 2) cur->changeColor(Color::Blue);
         cur = cur->nxt;
     }
     return (tmp);

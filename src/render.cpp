@@ -76,7 +76,6 @@ textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos) {
 
 
 void goAndColor(SinglyLL *&cur, string des, int specialData) {
-    
     if (oldP) oldP->changeDes("", true);
     oldP = cur;
     cur->changeColor((cur->data == specialData) ? Color::Green : orange);

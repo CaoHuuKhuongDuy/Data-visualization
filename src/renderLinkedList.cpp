@@ -24,9 +24,10 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
 }
 
 void insertAnimationLL() {
-    if (cur && cur->id < insertIdx) goAndColor(cur);
+    if (cur && cur->id < insertIdx) goAndColor(cur, "pre");
     else {
         if (addProcess == 3) {
+            if (cur) cur->changeDes(to_string(cur->id + 1) + "/aft", true);
             insertLL(rootSGL, insertValue, insertIdx, numNode, font);
             usleep(500000);
             firstTimeAdd = true;
@@ -70,7 +71,7 @@ void deleteAnimationLL() {
             deleteProcess--;
         }
         else if (deleteProcess == 2) {
-            if (!format(rootSGL, font, insert_at_end)) {
+            if (!format(rootSGL, font, insert_at_end, true)) {
                 deleteProcess--;
             }
         }

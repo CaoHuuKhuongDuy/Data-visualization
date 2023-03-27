@@ -69,6 +69,7 @@ void initPressState(int x, bool resetCreateProcess = true) {
     numTextBox = x;
     noTextBox = 0;
     userText = "";
+    displayNote = false;
     if (resetCreateProcess) createProcess = 0;
 }
 
@@ -95,19 +96,20 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton,
                 if (event.mouseButton.button == Mouse::Left) {
                     if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 1;
-                    if (Press(createButton)) initPressState(1);
-                    if (randomButton && Press(*randomButton)) {
+                    else if (Press(createButton)) initPressState(1);
+                    else if (randomButton && Press(*randomButton)) {
                         initPressState(11, false);
                         createProcess -= 2;
                     }
-                    if (inputButton && Press(*inputButton)) {
+                    else if (inputButton && Press(*inputButton)) {
                         initPressState(12, false);
                         createProcess--;
                     }
-                    if (Press(addButton)) initPressState(2);
-                    if (Press(deleteButton)) initPressState(3);
-                    if (Press(updateButton)) initPressState(4); 
-                    if (Press(searchButton)) initPressState(5); 
+                    else if (Press(addButton)) initPressState(2);
+                    else if (Press(deleteButton)) initPressState(3);
+                    else if (Press(updateButton)) initPressState(4); 
+                    else if (Press(searchButton)) initPressState(5);
+                    else initPressState(0); 
                 }
                 break;
             case Event::TextEntered:
