@@ -17,11 +17,10 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
               valueNewNode[i] = rand() % 100;
         }
         createLL(rootSGL, numNode, valueNewNode, font);
-        if (numNode == 0) cout << "sdsdssd";
         cur = rootSGL;
         createProcess--;
-    }
-    
+        oldP = nullptr;
+    }   
 }
 
 void insertAnimationLL() {
@@ -44,6 +43,7 @@ void insertAnimationLL() {
             addProcess--;
             insertIdx = -1;
             cur = rootSGL;
+            oldP = nullptr;
             insert_at_end = false;
         }
     }
@@ -79,6 +79,7 @@ void deleteAnimationLL() {
             deleteProcess--;
             deleteIdx = -1;
             radiusAnimation = 13;
+            oldP = nullptr;
         }
     }
 }
@@ -100,6 +101,7 @@ void updateAnimationLL() {
         else {
             clearColorLL(rootSGL);
             updateProcess--;
+            oldP = nullptr;
             cur = rootSGL;
         }
     }
@@ -111,16 +113,25 @@ void searchAnimationLL() {
         searchProcess--;
         clearColorLL(rootSGL);
         cur = rootSGL;
+        oldP = nullptr;
         return;
     }
-    if (cur) goAndColor(cur, searchValue);
+    if (cur) {
+        if (cur->data == searchValue) {
+            goAndColor(cur, "temp", searchValue);
+            cur = nullptr;
+        }
+        else goAndColor(cur, "temp", searchValue);
+    }
 }
 
 int linkListPage(RenderWindow &window) {
 
     window.clear(Color::White);
     displayText(window, "Linked List", Vector2f(800, 10), 50);
-
+    numNode = 5;
+    createProcess = 1;
+    initValueNode();
 
     Sprite singlyLinkList = addSprite(window, "singlyLinkList.png", 450, 300, Vector2f(200, 220));
     Sprite doublyLinkList = addSprite(window, "doublyLinkList.png", 400, 340, Vector2f(760, 160));
@@ -187,6 +198,8 @@ int LinkList(RenderWindow &window, int styleLL) {
     if (deleteProcess) deleteAnimationLL();
     if (updateProcess) updateAnimationLL();
     if (searchProcess) searchAnimationLL();
+
+
 
     drawLL(window, rootSGL, (styleLL == 2), (styleLL == 3));
     window.display();

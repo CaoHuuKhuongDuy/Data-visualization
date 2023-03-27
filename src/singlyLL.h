@@ -23,15 +23,17 @@ class SinglyLL {
         void changeColor(Color color);
         void changeRadius(double radius);
         void changeData(int x);
+        void changeDes(string s, bool empty = false);
         void draw(RenderWindow &window);
         bool rightPlace(Font &font);
+        string getDes();
         Vector2f getCenter();
         SinglyLL *nxt;
         int id, data;
         Vector2f position;
     private:
         CircleShape m_node;
-        Text m_text;
+        Text m_text, description;
 
 };
 

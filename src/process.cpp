@@ -37,6 +37,8 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
     return state;
 }
 
+
+
 int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList,
                        Sprite backButton) {
                         

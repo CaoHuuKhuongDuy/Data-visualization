@@ -17,9 +17,9 @@ int main() {
         
         // Sprite sprite;
         // status = homePage(window);
-        // status = singleLinkList(window);
+        status = LinkList(window);
         // status = LinkList(window, 1);
-        // continue;
+        continue;
         switch (status) {
             case -1: return EXIT_SUCCESS;
             case 0: 

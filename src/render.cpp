@@ -17,6 +17,7 @@ bool updateButtonDark = false;
 bool searchButtonDark = false;
 int numTextBox = 0;
 string userText = "", notice = "";
+SinglyLL *tmp = nullptr;
 
 //--------------------------------------------------------
 
@@ -31,7 +32,7 @@ Color orange(255, 99, 71);
 Font font;
 Texture t_submitButton;
 textBox input;
-SinglyLL *rootSGL = nullptr, *cur = nullptr;
+SinglyLL *rootSGL = nullptr, *cur = nullptr, *oldP = nullptr;
 
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark, bool display) {
     
@@ -48,13 +49,13 @@ Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, 
     return sprite;
 }
 
-void displayText(RenderWindow &window, string content, Vector2f pos, int sz) {
+void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Color color) {
 
     Text title;
     font.loadFromFile("../media/font/arial.ttf");
     title.setFont(font);
     title.setString(content);
-    title.setFillColor(Color::Black);
+    title.setFillColor(color);
     title.setStyle(Text::Bold);
     title.setCharacterSize(sz);
     title.setPosition(pos);
@@ -74,10 +75,15 @@ textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos) {
 }
 
 
-void goAndColor(SinglyLL *&cur, int specialData) {
+void goAndColor(SinglyLL *&cur, string des, int specialData) {
     
+    if (oldP) oldP->changeDes("", true);
+    oldP = cur;
     cur->changeColor((cur->data == specialData) ? Color::Green : orange);
-    usleep(500000);
+    if (cur == rootSGL) des = "Head/" + des;
+    cur->changeDes(des);
+    usleep(900000);
+    // usleep(10000);
     cur = cur->nxt;
 
 }

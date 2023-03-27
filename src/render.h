@@ -22,15 +22,15 @@ extern Color orange;
 extern Font font;
 extern Texture t_submitButton;
 extern textBox input;
-extern SinglyLL *rootSGL, *cur;
+extern SinglyLL *rootSGL, *cur, *oldP;
 
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark = false, bool display = true);
 
-void displayText(RenderWindow &window, string content, Vector2f pos, int sz);
+void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Color color = Color::Black);
 
 textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos);
 
-void goAndColor(SinglyLL *&cur, int specialData = -1);
+void goAndColor(SinglyLL *&cur, string des = "", int specialData = -1);
 
 void resizeSprite(Sprite &sprite, double height, double width);
 

@@ -19,6 +19,13 @@ SinglyLL::SinglyLL(int value, int idx, Font &font) {
     m_node.setOutlineThickness(3);
     m_node.setFillColor(Color::White);
 
+    description.setFont(font);
+    description.setString(to_string(id) + "/temp");
+    description.setCharacterSize(13);
+    description.setStyle(Text::Bold);
+    description.setFillColor(Color::Red);
+    description.setString("");
+
     m_text.setFont(font);
     m_text.setString(to_string(data));
     m_text.setCharacterSize(18);
@@ -33,6 +40,8 @@ void SinglyLL::changePosition(Vector2f pos) {
 
     Vector2f justify = (data < 10 ? Vector2f(8, 4) : Vector2f(3, 4));
     m_text.setPosition(pos + justify);
+
+    description.setPosition(position + Vector2f(-5, 30));
 }
 
 void SinglyLL::changeRadius(double radius) {
@@ -52,6 +61,15 @@ void SinglyLL::changeData(int x) {
     m_text.setPosition(m_node.getPosition() + justify);
 }
 
+void SinglyLL::changeDes(string s, bool empty) {
+    description.setPosition(position + Vector2f(-4, 30));
+    if (empty) {
+        description.setString(s);
+        return;
+    }
+    description.setString(to_string(id) + '/' + s);
+}
+
 bool SinglyLL::rightPlace(Font &font) {
     if (position.x == firstPosX + 120 * (id - 1) && position.y == firstPosY) return false;
     float tmp = 1.f;
@@ -62,6 +80,7 @@ bool SinglyLL::rightPlace(Font &font) {
 }
 
 void SinglyLL::draw(RenderWindow &window) {
+    window.draw(description);
     window.draw(m_node);
     window.draw(m_text);
 }
@@ -99,6 +118,10 @@ void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font) {
     }
 }
 
+string SinglyLL::getDes() {
+    return string(description.getString());
+}
+
 Vector2f SinglyLL::getCenter() {
     return m_node.getOrigin();
 }
@@ -134,6 +157,7 @@ void drawReturnLine(RenderWindow &window, Vector2f firstPoint, Vector2f endPoint
 
 void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL, bool circular) {
     if (!root) return;
+    if (root->getDes() == "") root->changeDes("Head", true);
     Vector2f endPoint;
     Vector2f firstPoint = root->position;
     while (root) {
@@ -167,6 +191,7 @@ void deleteBefore(SinglyLL *&root, int idx) {
 void changeIndex(SinglyLL *cur, int val = 1) {
     while (cur) {
         cur->id += val;
+        if (cur->id != 1) cur->changeDes("", true);
         cur = cur->nxt;
     }
 }
@@ -215,6 +240,7 @@ bool format(SinglyLL *cur, Font &font, bool insert_at_end) {
 void clearColorLL(SinglyLL *cur) {
     while (cur) {
         cur->changeColor(Color::White);
+        cur->changeDes("", true);
         cur = cur->nxt;
     }
     usleep(1000000);
