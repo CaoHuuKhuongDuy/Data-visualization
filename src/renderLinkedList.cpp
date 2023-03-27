@@ -54,10 +54,10 @@ void deleteAnimationLL() {
     if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur, "pre");
     else {
         if (deleteProcess == 5) {
+            cur->changeDes("del");
+            cur->changeColor(Color::Blue);
             if (deleteIdx == 1 || deleteIdx == numNode) deleteProcess--;
             else {
-                cur->changeDes("del");
-                cur->changeColor(Color::Blue);
                 if (cur->nxt) cur->nxt->changeDes("aft");
                 cur->changePosition(cur->position + Vector2f(0, 6));
                 if (cur->position.y == firstPosY + 90) deleteProcess--;
