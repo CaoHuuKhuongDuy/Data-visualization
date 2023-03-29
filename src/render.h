@@ -24,6 +24,8 @@ extern Texture t_submitButton;
 extern textBox input;
 extern SinglyLL *rootSGL, *cur, *oldP;
 
+
+
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark = false, bool display = true);
 
 void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Color color = Color::Black);

@@ -17,6 +17,7 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
 
 
 int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton, Sprite addButton, Sprite deleteButton, 
-                  Sprite updateButton, Sprite searchButton, textBox &input, int originState, Sprite *randomButton = nullptr, Sprite *inputButton = nullptr);
+                  Sprite updateButton, Sprite searchButton, textBox &input, int originState, Sprite *randomButton = nullptr, 
+                  Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
 
 #endif

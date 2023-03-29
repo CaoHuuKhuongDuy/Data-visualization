@@ -73,8 +73,8 @@ void initPressState(int x, bool resetCreateProcess = true) {
     if (resetCreateProcess) createProcess = 0;
 }
 
-int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton, Sprite addButton, Sprite deleteButton, 
-                   Sprite updateButton, Sprite searchButton, textBox &input, int originState, Sprite *randomButton, Sprite *inputButton) {
+int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton, Sprite addButton, Sprite deleteButton, Sprite updateButton, 
+                  Sprite searchButton, textBox &input, int originState, Sprite *randomButton, Sprite *inputButton, Sprite *closeButton) {
     int state = originState;
     backButtonDark = hoverMouse(backButton);
     createButtonDark = hoverMouse(createButton);
@@ -110,6 +110,7 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton,
                     else if (Press(updateButton)) initPressState(4); 
                     else if (Press(searchButton)) initPressState(5);
                     else initPressState(0); 
+                    if (closeButton && Press(*closeButton)) nameCodeId = 0;
                 }
                 break;
             case Event::TextEntered:

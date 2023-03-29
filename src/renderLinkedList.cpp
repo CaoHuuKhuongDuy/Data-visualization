@@ -24,6 +24,7 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
 }
 
 void insertAnimationLL() {
+    nameCodeId = 1;
     if (cur && cur->id < insertIdx) goAndColor(cur, "pre");
     else {
         if (addProcess == 3) {
@@ -51,6 +52,7 @@ void insertAnimationLL() {
 }
 
 void deleteAnimationLL() {
+    nameCodeId = 2;
     if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur, "pre");
     else {
         if (deleteProcess == 5) {
@@ -89,6 +91,7 @@ void deleteAnimationLL() {
 }
 
 void updateAnimationLL() {
+    nameCodeId = 3;
     if (cur && cur->id < updateIdx) goAndColor(cur, "temp");
     else {
         if (updateProcess == 3) {
@@ -114,6 +117,7 @@ void updateAnimationLL() {
 }
 
 void searchAnimationLL() {
+    nameCodeId = 4;
     if (!cur) {
         usleep(500000);
         searchProcess--;
@@ -155,6 +159,12 @@ int linkListPage(RenderWindow &window) {
 
 }
 
+void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton) {
+    addSprite(window, fileName, 600, 300, Vector2f(1400, 700));
+    p_closeButton = new Sprite(addSprite(window, "closeButton.png", 25, 25, Vector2f(1895, 700)));
+
+}
+
 
 int LinkList(RenderWindow &window, int styleLL) {
     window.clear(Color::White);
@@ -174,7 +184,7 @@ int LinkList(RenderWindow &window, int styleLL) {
     Sprite updateButton = addSprite(window, "updateButton.png", 90, 42, posUpdateButton, updateButtonDark);
     Sprite searchButton = addSprite(window, "searchButton.png", 90, 42, posSearchButton, searchButtonDark);
 
-    Sprite *p_randomButton = nullptr, *p_inputButton = nullptr;
+    Sprite *p_closeButton = nullptr, *p_randomButton = nullptr, *p_inputButton = nullptr;
 
 
     switch (numTextBox) {
@@ -205,12 +215,12 @@ int LinkList(RenderWindow &window, int styleLL) {
     if (updateProcess) updateAnimationLL();
     if (searchProcess) searchAnimationLL();
 
-
+    if (nameCodeId != 0) insertCode(window, nameCodeLL[nameCodeId], p_closeButton);
 
     drawLL(window, rootSGL, (styleLL == 2), (styleLL == 3));
     window.display();
     
     // remake = false;
     return statusLinkList(window, backButton,createButton, addButton, deleteButton, updateButton, searchButton, input, 
-                          styleLL + 10, p_randomButton, p_inputButton);
+                          styleLL + 10, p_randomButton, p_inputButton, p_closeButton);
 }

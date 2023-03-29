@@ -16,6 +16,9 @@ extern int deleteIdx;
 extern bool remake;
 extern string userText, notice;
 
+extern int nameCodeId;
+extern string nameCodeLL[20];
+
 void initValueNode();
 void resizeSprite(Sprite &sprite, double height, double width);
 Texture loadTexture(Texture &texture, string fileName);
