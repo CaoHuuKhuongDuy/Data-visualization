@@ -2,6 +2,12 @@
 
 string styleName[4] = {"", "Singly Linked List", "Doubly Linked List", "Circular Linked List"};
 
+Highlight highlight;
+
+int numFrame = 0;
+
+int loopCodeStatus = -1;
+
 void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
     if (createProcess == 3) {
         Vector2f posRandomButton = Vector2f(220, 700);
@@ -23,11 +29,28 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
     }   
 }
 
+
+// if (insert_at_end) insertFrame = 3 + (insertIdx - 1);
+// else insertFrame = 33 + (insertIdx - 1);
+
 void insertAnimationLL() {
-    nameCodeId = 1;
-    if (cur && cur->id < insertIdx) goAndColor(cur, "pre");
+    nameCodeId = (insertIdx != 1) + 1;
+    if (loopCodeStatus == 1) {
+        highlightInsertCode(highlight);
+        usleep(600000);
+        loopCodeStatus = 0;
+        return;
+    }
+    numFrame++;
+    highlightInsertCode(highlight);
+    if (cur && cur->id < insertIdx) {
+        goAndColor(cur, "pre");
+        loopCodeStatus = ((cur && cur->id < insertIdx) ? 1 : -1);
+    }
     else {
+        loopCodeStatus = -1;
         if (addProcess == 3) {
+            // cout << numFrame << " " << addProcess << endl;
             if (cur) cur->changeDes(to_string(cur->id + 1) + "/aft", true);
             insertLL(rootSGL, insertValue, insertIdx, numNode, font);
             usleep(500000);
@@ -36,23 +59,25 @@ void insertAnimationLL() {
             addProcess--;
         }
         else if (addProcess == 2) {
-            if (firstTimeAdd) usleep(100000);
+            if (firstTimeAdd) usleep(500000);
             firstTimeAdd = false;
             if (!format(rootSGL, font, insert_at_end)) addProcess--;
         }
         else {
             clearColorLL(rootSGL);
+            highlight.display = false;
             addProcess--;
             insertIdx = -1;
             cur = rootSGL;
             oldP = nullptr;
             insert_at_end = false;
+            numFrame = 0;
         }
     }
 }
 
 void deleteAnimationLL() {
-    nameCodeId = 2;
+    nameCodeId = (deleteIdx != 1) + 3;
     if (deleteProcess == 5 && cur && cur->id < deleteIdx) goAndColor(cur, "pre");
     else {
         if (deleteProcess == 5) {
@@ -90,8 +115,9 @@ void deleteAnimationLL() {
     }
 }
 
+
 void updateAnimationLL() {
-    nameCodeId = 3;
+    nameCodeId = 5;
     if (cur && cur->id < updateIdx) goAndColor(cur, "temp");
     else {
         if (updateProcess == 3) {
@@ -117,7 +143,7 @@ void updateAnimationLL() {
 }
 
 void searchAnimationLL() {
-    nameCodeId = 4;
+    nameCodeId = 6;
     if (!cur) {
         usleep(500000);
         searchProcess--;
@@ -218,9 +244,11 @@ int LinkList(RenderWindow &window, int styleLL) {
     if (nameCodeId != 0) insertCode(window, nameCodeLL[nameCodeId], p_closeButton);
 
     drawLL(window, rootSGL, (styleLL == 2), (styleLL == 3));
-    window.display();
     
-    // remake = false;
+    highlight.draw(window);
+
+    window.display();
+
     return statusLinkList(window, backButton,createButton, addButton, deleteButton, updateButton, searchButton, input, 
                           styleLL + 10, p_randomButton, p_inputButton, p_closeButton);
 }

@@ -8,6 +8,7 @@
 #include <vector>
 #include <unistd.h>
 #include "staticFile.h"
+#include "highLight.h"
 #include "process.h"
 #include "arrow.h"
 #include "singlyLL.h"

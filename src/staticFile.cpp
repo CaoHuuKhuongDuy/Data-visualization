@@ -16,7 +16,7 @@ int noTextBox = 0;
 bool displayNote = false;
 
 int nameCodeId = 0;
-string nameCodeLL[20] = {"", "insertCodeLL.png", "deletingCodeLL.png", "updatingCodeLL.png", "searchingCodeLL.png"};
+string nameCodeLL[20] = {"", "insertAtHead.png", "insertCodeLL.png", "deleteAtHead.png", "deletingCodeLL.png", "updatingCodeLL.png", "searchingCodeLL.png"};
 
 void initValueNode() {
     for (int i = 1; i <= 10; i++)

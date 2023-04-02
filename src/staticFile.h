@@ -19,6 +19,8 @@ extern string userText, notice;
 extern int nameCodeId;
 extern string nameCodeLL[20];
 
+extern int numFrame, loopCodeStatus;
+
 void initValueNode();
 void resizeSprite(Sprite &sprite, double height, double width);
 Texture loadTexture(Texture &texture, string fileName);
