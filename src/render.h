@@ -17,7 +17,7 @@ using namespace sf;
 using namespace std;
 
 extern Vector2f posBackButton;
-extern bool insert_at_end, firstTimeAdd;
+extern bool firstTimeAdd;
 extern int radiusAnimation;
 extern Color orange;
 extern Font font;

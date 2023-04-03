@@ -113,6 +113,7 @@ void textBox::submit() {
             insertValue = tmp;
             addProcess = 3;
         }
+        insert_at_end = (insertIdx == numNode + 1);
         (noTextBox += 1) %= 2;
         break;
     case 3:

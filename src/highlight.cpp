@@ -36,10 +36,24 @@ void highlightInsertCode(Highlight &highlight) {
         return;
     }
     if (highLightLoop(highlight)) return;
-    if (numFrame - insertIdx <= 8) highlight.makeHighlight(4);
+    if (insert_at_end) {
+        if (numFrame - insertIdx == 0) highlight.makeHighlight(5);
+        else highlight.makeHighlight(7);
+        return;
+    }
+    else if (numFrame - insertIdx <= 8) highlight.makeHighlight(4);
     else if (numFrame - insertIdx <= 16) highlight.makeHighlight(5);
     else if (numFrame - insertIdx <= 24) highlight.makeHighlight(6);
     else highlight.makeHighlight(7);
+    cout << "hello";
+}
+
+void highlightDeleteCode(Highlight &highlight) {
+    if (nameCodeId == 3) {
+        
+    }
+    if (highLightLoop(highlight)) return;
+    
 }
 
 void highlightUpdateCode(Highlight &highlight) {

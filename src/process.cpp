@@ -109,7 +109,7 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton,
                     else if (Press(deleteButton)) initPressState(3);
                     else if (Press(updateButton)) initPressState(4); 
                     else if (Press(searchButton)) initPressState(5);
-                    else initPressState(0); 
+                    // else initPressState(0); 
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
                 }
                 break;

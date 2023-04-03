@@ -1,6 +1,6 @@
 # This is makefile for SFML C++
 
-path = D:\Code\DataVisualizationApplication\sfml
+path = ..\sfml
 INCLUDE = "$(path)\include"
 LIBRARY = "$(path)\lib"
 SFML_INCLUDE = -lsfml-graphics -lsfml-window -lsfml-system
