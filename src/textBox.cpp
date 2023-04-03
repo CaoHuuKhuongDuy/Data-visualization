@@ -119,6 +119,7 @@ void textBox::submit() {
     case 3:
         deleteIdx = tmp;
         deleteProcess = 5;
+        delete_at_end = (deleteIdx == numNode);
         break;
     case 4:
         if (noTextBox == 0) updateIdx = tmp;

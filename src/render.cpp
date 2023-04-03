@@ -26,6 +26,7 @@ SinglyLL *tmp = nullptr;
 
 bool firstTimeAdd = false;
 bool insert_at_end = false;
+bool delete_at_end = false;
 int radiusAnimation = 13;
 
 
