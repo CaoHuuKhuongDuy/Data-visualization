@@ -19,5 +19,7 @@ class Highlight {
 };
 
 void highlightInsertCode(Highlight &highlight);
+void highlightUpdateCode(Highlight &highlight);
+void highlightSearchCode(Highlight &highlight);
 
 #endif

@@ -50,7 +50,6 @@ void insertAnimationLL() {
     else {
         loopCodeStatus = -1;
         if (addProcess == 3) {
-            // cout << numFrame << " " << addProcess << endl;
             if (cur) cur->changeDes(to_string(cur->id + 1) + "/aft", true);
             insertLL(rootSGL, insertValue, insertIdx, numNode, font);
             usleep(500000);
@@ -118,8 +117,20 @@ void deleteAnimationLL() {
 
 void updateAnimationLL() {
     nameCodeId = 5;
-    if (cur && cur->id < updateIdx) goAndColor(cur, "temp");
+    if (loopCodeStatus == 1) {
+        highlightUpdateCode(highlight);
+        usleep(600000);
+        loopCodeStatus = 0;
+        return;
+    }
+    numFrame++;
+    highlightUpdateCode(highlight);
+    if (cur && cur->id < updateIdx) {
+        goAndColor(cur, "temp");
+        loopCodeStatus = 1;
+    }
     else {
+        loopCodeStatus = -1;
         if (updateProcess == 3) {
             usleep(600000);
             if (oldP) oldP->changeDes("", true);
@@ -135,29 +146,56 @@ void updateAnimationLL() {
         }
         else {
             clearColorLL(rootSGL);
+            highlight.display = false;
             updateProcess--;
             oldP = nullptr;
             cur = rootSGL;
+            numFrame = 0;
         }
     }
 }
 
 void searchAnimationLL() {
     nameCodeId = 6;
+    if (loopCodeStatus == 4 || loopCodeStatus == 5) {
+        usleep(1000000);
+        numFrame++;
+        cout << loopCodeStatus << endl;
+        highlightSearchCode(highlight);
+        loopCodeStatus = -1;
+        return;
+    }
     if (!cur) {
         usleep(500000);
         searchProcess--;
         clearColorLL(rootSGL);
+        highlight.display = false;
         cur = rootSGL;
         oldP = nullptr;
+        numFrame = 0;
         return;
     }
+
+    if (loopCodeStatus == 1) {
+        highlightSearchCode(highlight);
+        usleep(600000);
+        loopCodeStatus = 0;
+        return;
+    }
+    numFrame++;
+    highlightSearchCode(highlight);
     if (cur) {
+        loopCodeStatus = 1;
         if (cur->data == searchValue) {
             goAndColor(cur, "temp", searchValue);
             cur = nullptr;
+            loopCodeStatus = 5;
         }
-        else goAndColor(cur, "temp", searchValue);
+        else {
+            goAndColor(cur, "temp", searchValue);
+            if (!cur) loopCodeStatus = 4;
+        }
+        
     }
 }
 
