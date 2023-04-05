@@ -73,10 +73,11 @@ void initPressState(int x, bool resetCreateProcess = true) {
     if (resetCreateProcess) createProcess = 0;
 }
 
-int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton, Sprite addButton, Sprite deleteButton, Sprite updateButton, 
-                  Sprite searchButton, textBox &input, int originState, Sprite *randomButton, Sprite *inputButton, Sprite *closeButton) {
+int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,Sprite createButton, Sprite addButton, Sprite deleteButton, 
+                  Sprite updateButton, Sprite searchButton, textBox &input, int originState, Sprite *randomButton, Sprite *inputButton, Sprite *closeButton) {
     int state = originState;
     backButtonDark = hoverMouse(backButton);
+    importButtonDark = hoverMouse(importButton);
     createButtonDark = hoverMouse(createButton);
     randomButtonDark = (randomButton && hoverMouse(*randomButton));
     inputButtonDark = (inputButton && hoverMouse(*inputButton));
@@ -96,6 +97,7 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton,
                 if (event.mouseButton.button == Mouse::Left) {
                     if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 1;
+                    else if (Press(importButton)) initPressState(13);
                     else if (Press(createButton)) initPressState(1);
                     else if (randomButton && Press(*randomButton)) {
                         initPressState(11, false);

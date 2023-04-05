@@ -9,6 +9,7 @@ using namespace std;
 extern int valueNewNode[11];
 extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark;
 extern bool randomButtonDark, inputButtonDark;
+extern bool importButtonDark;
 extern bool updateButtonDark, searchButtonDark, displayNote;
 extern int numTextBox, noTextBox, numNode, insertIdx, insertValue, searchValue, updateIdx, updateValue;
 extern int createProcess, addProcess, deleteProcess, searchProcess, updateProcess; 

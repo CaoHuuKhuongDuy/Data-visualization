@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <unistd.h>
+#include "fileDialog.h"
 #include "staticFile.h"
 #include "highLight.h"
 #include "process.h"
@@ -38,9 +39,5 @@ void goAndColor(SinglyLL *&cur, string des = "", int specialData = -1);
 void resizeSprite(Sprite &sprite, double height, double width);
 
 int homePage(RenderWindow &window);
-
-// int linkListPage(RenderWindow &window);
-
-// int singleLinkList(RenderWindow &window);
 
 #endif

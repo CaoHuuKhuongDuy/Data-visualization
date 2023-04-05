@@ -8,6 +8,7 @@ Vector2f posBackButton = Vector2f(10, 10);
 
 
 bool backButtonDark = false;
+bool importButtonDark = false;
 bool createButtonDark = false;
 bool randomButtonDark = false;
 bool inputButtonDark = false;

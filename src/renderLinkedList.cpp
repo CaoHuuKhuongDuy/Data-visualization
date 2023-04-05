@@ -109,7 +109,7 @@ void deleteAnimationLL() {
         else if (deleteProcess == 4) {
             cur->changeRadius(radiusAnimation--);
             if (radiusAnimation == 9) deleteProcess--;
-            usleep(80000);
+            usleep(40000);
         }
         else if (deleteProcess == 3) {
             deleteNodeLL(rootSGL, deleteIdx, numNode);  
@@ -255,6 +255,7 @@ int LinkList(RenderWindow &window, int styleLL) {
     displayText(window, styleName[styleLL], Vector2f(750, 10), 50);
     font.loadFromFile("../media/font/arial.ttf");
 
+    Vector2f posImportButton = Vector2f(100, 650);
     Vector2f posCreateButton = Vector2f(100, 700);
     Vector2f posAddButton = Vector2f(100, 750);
     Vector2f posDeleteButton = Vector2f(100, 800);
@@ -262,6 +263,7 @@ int LinkList(RenderWindow &window, int styleLL) {
     Vector2f posSearchButton = Vector2f(100, 900);  
 
     Sprite backButton = addSprite(window, "backButton.png", 150, 70, posBackButton, backButtonDark);     
+    Sprite importButton = addSprite(window, "importButton.png", 90, 42, posImportButton, importButtonDark);
     Sprite createButton = addSprite(window, "createButton.png", 90, 42, posCreateButton, createButtonDark);
     Sprite addButton = addSprite(window, "addButton.png", 90, 42, posAddButton, addButtonDark);
     Sprite deleteButton = addSprite(window, "deleteButton.png", 90, 42, posDeleteButton, deleteButtonDark);
@@ -277,6 +279,11 @@ int LinkList(RenderWindow &window, int styleLL) {
             break;
         case 12:
             input = displayTextBox(window, "v[" + to_string(noTextBox + 1) + "] = ", posCreateButton + Vector2f((noTextBox == 9 ? 0 : 10), 0));
+            break;
+        case 13:
+            import(window, valueNewNode, numNode);
+            createProcess = 1;
+            numTextBox = 0;
             break;
         case 2:
             input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
@@ -307,6 +314,6 @@ int LinkList(RenderWindow &window, int styleLL) {
 
     window.display();
 
-    return statusLinkList(window, backButton,createButton, addButton, deleteButton, updateButton, searchButton, input, 
+    return statusLinkList(window, backButton, importButton, createButton, addButton, deleteButton, updateButton, searchButton, input, 
                           styleLL + 10, p_randomButton, p_inputButton, p_closeButton);
 }

@@ -16,8 +16,8 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack);
 int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList, Sprite backButton);
 
 
-int statusLinkList(RenderWindow &window, Sprite backButton, Sprite createButton, Sprite addButton, Sprite deleteButton, 
-                  Sprite updateButton, Sprite searchButton, textBox &input, int originState, Sprite *randomButton = nullptr, 
-                  Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
+int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite addButton, 
+                  Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input, int originState, 
+                  Sprite *randomButton = nullptr, Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
 
 #endif

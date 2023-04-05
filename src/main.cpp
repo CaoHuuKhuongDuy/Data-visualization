@@ -15,11 +15,11 @@ int main() {
     initValueNode();
     while (window.isOpen()) {
         
-        // Sprite sprite;
+        // Sprite sprite;   
         // status = homePage(window);
-        status = LinkList(window);
+        // status = LinkList(window);
         // status = LinkList(window, 1);
-        continue;
+        // continue;
         switch (status) {
             case -1: return EXIT_SUCCESS;
             case 0: 
@@ -47,3 +47,13 @@ int main() {
 
     return EXIT_SUCCESS;
 }
+
+
+// #include "fileDialog.h"
+// int val[100], n;
+// int main()
+// {
+//     import(val, n);
+//     cout << n << endl;
+//     return 0;
+// }
