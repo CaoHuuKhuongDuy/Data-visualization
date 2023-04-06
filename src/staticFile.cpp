@@ -8,11 +8,15 @@ int updateIdx = -1, updateValue;
 int deleteIdx = -1;
 int searchValue = -1;
 int createProcess = 1;
+int peekProcess = 0;
+int popProcess = 0;
+int pushProcess = 0;
 int addProcess = 0;
 int deleteProcess = 0; 
 int searchProcess = 0;
 int updateProcess = 0;
 int noTextBox = 0;
+int maximumNode = 0;
 bool displayNote = false;
 
 int nameCodeId = 0;

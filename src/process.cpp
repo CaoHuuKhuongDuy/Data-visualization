@@ -26,9 +26,13 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
 
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
-
+                    createProcess = 1;
                     if (Press(linkList)) state = 1;
-                    else if (Press(Stack)) state = 2;
+                    else if (Press(Stack)) {
+                        state = 2;
+                        numNode = 3;
+                        maximumNode = 6;
+                    }
                 }
                 break;
     
@@ -97,20 +101,20 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                 if (event.mouseButton.button == Mouse::Left) {
                     if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 1;
-                    else if (Press(importButton)) initPressState(13);
-                    else if (Press(createButton)) initPressState(1);
+                    else if (Press(importButton)) initPressState(113);
+                    else if (Press(createButton)) initPressState(11);
                     else if (randomButton && Press(*randomButton)) {
-                        initPressState(11, false);
+                        initPressState(111, false);
                         createProcess -= 2;
                     }
                     else if (inputButton && Press(*inputButton)) {
-                        initPressState(12, false);
+                        initPressState(112, false);
                         createProcess--;
                     }
-                    else if (Press(addButton)) initPressState(2);
-                    else if (Press(deleteButton)) initPressState(3);
-                    else if (Press(updateButton)) initPressState(4); 
-                    else if (Press(searchButton)) initPressState(5);
+                    else if (Press(addButton)) initPressState(12);
+                    else if (Press(deleteButton)) initPressState(13);
+                    else if (Press(updateButton)) initPressState(14); 
+                    else if (Press(searchButton)) initPressState(15);
                     // else initPressState(0); 
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
                 }
@@ -121,6 +125,54 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                 }
             
         }
+    }
+    return state;
+}
+
+
+int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite peekButton,
+                Sprite pushButton, Sprite popButton, textBox &input, Sprite *randomButton, Sprite *inputButton, Sprite *closeButton) {
+    int state = 2;
+    backButtonDark = hoverMouse(backButton);
+    importButtonDark = hoverMouse(importButton);
+    createButtonDark = hoverMouse(createButton);
+    randomButtonDark = (randomButton && hoverMouse(*randomButton));
+    inputButtonDark = (inputButton && hoverMouse(*inputButton));
+    peekButtonDark = hoverMouse(peekButton);
+    pushButtonDark = hoverMouse(pushButton);
+    popButtonDark = hoverMouse(popButton);
+
+    while (window.pollEvent(event)) {
+        switch (event.type) {
+            case Event::Closed:
+                window.close();
+                state = -1;
+                break;
+            case Event::MouseButtonPressed:
+                if (event.mouseButton.button == Mouse::Left) {
+                    if (Press(backButton)) state = 0;
+                    else if (Press(importButton)) initPressState(113);
+                    else if (Press(createButton)) initPressState(11);
+                    else if (randomButton && Press(*randomButton)) {
+                        initPressState(111, false);
+                        createProcess -= 2;
+                    }
+                    else if (inputButton && Press(*inputButton)) {
+                        initPressState(112, false);
+                        createProcess--;
+                    }
+                    else if (Press(peekButton)) initPressState(22);
+                    else if (Press(pushButton)) initPressState(23);
+                    else if (Press(popButton)) initPressState(24); 
+                    // if (closeButton && Press(*closeButton)) nameCodeId = 0; 
+                }   
+                break;
+            case Event::TextEntered:
+                if (numTextBox != 0) {
+                    input.handleInput(window, event);
+                }
+                break;
+        } 
     }
     return state;
 }

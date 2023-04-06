@@ -43,7 +43,7 @@ void deleteLL(SinglyLL *&root);
 
 void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font);
 
-void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL = false, bool circular = false);
+void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL = false, bool circular = false, bool stack = false);
 
 void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font);
 

@@ -18,7 +18,7 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
     }
     if (createProcess == 1) {
         deleteLL(rootSGL);
-        if (numTextBox == 11) {
+        if (numTextBox == 111) {
             for (int i = 1; i <= numNode; i++)
               valueNewNode[i] = rand() % 100;
         }
@@ -224,6 +224,7 @@ int linkListPage(RenderWindow &window) {
     window.clear(Color::White);
     displayText(window, "Linked List", Vector2f(800, 10), 50);
     numNode = 5;
+    maximumNode = 10;
     createProcess = 1;
     initValueNode();
 
@@ -274,27 +275,27 @@ int LinkList(RenderWindow &window, int styleLL) {
 
 
     switch (numTextBox) {
-        case 1: 
+        case 11: 
             input = displayTextBox(window, " Size", posCreateButton);
             break;
-        case 12:
+        case 112:
             input = displayTextBox(window, "v[" + to_string(noTextBox + 1) + "] = ", posCreateButton + Vector2f((noTextBox == 9 ? 0 : 10), 0));
             break;
-        case 13:
+        case 113:
             import(window, valueNewNode, numNode);
             createProcess = 1;
             numTextBox = 0;
             break;
-        case 2:
+        case 12:
             input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
             break;
-        case 3:
+        case 13:
             input = displayTextBox(window, "Index", posDeleteButton);
             break;
-        case 4:
+        case 14:
             input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posUpdateButton);
             break;
-        case 5:
+        case 15:
             input = displayTextBox(window, "Value", posSearchButton);
             break;      
     }

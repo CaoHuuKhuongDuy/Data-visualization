@@ -80,8 +80,8 @@ bool SinglyLL::rightPlace(Font &font) {
 }
 
 void SinglyLL::draw(RenderWindow &window) {
-    window.draw(description);
     window.draw(m_node);
+    window.draw(description);
     window.draw(m_text);
 }
 
@@ -155,7 +155,7 @@ void drawReturnLine(RenderWindow &window, Vector2f firstPoint, Vector2f endPoint
     arrow5.draw(window);
 }
 
-void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL, bool circular) {
+void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL, bool circular, bool stack) {
     if (!root) return;
     if (root->getDes() == "") root->changeDes("Head", true);
     Vector2f endPoint;

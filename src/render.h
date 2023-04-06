@@ -13,6 +13,7 @@
 #include "process.h"
 #include "arrow.h"
 #include "singlyLL.h"
+#include "Stack.h"
 
 using namespace sf;
 using namespace std;
@@ -25,6 +26,7 @@ extern Font font;
 extern Texture t_submitButton;
 extern textBox input;
 extern SinglyLL *rootSGL, *cur, *oldP;
+extern StackVisualize rootStack;
 
 
 

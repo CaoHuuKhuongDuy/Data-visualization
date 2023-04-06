@@ -67,47 +67,51 @@ void textBox::submit() {
     if (userText.size() == 0) return;
     std::cout << "User entered: " << userText << std::endl;
     int tmp = stoi(userText);
-    switch (numTextBox)
-    {
-    case 1:
-        displayNote = (tmp > 10);
-        if (displayNote) notice = "Note: The maximum number of vertex allowed is 10";
+    switch (numTextBox) {
+    case 11:
+        displayNote = (tmp > maximumNode);
+        if (displayNote) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
         break;
     
-    case 2:
+    case 12:
         displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
         if (!displayNote) break;
         if (numNode == 10) notice = "Note: The maximum number of vertex allowed is 10";
         else notice = "Note: a valid index between [1.." + to_string(numNode + 1) + "]";
         break;
-    case 3:
+    case 13:
         displayNote = (tmp == 0 || tmp > numNode || numNode == 0);
         if (!displayNote) break;
         if (numNode == 0) notice = "Note: The linked list is empty";
         else notice = "Note: a valid index between [1.." + to_string(numNode) + "]"; 
         break;
-    case 4:
+    case 14:
         displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode); 
         if (!displayNote) break;
         else notice = "Note: a valid index between [1.." + to_string(numNode) + "]";
         break;
-    case 5:
+    case 15:
+        break;
+    case 23:
+        displayNote = (numNode == maximumNode);
+        if (!displayNote) break;
+        notice = "Note: The maximum number of vertex allowed is 6";
         break;
     }
     userText = "";
     if (displayNote) return;
 
     switch (numTextBox) {
-    case 1:
+    case 11:
         numNode = tmp;
         createProcess = (tmp != 0 ? 3 : 1);
         break;
-    case 12:
+    case 112:
         valueNewNode[noTextBox + 1] = tmp;
         (noTextBox += 1) %= numNode;
         if (noTextBox == 0) createProcess--;
         break;
-    case 2:
+    case 12:
         if (noTextBox == 0) insertIdx = tmp;
         else {
             insertValue = tmp;
@@ -116,12 +120,12 @@ void textBox::submit() {
         insert_at_end = (insertIdx == numNode + 1);
         (noTextBox += 1) %= 2;
         break;
-    case 3:
+    case 13:
         deleteIdx = tmp;
         deleteProcess = 5;
         delete_at_end = (deleteIdx == numNode);
         break;
-    case 4:
+    case 14:
         if (noTextBox == 0) updateIdx = tmp;
         else {
             updateValue = tmp;
@@ -129,9 +133,13 @@ void textBox::submit() {
         }
         (noTextBox += 1) %= 2;
         break;
-    case 5:
+    case 15:
         searchValue = tmp;
         searchProcess = 1;
+        break;
+    case 23:
+        pushProcess = 2;
+        insertValue = tmp;
         break;
     }
     if (noTextBox == 0) numTextBox = 0;

@@ -20,4 +20,7 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                   Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input, int originState, 
                   Sprite *randomButton = nullptr, Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
 
+int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite peekButton,
+                Sprite pushButton, Sprite popButton, textBox &input, Sprite *randomButton = nullptr, 
+                Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
 #endif

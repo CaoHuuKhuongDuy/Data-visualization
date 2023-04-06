@@ -1,4 +1,5 @@
 #include "renderLinkedList.h"
+#include "renderStack.h"
 #include "render.h"
 
 const int height = 1920;
@@ -19,6 +20,7 @@ int main() {
         // status = homePage(window);
         // status = LinkList(window);
         // status = LinkList(window, 1);
+        // status = Stack(window);
         // continue;
         switch (status) {
             case -1: return EXIT_SUCCESS;
@@ -29,13 +31,16 @@ int main() {
                 status = linkListPage(window);
                 break; 
             case 11:
-                status = LinkList(window);
+                status = LinkList(window, 1);
                 break; 
             case 12:
                 status = LinkList(window, 2);
                 break;
             case 13:
                 status = LinkList(window, 3);
+                break;
+            case 2:
+                status = Stack(window);
                 break;
             default: 
                 status = 0;
@@ -47,13 +52,3 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-
-
-// #include "fileDialog.h"
-// int val[100], n;
-// int main()
-// {
-//     import(val, n);
-//     cout << n << endl;
-//     return 0;
-// }
