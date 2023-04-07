@@ -17,10 +17,12 @@ class StackVisualize {
         StackVisualize();
         int size();
         void create(int n, int val[], Font &font);
-        void push(int x, Font &font);
+        void push(int x, Font &font, bool Create = false);
         void pop();
         void clear();
         void changeColor(Color color);
+        bool format(int type = 1);
+        void changePosition(Vector2f pos);
         void draw(RenderWindow &window);
     private:
         RectangleShape node[12];

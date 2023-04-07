@@ -138,7 +138,7 @@ void textBox::submit() {
         searchProcess = 1;
         break;
     case 23:
-        pushProcess = 2;
+        pushProcess = 3;
         insertValue = tmp;
         break;
     }

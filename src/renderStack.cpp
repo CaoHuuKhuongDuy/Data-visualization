@@ -35,13 +35,29 @@ void peekAnimationStack(RenderWindow &window) {
 }
 
 void pushAnimationStack(RenderWindow &window) {
-    rootStack.push(insertValue, font);
-    pushProcess = 0;
+    if (pushProcess == 3) {
+        rootStack.push(insertValue, font);
+        rootStack.changeColor(Color::Yellow);
+        pushProcess--;
+    }
+    else if (pushProcess == 2 && !rootStack.format()) pushProcess--;
+    else if (pushProcess == 1) {
+        usleep(1000000);
+        rootStack.changeColor(Color::Red);
+        pushProcess = 0;
+    }
 }
 
 void popAnimationStack(RenderWindow &window) {
-    rootStack.pop();
-    popProcess = 0;
+    if (popProcess == 2) {
+        rootStack.changeColor(Color::Yellow);
+        if (!rootStack.format(-1)) popProcess--;
+    }
+    else {
+        usleep(1000000);
+        rootStack.pop();
+        popProcess--;
+    }
 }
 
 void createBox(RenderWindow &window) {
@@ -85,7 +101,7 @@ int Stack(RenderWindow &window) {
             input = displayTextBox(window, "Value", posPushButton);
             break;
         case 24:
-            popProcess = 1;
+            popProcess = 2;
             numTextBox = 0;
             break;
     }
