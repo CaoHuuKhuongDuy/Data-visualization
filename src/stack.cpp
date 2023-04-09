@@ -76,13 +76,10 @@ bool StackVisualize::format(int type) {
     }
     else {
         if (pos.y != 200) formatProcess = 2;
-        else if (pos.x != 490) formatProcess = 1;
+        else if (pos.x != 490 && pos.x != 1078) formatProcess = 1;
         else formatProcess = 3;
     }
-    if (formatProcess == 1) {
-        changePosition(pos + (Right * (float)type));
-        // cout << node[r].getPosition().x << endl;
-    }
+    if (formatProcess == 1) changePosition(pos + Right);
     if (formatProcess == 2) changePosition(pos + Down * (float)type);
     return (formatProcess != 3);
 }

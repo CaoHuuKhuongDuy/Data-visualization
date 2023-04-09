@@ -2,6 +2,9 @@
 
 StackVisualize rootStack;
 
+// Highlight highlight;
+
+
 void createAnimationStack(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
     if (createProcess == 3) {
         Vector2f posRandomButton = Vector2f(220, 750);
@@ -23,32 +26,43 @@ void createAnimationStack(RenderWindow &window, Sprite *&p_randomButton, Sprite 
 }
 
 void peekAnimationStack(RenderWindow &window) {
+    nameCodeId = 1;
+    highlightPeekCode(highlight);
     if (peekProcess == 2) {
         rootStack.changeColor(Color::Yellow);
         peekProcess--;
     }
     else {
         usleep(1800000);
+        highlight.display = false;
         rootStack.changeColor(Color::Red);
         peekProcess--;
     }
 }
 
 void pushAnimationStack(RenderWindow &window) {
+    nameCodeId = 2;
+    numFrame++;
+    highlightPushCode(highlight);
     if (pushProcess == 3) {
         rootStack.push(insertValue, font);
         rootStack.changeColor(Color::Yellow);
         pushProcess--;
+        cout << numFrame << endl;
     }
     else if (pushProcess == 2 && !rootStack.format()) pushProcess--;
     else if (pushProcess == 1) {
         usleep(1000000);
+        cout << numFrame << endl;
+        numFrame = 0;
+        highlight.display = false;
         rootStack.changeColor(Color::Red);
         pushProcess = 0;
     }
 }
 
 void popAnimationStack(RenderWindow &window) {
+    nameCodeId = 3;
     if (popProcess == 2) {
         rootStack.changeColor(Color::Yellow);
         if (!rootStack.format(-1)) popProcess--;
@@ -75,6 +89,7 @@ int Stack(RenderWindow &window) {
     displayText(window, "Stack", Vector2f(850, 50), 50);
     font.loadFromFile("../media/font/arial.ttf");
     
+    initValueNode();
     Vector2f posImportButton = Vector2f(100, 700);
     Vector2f posCreateButton = Vector2f(100, 750);
     Vector2f posPeekButton = Vector2f(100, 800);
@@ -125,10 +140,13 @@ int Stack(RenderWindow &window) {
 
     createBox(window);
 
+    if (nameCodeId != 0) insertCode(window, nameCodeStack[nameCodeId], p_closeButton);
     
     rootStack.draw(window);
+    highlight.draw(window);
+
     window.display();
 
-    return statusStack(window, backButton, importButton, createButton, peekButton, pushButton, popButton, input, p_randomButton, p_inputButton);
+    return statusStack(window, backButton, importButton, createButton, peekButton, pushButton, popButton, input, p_randomButton, p_inputButton, p_closeButton);
 
 }

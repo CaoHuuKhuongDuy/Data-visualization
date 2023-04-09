@@ -28,6 +28,8 @@ extern textBox input;
 extern SinglyLL *rootSGL, *cur, *oldP;
 extern StackVisualize rootStack;
 
+extern Highlight highlight;
+
 
 
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark = false, bool display = true);
@@ -37,6 +39,8 @@ void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Col
 textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos);
 
 void goAndColor(SinglyLL *&cur, string des = "", int specialData = -1);
+
+void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton);
 
 void resizeSprite(Sprite &sprite, double height, double width);
 

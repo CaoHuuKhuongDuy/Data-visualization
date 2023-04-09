@@ -41,6 +41,9 @@ Texture t_submitButton;
 textBox input;
 SinglyLL *rootSGL = nullptr, *cur = nullptr, *oldP = nullptr;
 
+
+Highlight highlight;
+
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark, bool display) {
     
     fileName = imgSource + fileName;
@@ -91,6 +94,12 @@ void goAndColor(SinglyLL *&cur, string des, int specialData) {
     usleep(900000);
     // usleep(10000);
     cur = cur->nxt;
+
+}
+
+void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton) {
+    addSprite(window, fileName, 600, 300, Vector2f(1400, 700));
+    p_closeButton = new Sprite(addSprite(window, "closeButton.png", 25, 25, Vector2f(1895, 700)));
 
 }
 

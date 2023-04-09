@@ -23,4 +23,8 @@ void highlightDeleteCode(Highlight &highlight);
 void highlightUpdateCode(Highlight &highlight);
 void highlightSearchCode(Highlight &highlight);
 
+void highlightPeekCode(Highlight &highlight);
+void highlightPushCode(Highlight &highlight);
+void highlightPopCode(Highlight &highlight);
+
 #endif

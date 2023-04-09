@@ -20,6 +20,7 @@ extern string userText, notice;
 
 extern int nameCodeId;
 extern string nameCodeLL[20];
+extern string nameCodeStack[20];
 
 extern int numFrame, loopCodeStatus;
 extern bool insert_at_end, delete_at_end;

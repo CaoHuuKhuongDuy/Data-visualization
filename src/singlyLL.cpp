@@ -192,7 +192,6 @@ void deleteBefore(SinglyLL *&root, int idx) {
 void changeIndex(SinglyLL *cur, int val = 1) {
     while (cur) {
         cur->id += val;
-        // if (cur->id != 1) cur->changeDes("", true);
         cur = cur->nxt;
     }
 }

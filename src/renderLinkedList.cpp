@@ -2,7 +2,6 @@
 
 string styleName[4] = {"", "Singly Linked List", "Doubly Linked List", "Circular Linked List"};
 
-Highlight highlight;
 
 int numFrame = 0;
 
@@ -241,12 +240,6 @@ int linkListPage(RenderWindow &window) {
     window.display();
     return statuslinkListPage(window, singlyLinkList, doublyLinkList, 
                               circularLinkList, backButton);
-
-}
-
-void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton) {
-    addSprite(window, fileName, 600, 300, Vector2f(1400, 700));
-    p_closeButton = new Sprite(addSprite(window, "closeButton.png", 25, 25, Vector2f(1895, 700)));
 
 }
 

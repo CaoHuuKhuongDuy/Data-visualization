@@ -84,6 +84,17 @@ void highlightUpdateCode(Highlight &highlight) {
 
 void highlightSearchCode(Highlight &highlight) {
     if (highLightLoop(highlight)) return;
-    cout << loopCodeStatus << endl;
     highlight.makeHighlight(loopCodeStatus);
+}
+
+
+void highlightPeekCode(Highlight &highlight) {
+    highlight.makeHighlight((numNode != 0) + 1);
+}
+
+void highlightPushCode(Highlight &highlight) {
+    int maxFrame = 132 - 11 * (numNode - 1);
+    if (numFrame <= 43) highlight.makeHighlight(1);
+    else if (maxFrame - numFrame > 2) highlight.makeHighlight(2);
+    else highlight.makeHighlight(3);
 }

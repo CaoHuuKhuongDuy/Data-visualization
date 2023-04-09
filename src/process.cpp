@@ -13,6 +13,12 @@ bool Press(Sprite sprite) {
     return (bounds_sprite.contains(Vector2f(event.mouseButton.x, event.mouseButton.y)));
 }
 
+void initState(int _numNode, int _maximumNode) {
+    numNode = _numNode;
+    maximumNode = _maximumNode;
+    nameCodeId = 0;
+}
+
 int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
     int state = 0;
     while (window.pollEvent(event)) {
@@ -30,8 +36,7 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack) {
                     if (Press(linkList)) state = 1;
                     else if (Press(Stack)) {
                         state = 2;
-                        numNode = 3;
-                        maximumNode = 6;
+                        initState(3, 6);
                     }
                 }
                 break;
@@ -164,7 +169,7 @@ int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                     else if (Press(peekButton)) initPressState(22);
                     else if (Press(pushButton)) initPressState(23);
                     else if (Press(popButton)) initPressState(24); 
-                    // if (closeButton && Press(*closeButton)) nameCodeId = 0; 
+                    if (closeButton && Press(*closeButton)) nameCodeId = 0;
                 }   
                 break;
             case Event::TextEntered:
