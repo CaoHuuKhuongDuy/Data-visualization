@@ -98,3 +98,15 @@ void highlightPushCode(Highlight &highlight) {
     else if (maxFrame - numFrame > 2) highlight.makeHighlight(2);
     else highlight.makeHighlight(3);
 }
+
+void highlightPopCode(Highlight &highlight) {
+    int maxFrame = 133 - 11 * (numNode - 1);
+    if (numNode == 0) {
+        highlight.makeHighlight(1);
+        return;
+    }
+    if (maxFrame - numFrame > 40) highlight.makeHighlight(2);
+    else if (maxFrame - numFrame > 2) highlight.makeHighlight(3);
+    else highlight.makeHighlight(4);
+
+}

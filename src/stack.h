@@ -21,7 +21,7 @@ class StackVisualize {
         void pop();
         void clear();
         void changeColor(Color color);
-        bool format(int type = 1);
+        int format(int type = 1);
         void changePosition(Vector2f pos);
         void draw(RenderWindow &window);
     private:

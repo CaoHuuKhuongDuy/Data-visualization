@@ -2,7 +2,6 @@
 
 StackVisualize rootStack;
 
-// Highlight highlight;
 
 
 void createAnimationStack(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
@@ -48,12 +47,10 @@ void pushAnimationStack(RenderWindow &window) {
         rootStack.push(insertValue, font);
         rootStack.changeColor(Color::Yellow);
         pushProcess--;
-        cout << numFrame << endl;
     }
-    else if (pushProcess == 2 && !rootStack.format()) pushProcess--;
+    else if (pushProcess == 2 && rootStack.format() == 3) pushProcess--;
     else if (pushProcess == 1) {
         usleep(1000000);
-        cout << numFrame << endl;
         numFrame = 0;
         highlight.display = false;
         rootStack.changeColor(Color::Red);
@@ -63,14 +60,20 @@ void pushAnimationStack(RenderWindow &window) {
 
 void popAnimationStack(RenderWindow &window) {
     nameCodeId = 3;
+    numFrame++;
+    int formatProcess;
+    highlightPopCode(highlight);
     if (popProcess == 2) {
         rootStack.changeColor(Color::Yellow);
-        if (!rootStack.format(-1)) popProcess--;
+        formatProcess = rootStack.format(-1);
+        if (formatProcess == 3) popProcess--;    
     }
     else {
         usleep(1000000);
         rootStack.pop();
         popProcess--;
+        highlight.display = false;
+        numFrame = 0;
     }
 }
 

@@ -66,7 +66,8 @@ void StackVisualize::changePosition(Vector2f pos) {
     t_val[r].setPosition(pos + Vector2f(92 + justify, 15));
 }
 
-bool StackVisualize::format(int type) {
+int StackVisualize::format(int type) {
+    if (r == 0) return 3;
     Vector2f pos = node[r].getPosition();
     int formatProcess;
     if (type == 1) {
@@ -81,7 +82,7 @@ bool StackVisualize::format(int type) {
     }
     if (formatProcess == 1) changePosition(pos + Right);
     if (formatProcess == 2) changePosition(pos + Down * (float)type);
-    return (formatProcess != 3);
+    return formatProcess;
 }
 
 void StackVisualize::changeColor(Color color) {
