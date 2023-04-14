@@ -14,6 +14,7 @@
 #include "arrow.h"
 #include "singlyLL.h"
 #include "Stack.h"
+#include "Queue.h"
 
 using namespace sf;
 using namespace std;
@@ -25,7 +26,7 @@ extern Color orange;
 extern Font font;
 extern Texture t_submitButton;
 extern textBox input;
-extern SinglyLL *rootSGL, *cur, *oldP;
+extern SinglyLL *rootSGL, *cur, *oldP, *tailSGL;
 extern StackVisualize rootStack;
 
 extern Highlight highlight;

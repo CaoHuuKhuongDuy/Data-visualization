@@ -39,15 +39,15 @@ class SinglyLL {
 
 SinglyLL *createNode(int value, int idx, Vector2f pos, Font &font);
 
-void deleteLL(SinglyLL *&root);
+void deleteLL(SinglyLL *&root, SinglyLL *&tail);
 
-void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font);
+void createLL(SinglyLL *&root, SinglyLL *&tail, int numNode, int valueNewNode[], Font &font);
 
-void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL = false, bool circular = false, bool stack = false);
+void drawLL(RenderWindow &window, SinglyLL *root, SinglyLL *tail, bool doublyLL = false, bool circular = false, bool stack = false);
 
-void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font);
+void insertLL(SinglyLL *&root, SinglyLL *&tail, int value, int idx, int &numNode, Font &font);
 
-void deleteNodeLL(SinglyLL *&root, int idx, int &numNode);
+void deleteNodeLL(SinglyLL *&root, SinglyLL *&tail, int idx, int &numNode);
 
 bool format(SinglyLL *cur, Font &font, bool insert_at_end, bool deleteProcess = false);
 

@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <math.h>
 #include <iostream>
+#include "staticFile.h"
 
 using namespace std;
 using namespace sf;

@@ -19,6 +19,8 @@ bool addButtonDark = false;
 bool deleteButtonDark = false;
 bool updateButtonDark = false;
 bool searchButtonDark = false;
+bool dequeueButtonDark = false;
+bool enqueueButtonDark = false;
 int numTextBox = 0;
 string userText = "", notice = "";
 SinglyLL *tmp = nullptr;
@@ -39,7 +41,7 @@ Color orange(255, 99, 71);
 Font font;
 Texture t_submitButton;
 textBox input;
-SinglyLL *rootSGL = nullptr, *cur = nullptr, *oldP = nullptr;
+SinglyLL *rootSGL = nullptr, *tailSGL = nullptr, *cur = nullptr, *oldP = nullptr;
 
 
 Highlight highlight;
@@ -90,6 +92,7 @@ void goAndColor(SinglyLL *&cur, string des, int specialData) {
     oldP = cur;
     cur->changeColor((cur->data == specialData) ? Color::Green : orange);
     if (cur == rootSGL) des = "Head/" + des;
+    else if (!cur->nxt) des = "Tail/" + des;
     cur->changeDes(des);
     usleep(900000);
     // usleep(10000);
@@ -117,6 +120,6 @@ int homePage(RenderWindow &window) {
     Sprite Array = addSprite(window, "array.png", 400, 300, Vector2f(1500, 200));
     displayText(window, "Data visualization", Vector2f(700, 10), 50);
     window.display();
-    return statusHomePage(window, linkList, Stack);
+    return statusHomePage(window, linkList, Stack, Queue, Array);
 
 }

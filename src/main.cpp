@@ -1,13 +1,13 @@
 #include "renderLinkedList.h"
 #include "renderStack.h"
-#include "render.h"
+#include "renderQueue.h"
 
 const int height = 1920;
 const int width = 1080;
 
 
 RenderWindow window(VideoMode(height, width), "Data visualization", Style::Close);
-
+int styleLL;
 
 
 int main() {
@@ -31,16 +31,22 @@ int main() {
                 status = linkListPage(window);
                 break; 
             case 11:
-                status = LinkList(window, 1);
+                styleLL = 1;
+                status = LinkList(window);
                 break; 
             case 12:
-                status = LinkList(window, 2);
+                styleLL = 2;
+                status = LinkList(window);
                 break;
             case 13:
-                status = LinkList(window, 3);
+                styleLL = 3;
+                status = LinkList(window);
                 break;
             case 2:
                 status = Stack(window);
+                break;
+            case 3:
+                status = Queue(window);
                 break;
             default: 
                 status = 0;

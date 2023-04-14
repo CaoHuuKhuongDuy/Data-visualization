@@ -13,14 +13,12 @@ void createAnimationStack(RenderWindow &window, Sprite *&p_randomButton, Sprite 
         p_inputButton = new Sprite(addSprite(window, "inputButton.png", 120, 42, posInputButton, inputButtonDark));    
     }
     if (createProcess == 1) {
-        rootStack.clear();
         if (numTextBox == 111) {
             for (int i = 1; i <= numNode; i++)
               valueNewNode[i] = rand() % 100;
         }
         rootStack.create(numNode, valueNewNode, font);
         createProcess--;
-        oldP = nullptr;
     }   
 }
 
@@ -77,7 +75,7 @@ void popAnimationStack(RenderWindow &window) {
     }
 }
 
-void createBox(RenderWindow &window) {
+void createBoxStack(RenderWindow &window) {
     Arrow arrow(0);
     arrow.create(Vector2f(780, 365), Vector2f(780, 785));
     arrow.draw(window);
@@ -92,7 +90,7 @@ int Stack(RenderWindow &window) {
     displayText(window, "Stack", Vector2f(850, 50), 50);
     font.loadFromFile("../media/font/arial.ttf");
     
-    initValueNode();
+    // initValueNode();
     Vector2f posImportButton = Vector2f(100, 700);
     Vector2f posCreateButton = Vector2f(100, 750);
     Vector2f posPeekButton = Vector2f(100, 800);
@@ -141,7 +139,7 @@ int Stack(RenderWindow &window) {
     if (pushProcess) pushAnimationStack(window);
     if (popProcess) popAnimationStack(window); // handle pop when the stack is empty
 
-    createBox(window);
+    createBoxStack(window);
 
     if (nameCodeId != 0) insertCode(window, nameCodeStack[nameCodeId], p_closeButton);
     

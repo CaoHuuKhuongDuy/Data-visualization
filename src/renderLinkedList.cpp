@@ -16,12 +16,12 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
         p_inputButton = new Sprite(addSprite(window, "inputButton.png", 120, 42, posInputButton, inputButtonDark));    
     }
     if (createProcess == 1) {
-        deleteLL(rootSGL);
+        deleteLL(rootSGL, tailSGL);
         if (numTextBox == 111) {
             for (int i = 1; i <= numNode; i++)
               valueNewNode[i] = rand() % 100;
         }
-        createLL(rootSGL, numNode, valueNewNode, font);
+        createLL(rootSGL, tailSGL, numNode, valueNewNode, font);
         cur = rootSGL;
         createProcess--;
         oldP = nullptr;
@@ -33,7 +33,15 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
 // else insertFrame = 33 + (insertIdx - 1);
 
 void insertAnimationLL() {
-    nameCodeId = (insertIdx != 1) + 1;
+    if (insertIdx == 1) {
+        nameCodeId = styleLL;
+        if (insert_at_end) nameCodeId = (styleLL != 3 ? 18 : 19);
+    }
+    else if (insert_at_end) {
+        nameCodeId = 3 + styleLL;
+        if (cur == rootSGL) cur = tailSGL;
+    }
+    else nameCodeId = (styleLL != 2 ? 7 : 8);
     if (loopCodeStatus == 1) {
         highlightInsertCode(highlight);
         usleep(600000);
@@ -50,7 +58,7 @@ void insertAnimationLL() {
         loopCodeStatus = -1;
         if (addProcess == 3) {
             if (cur) cur->changeDes(to_string(cur->id + 1) + "/aft", true);
-            insertLL(rootSGL, insertValue, insertIdx, numNode, font);
+            insertLL(rootSGL, tailSGL, insertValue, insertIdx, numNode, font);
             usleep(500000);
             firstTimeAdd = true;
             addProcess--;
@@ -71,6 +79,7 @@ void insertAnimationLL() {
             numFrame = 0;
         }
     }
+    cout << numFrame << endl;
 }
 
 // if (deleteAtEnd) deleteFrame = 8 + (deleteIdx - 1)
@@ -83,7 +92,15 @@ void deleteAnimationLL() {
         loopCodeStatus = 0;
         return;
     }
-    nameCodeId = (deleteIdx != 1) + 3;
+    if (deleteIdx == 1) nameCodeId = 8 + styleLL;
+    else if (delete_at_end) {
+        if (styleLL != 2) nameCodeId = 12;
+        else {
+            nameCodeId = 13;
+            cur = tailSGL;
+        }
+    }
+    else nameCodeId = (styleLL != 2 ? 14 : 15);
     numFrame++;
     highlightDeleteCode(highlight);
     if (deleteProcess == 5 && cur && cur->id < deleteIdx) {
@@ -111,7 +128,7 @@ void deleteAnimationLL() {
             usleep(40000);
         }
         else if (deleteProcess == 3) {
-            deleteNodeLL(rootSGL, deleteIdx, numNode);  
+            deleteNodeLL(rootSGL, tailSGL, deleteIdx, numNode);  
             cur = rootSGL;
             deleteProcess--;
         }
@@ -136,7 +153,7 @@ void deleteAnimationLL() {
 
 
 void updateAnimationLL() {
-    nameCodeId = 5;
+    nameCodeId = 16;
     if (loopCodeStatus == 1) {
         highlightUpdateCode(highlight);
         usleep(600000);
@@ -176,7 +193,7 @@ void updateAnimationLL() {
 }
 
 void searchAnimationLL() {
-    nameCodeId = 6;
+    nameCodeId = 17;
     if (loopCodeStatus == 4 || loopCodeStatus == 5) {
         usleep(1000000);
         numFrame++;
@@ -244,7 +261,7 @@ int linkListPage(RenderWindow &window) {
 }
 
 
-int LinkList(RenderWindow &window, int styleLL) {
+int LinkList(RenderWindow &window) {
     window.clear(Color::White);
     displayText(window, styleName[styleLL], Vector2f(750, 10), 50);
     font.loadFromFile("../media/font/arial.ttf");
@@ -302,7 +319,7 @@ int LinkList(RenderWindow &window, int styleLL) {
 
     if (nameCodeId != 0) insertCode(window, nameCodeLL[nameCodeId], p_closeButton);
 
-    drawLL(window, rootSGL, (styleLL == 2), (styleLL == 3));
+    drawLL(window, rootSGL, tailSGL, (styleLL == 2), (styleLL == 3));
     
     highlight.draw(window);
 

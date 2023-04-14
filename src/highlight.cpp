@@ -23,32 +23,30 @@ void Highlight::draw(RenderWindow &window) {
 bool highLightLoop(Highlight &highlight) {
     if (numFrame != 1 && loopCodeStatus != 0 && loopCodeStatus != 1) return false;
     if (numFrame == 1 && loopCodeStatus == -1) highlight.makeHighlight(1);
-    else if (loopCodeStatus != -1) {
-        highlight.makeHighlight(loopCodeStatus == 1 ? 2 : 3);
-    }
+    else if (loopCodeStatus != -1) highlight.makeHighlight(loopCodeStatus == 1 ? 2 : 3);
     return true;
 }
 
 void highlightInsertCode(Highlight &highlight) {
-    if (nameCodeId == 1) {
-        if (insert_at_end) {
-            if (numFrame == 1) highlight.makeHighlight(1);
-            else highlight.makeHighlight(3);
-            return;
-        }
-        if (numFrame <= 11) highlight.makeHighlight(1);
-        else if (numFrame <= 22) highlight.makeHighlight(2);
-        else highlight.makeHighlight(3);
-        if (numFrame == 33) highlight.display = false;
+    if (nameCodeId == 18 || nameCodeId == 19) {
+        highlight.makeHighlight(numFrame);
         return;
     }
+    if (nameCodeId <= 3) {
+        if (nameCodeId != 2) highlight.makeHighlight((numFrame + 10) / 11);
+        else highlight.makeHighlight((numFrame + 7) /8);
+        return;
+    }
+    if (nameCodeId <= 6) {
+        highlight.makeHighlight(numFrame);
+        return;
+    } 
+    // if (nameCodeId == 7) {
+    //     highlight.makeHighlight(numFrame);
+    //     return;
+    // }
     if (highLightLoop(highlight)) return;
-    if (insert_at_end) {
-        if (numFrame - insertIdx == 0) highlight.makeHighlight(5);
-        else highlight.makeHighlight(7);
-        return;
-    }
-    else if (numFrame - insertIdx <= 8) highlight.makeHighlight(4);
+    if (numFrame - insertIdx <= 8) highlight.makeHighlight(4);
     else if (numFrame - insertIdx <= 16) highlight.makeHighlight(5);
     else if (numFrame - insertIdx <= 24) highlight.makeHighlight(6);
     else highlight.makeHighlight(7);
@@ -68,9 +66,10 @@ void highlightDeleteCode(Highlight &highlight) {
     }
     if (highLightLoop(highlight)) return;
     if (delete_at_end) {
-        if (numFrame - deleteIdx == 0) highlight.makeHighlight(4);
+        if (numFrame - deleteIdx <= 2) highlight.makeHighlight(4);
         else if (numFrame - deleteIdx <= 5) highlight.makeHighlight(5);
         else highlight.makeHighlight(6);
+        // cout << numFrame - deleteIdx << endl;
     }
     else if (numFrame - deleteIdx <= 20) highlight.makeHighlight(4);
     else if (numFrame - deleteIdx <= 30) highlight.makeHighlight(5);

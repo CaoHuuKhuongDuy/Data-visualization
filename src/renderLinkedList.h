@@ -6,6 +6,6 @@
 
 int linkListPage(RenderWindow &window);
 
-int LinkList(RenderWindow &window, int styleLL = 1);
+int LinkList(RenderWindow &window);
 
 #endif 

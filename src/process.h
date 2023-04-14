@@ -11,7 +11,7 @@ using namespace sf;
 using namespace std;
 
 
-int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack);
+int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack, Sprite Queue, Sprite Array);
 
 int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList, Sprite backButton);
 
@@ -23,4 +23,10 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
 int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite peekButton,
                 Sprite pushButton, Sprite popButton, textBox &input, Sprite *randomButton = nullptr, 
                 Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
+
+int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite peekButton,
+                Sprite enqueueButton, Sprite dequeueButton, textBox &input, Sprite *randomButton = nullptr, 
+                Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
+
+
 #endif

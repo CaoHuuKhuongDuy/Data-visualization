@@ -14,14 +14,18 @@ int pushProcess = 0;
 int addProcess = 0;
 int deleteProcess = 0; 
 int searchProcess = 0;
+int dequeueProcess = 0;
+int enqueueProcess = 0;
 int updateProcess = 0;
 int noTextBox = 0;
 int maximumNode = 0;
 bool displayNote = false;
 
 int nameCodeId = 0;
-string nameCodeLL[20] = {"", "insertAtHead.png", "insertCodeLL.png", "deleteAtHead.png", "deletingCodeLL.png", "updatingCodeLL.png", "searchingCodeLL.png"};
-string nameCodeStack[20] = {"", "peekCodeStack.png", "pushCodeStack.png", "popCodeStack.png"};
+string nameCodeLL[] = {"", "insertAtHeadS.png", "insertAtHeadD.png", "insertAtHeadC.png", "insertAtTailS.png", "insertAtTailD.png", 
+    "insertAtTailC.png", "insertCodeSC.png", "insertCodeD.png", "deleteAtHeadS.png", "deleteAtHeadD.png", "deleteAtHeadC.png", "deleteAtTailSC.png",
+    "deleteAtTailD.png", "deletingCodeSC.png", "deletingCodeD.png", "updatingCodeLL.png", "searchingCodeLL.png", "insertFirstNodeSD.png", "insertFirstNodeC.png"};
+string nameCodeStack[] = {"", "peekCodeStack.png", "pushCodeStack.png", "popCodeStack.png"};
 
 
 void initValueNode() {

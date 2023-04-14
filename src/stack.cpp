@@ -13,7 +13,7 @@ Vector2f Down = {0, 5};
 
 
 
-Vector2f firstNode = {784, 645};
+Vector2f firstNodeStack = {784, 645};
 
 StackVisualize::StackVisualize() {
     l = 1;
@@ -27,7 +27,7 @@ int StackVisualize::size() {
 
 
 void StackVisualize::create(int n, int val[], Font &font) {
-    numNode = 0;
+    clear();
     for (int i = 1; i <= n; i++) 
         push(val[i], font, true);
 }
@@ -39,7 +39,7 @@ void StackVisualize::push(int val, Font &font, bool Create) {
     node[r].setOutlineColor(Color::Black);
     node[r].setOutlineThickness(5);
     node[r].setFillColor(Color::Red);
-    node[r].setPosition((Create ? Vector2f(firstNode.x, firstNode.y - (r - l) * 55) : Vector2f(490, 200)));
+    node[r].setPosition((Create ? Vector2f(firstNodeStack.x, firstNodeStack.y - (r - l) * 55) : Vector2f(490, 200)));
 
     t_val[r].setFont(font);
     t_val[r].setString(to_string(val));
@@ -58,6 +58,7 @@ void StackVisualize::pop() {
 
 void StackVisualize::clear() {
     r = 0;
+    numNode = 0;
 }
 
 void StackVisualize::changePosition(Vector2f pos) {
@@ -71,8 +72,8 @@ int StackVisualize::format(int type) {
     Vector2f pos = node[r].getPosition();
     int formatProcess;
     if (type == 1) {
-        if (pos.x != firstNode.x) formatProcess = 1;
-        else if (pos.y != firstNode.y - (r - l) * 55) formatProcess = 2;
+        if (pos.x != firstNodeStack.x) formatProcess = 1;
+        else if (pos.y != firstNodeStack.y - (r - l) * 55) formatProcess = 2;
         else formatProcess = 3;
     }
     else {

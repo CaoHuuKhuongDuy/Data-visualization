@@ -102,47 +102,47 @@ void textBox::submit() {
     if (displayNote) return;
 
     switch (numTextBox) {
-    case 11:
-        numNode = tmp;
-        createProcess = (tmp != 0 ? 3 : 1);
-        break;
-    case 112:
-        valueNewNode[noTextBox + 1] = tmp;
-        (noTextBox += 1) %= numNode;
-        if (noTextBox == 0) createProcess--;
-        break;
-    case 12:
-        if (noTextBox == 0) insertIdx = tmp;
-        else {
+        case 11:
+            numNode = tmp;
+            createProcess = (tmp != 0 ? 3 : 1);
+            break;
+        case 112:
+            valueNewNode[noTextBox + 1] = tmp;
+            (noTextBox += 1) %= numNode;
+            if (noTextBox == 0) createProcess--;
+            break;
+        case 12:
+            if (noTextBox == 0) insertIdx = tmp;
+            else {
+                insertValue = tmp;
+                addProcess = 3;
+            }
+            insert_at_end = (insertIdx == numNode + 1);
+            (noTextBox += 1) %= 2;
+            break;
+        case 13:
+            deleteIdx = tmp;
+            deleteProcess = 5;
+            delete_at_end = (deleteIdx == numNode);
+            break;
+        case 14:
+            if (noTextBox == 0) updateIdx = tmp;
+            else {
+                updateValue = tmp;
+                updateProcess = 3;
+            }
+            (noTextBox += 1) %= 2;
+            break;
+        case 15:
+            searchValue = tmp;
+            searchProcess = 1;
+            break;
+        case 23:
+            pushProcess = 3;
             insertValue = tmp;
-            addProcess = 3;
+            break;
         }
-        insert_at_end = (insertIdx == numNode + 1);
-        (noTextBox += 1) %= 2;
-        break;
-    case 13:
-        deleteIdx = tmp;
-        deleteProcess = 5;
-        delete_at_end = (deleteIdx == numNode);
-        break;
-    case 14:
-        if (noTextBox == 0) updateIdx = tmp;
-        else {
-            updateValue = tmp;
-            updateProcess = 3;
-        }
-        (noTextBox += 1) %= 2;
-        break;
-    case 15:
-        searchValue = tmp;
-        searchProcess = 1;
-        break;
-    case 23:
-        pushProcess = 3;
-        insertValue = tmp;
-        break;
-    }
-    if (noTextBox == 0) numTextBox = 0;
+        if (noTextBox == 0) numTextBox = 0;
 }
 
 void textBox::draw(RenderWindow &window) {

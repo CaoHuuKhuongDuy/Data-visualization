@@ -91,16 +91,17 @@ SinglyLL *createNode(int value, int idx, Vector2f pos, Font &font) {
     return cur;
 }
 
-void deleteLL(SinglyLL *&root) {
+void deleteLL(SinglyLL *&root, SinglyLL *&tail) {
     while (root) {
         SinglyLL *tmp = root;
         root = root->nxt;
         delete tmp;
     }
+    tail = nullptr;
     root = nullptr;
 }
 
-void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font) {
+void createLL(SinglyLL *&root, SinglyLL *&tail, int numNode, int valueNewNode[], Font &font) {
     srand(time(nullptr));
     int cnt = 1;
     SinglyLL *cur = root;
@@ -114,6 +115,7 @@ void createLL(SinglyLL *&root, int numNode, int valueNewNode[], Font &font) {
             cur->nxt = tmp;
             cur = cur->nxt;
         }
+        tail = cur;
         cnt++;
     }
 }
@@ -155,11 +157,12 @@ void drawReturnLine(RenderWindow &window, Vector2f firstPoint, Vector2f endPoint
     arrow5.draw(window);
 }
 
-void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL, bool circular, bool stack) {
+void drawLL(RenderWindow &window, SinglyLL *root, SinglyLL *tail, bool doublyLL, bool circular, bool stack) {
     if (!root) return;
     if (root->getDes() == "") root->changeDes("Head", true);
     Vector2f endPoint;
     Vector2f firstPoint = root->position;
+    bool firstNode = true;
     while (root) {
         endPoint = root->position;
         if (root->nxt != nullptr) {
@@ -171,7 +174,9 @@ void drawLL(RenderWindow &window, SinglyLL *root, bool doublyLL, bool circular, 
             arrow.draw(window);
         }
         root->draw(window);
+        if (!firstNode && root == tail && root->getDes() == "") root->changeDes(" Tail", true);
         root = root->nxt;
+        firstNode = false;
     }
     if (circular) drawReturnLine(window, firstPoint, endPoint);
 }
@@ -196,28 +201,37 @@ void changeIndex(SinglyLL *cur, int val = 1) {
     }
 }
 
-void insertLL(SinglyLL *&root, int value, int idx, int &numNode, Font &font) {
+void insertLL(SinglyLL *&root, SinglyLL *&tail, int value, int idx, int &numNode, Font &font) {
     numNode++;
+    SinglyLL *cur = root;
     if (idx == 1) {
-        insertBefore(root, value, idx, font, (numNode == idx));
+        insertBefore(root, value, idx, font, insert_at_end);
         changeIndex(root->nxt);
+        if (insert_at_end) tail =  root;
         return;
     }
-    SinglyLL *cur = root;
+    if (insert_at_end) {
+        insertBefore(tail->nxt, value, idx, font, true);
+        tail = tail->nxt;
+        return;
+    }
+    
     while (cur && cur->id != idx - 1) cur = cur->nxt;
     insertBefore(cur->nxt, value, idx, font, (numNode == idx));
     changeIndex(cur->nxt->nxt);
 }
 
-void deleteNodeLL(SinglyLL *&root, int idx, int &numNode) {
+void deleteNodeLL(SinglyLL *&root, SinglyLL *&tail, int idx, int &numNode) {
     numNode--;
     if (idx == 1) {
         deleteBefore(root, idx);
         changeIndex(root, -1);
+        if (delete_at_end) tail = nullptr;
         return;
     }
     SinglyLL *cur = root;
     while (cur && cur->id != idx - 1) cur = cur->nxt;
+    if (delete_at_end) tail = cur;
     deleteBefore(cur->nxt, idx);
     changeIndex(cur->nxt, -1);
 }
