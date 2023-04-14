@@ -41,10 +41,6 @@ void highlightInsertCode(Highlight &highlight) {
         highlight.makeHighlight(numFrame);
         return;
     } 
-    // if (nameCodeId == 7) {
-    //     highlight.makeHighlight(numFrame);
-    //     return;
-    // }
     if (highLightLoop(highlight)) return;
     if (numFrame - insertIdx <= 8) highlight.makeHighlight(4);
     else if (numFrame - insertIdx <= 16) highlight.makeHighlight(5);
@@ -53,15 +49,22 @@ void highlightInsertCode(Highlight &highlight) {
 }
 
 void highlightDeleteCode(Highlight &highlight) {
-    if (nameCodeId == 3) {
+    if (nameCodeId <= 11) {
         if (delete_at_end) {
             if (numFrame <= 3) highlight.makeHighlight(1);
+            else if (numFrame <= 5) highlight.makeHighlight(2);
             else highlight.makeHighlight(3);
             return;
         }
-        if (numFrame <= 10) highlight.makeHighlight(1);
-        else if (numFrame <= 20) highlight.makeHighlight(2);
-        else highlight.makeHighlight(3);
+        if (styleLL != 2) highlight.makeHighlight(min(3, (numFrame + 9) / 10));
+        else highlight.makeHighlight(min(4, (numFrame + 8) / 9));
+        return;
+    }
+    if (nameCodeId == 13) {
+        if (numFrame <= 2) highlight.makeHighlight(1);
+        else if (numFrame <= 3) highlight.makeHighlight(2);
+        else if (numFrame <= 5) highlight.makeHighlight(3);
+        else highlight.makeHighlight(4);
         return;
     }
     if (highLightLoop(highlight)) return;
@@ -69,7 +72,6 @@ void highlightDeleteCode(Highlight &highlight) {
         if (numFrame - deleteIdx <= 2) highlight.makeHighlight(4);
         else if (numFrame - deleteIdx <= 5) highlight.makeHighlight(5);
         else highlight.makeHighlight(6);
-        // cout << numFrame - deleteIdx << endl;
     }
     else if (numFrame - deleteIdx <= 20) highlight.makeHighlight(4);
     else if (numFrame - deleteIdx <= 30) highlight.makeHighlight(5);
@@ -77,6 +79,10 @@ void highlightDeleteCode(Highlight &highlight) {
 }
 
 void highlightUpdateCode(Highlight &highlight) {
+    if (nameCodeId == 20) {
+        highlight.makeHighlight(1);
+        return;
+    }
     if (highLightLoop(highlight)) return;
     highlight.makeHighlight(4);
 }

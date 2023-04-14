@@ -89,7 +89,7 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
 }
 
 void initPressState(int x, bool resetCreateProcess = true) {
-    numTextBox = x;
+    numTextBox = (numTextBox == x ? 0 : x);
     noTextBox = 0;
     userText = "";
     displayNote = false;

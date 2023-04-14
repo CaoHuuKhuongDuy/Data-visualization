@@ -24,7 +24,7 @@ bool displayNote = false;
 int nameCodeId = 0;
 string nameCodeLL[] = {"", "insertAtHeadS.png", "insertAtHeadD.png", "insertAtHeadC.png", "insertAtTailS.png", "insertAtTailD.png", 
     "insertAtTailC.png", "insertCodeSC.png", "insertCodeD.png", "deleteAtHeadS.png", "deleteAtHeadD.png", "deleteAtHeadC.png", "deleteAtTailSC.png",
-    "deleteAtTailD.png", "deletingCodeSC.png", "deletingCodeD.png", "updatingCodeLL.png", "searchingCodeLL.png", "insertFirstNodeSD.png", "insertFirstNodeC.png"};
+    "deleteAtTailD.png", "deletingCodeSC.png", "deletingCodeD.png", "updatingCodeLL.png", "searchingCodeLL.png", "insertFirstNodeSD.png", "insertFirstNodeC.png", "updateAtTailLL.png"};
 string nameCodeStack[] = {"", "peekCodeStack.png", "pushCodeStack.png", "popCodeStack.png"};
 
 

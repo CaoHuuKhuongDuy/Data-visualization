@@ -79,7 +79,6 @@ void insertAnimationLL() {
             numFrame = 0;
         }
     }
-    cout << numFrame << endl;
 }
 
 // if (deleteAtEnd) deleteFrame = 8 + (deleteIdx - 1)
@@ -97,7 +96,7 @@ void deleteAnimationLL() {
         if (styleLL != 2) nameCodeId = 12;
         else {
             nameCodeId = 13;
-            cur = tailSGL;
+            if (cur == rootSGL) cur = tailSGL;
         }
     }
     else nameCodeId = (styleLL != 2 ? 14 : 15);
@@ -109,9 +108,10 @@ void deleteAnimationLL() {
     }
     else {
         if (deleteProcess == 5) {
-            if (numFrame == deleteIdx) usleep(30000);
+            if (numFrame == deleteIdx) usleep(300000);
             cur->changeDes("del");
             cur->changeColor(Color::Blue);
+
             if (deleteIdx == 1 || delete_at_end) {
                 deleteProcess--;
                 usleep(800000);
@@ -123,13 +123,15 @@ void deleteAnimationLL() {
             }
         }
         else if (deleteProcess == 4) {
+            if (radiusAnimation == 13) {
+                usleep(500000);
+            }
             cur->changeRadius(radiusAnimation--);
             if (radiusAnimation == 9) deleteProcess--;
-            usleep(40000);
+            usleep(100000);
         }
         else if (deleteProcess == 3) {
             deleteNodeLL(rootSGL, tailSGL, deleteIdx, numNode);  
-            cur = rootSGL;
             deleteProcess--;
         }
         else if (deleteProcess == 2) {
@@ -147,6 +149,7 @@ void deleteAnimationLL() {
             loopCodeStatus = -1;
             highlight.display = false;
             oldP = nullptr;
+            cur = rootSGL;
         }
     }
 }
@@ -154,6 +157,10 @@ void deleteAnimationLL() {
 
 void updateAnimationLL() {
     nameCodeId = 16;
+    if (updateIdx == numNode) {
+        nameCodeId = 20;
+        if (cur == rootSGL) cur = tailSGL;
+    }
     if (loopCodeStatus == 1) {
         highlightUpdateCode(highlight);
         usleep(600000);

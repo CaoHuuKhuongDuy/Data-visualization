@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <unistd.h>
 #include "staticFile.h"
 using namespace std;
 using namespace sf;
