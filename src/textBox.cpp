@@ -97,6 +97,11 @@ void textBox::submit() {
         if (!displayNote) break;
         notice = "Note: The maximum number of vertex allowed is 6";
         break;
+    case 33:
+        displayNote = (numNode == maximumNode);
+        if (!displayNote) break;
+        notice = "Note: The maximum number of vertex allowed is 6";
+        break;
     }
     userText = "";
     if (displayNote) return;
@@ -139,6 +144,10 @@ void textBox::submit() {
             break;
         case 23:
             pushProcess = 3;
+            insertValue = tmp;
+            break;
+        case 33:
+            enqueueProcess = 3;
             insertValue = tmp;
             break;
         }

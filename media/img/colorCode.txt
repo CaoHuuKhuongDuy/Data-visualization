@@ -5,3 +5,7 @@ create / add / ....
 random / user define
 	light : 2c4ad1
 	dark  : 101e5e
+
+peek front/back
+	light : 2fb0d4
+	dark  : 26849e

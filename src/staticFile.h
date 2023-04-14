@@ -8,7 +8,7 @@ using namespace std;
 
 extern int valueNewNode[11], maximumNode;
 extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark;
-extern bool randomButtonDark, inputButtonDark;
+extern bool randomButtonDark, inputButtonDark, peekFrontDark, peekBackDark;
 extern bool importButtonDark, peekButtonDark, pushButtonDark, popButtonDark;
 extern bool enqueueButtonDark, dequeueButtonDark;
 extern bool updateButtonDark, searchButtonDark, displayNote;

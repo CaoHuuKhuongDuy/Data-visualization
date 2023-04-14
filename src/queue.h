@@ -21,7 +21,7 @@ class QueueVisualize {
         void enqueue(int val, Font &font, bool Create = false);
         void dequeue();
         void clear();
-        void changeColor(Color color);
+        void changeColor(Color color, int peekPos);
         int format(int type = 1);
         void changePosition(Vector2f pos);
         void draw(RenderWindow &window);

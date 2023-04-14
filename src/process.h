@@ -25,8 +25,8 @@ int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                 Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
 
 int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite peekButton,
-                Sprite enqueueButton, Sprite dequeueButton, textBox &input, Sprite *randomButton = nullptr, 
-                Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
+                Sprite enqueueButton, Sprite dequeueButton, textBox &input, Sprite *randomButton, 
+                Sprite *inputButton, Sprite *closeButton, Sprite *peekFrontButton, Sprite *peekBackButton);
 
 
 #endif

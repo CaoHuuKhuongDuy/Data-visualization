@@ -88,12 +88,12 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
     return state;
 }
 
-void initPressState(int x, bool resetCreateProcess = true) {
+void initPressState(int x, bool resetProcess = true) {
     numTextBox = (numTextBox == x ? 0 : x);
     noTextBox = 0;
     userText = "";
     displayNote = false;
-    if (resetCreateProcess) createProcess = 0;
+    if (resetProcess) createProcess = peekProcess = 0;
 }
 
 int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,Sprite createButton, Sprite addButton, Sprite deleteButton, 
@@ -197,7 +197,8 @@ int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
 }
 
 int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite peekButton,
-                Sprite enqueueButton, Sprite dequeueButton, textBox &input, Sprite *randomButton, Sprite *inputButton, Sprite *closeButton) {
+                Sprite enqueueButton, Sprite dequeueButton, textBox &input, Sprite *randomButton, Sprite *inputButton, Sprite *closeButton,
+                Sprite *peekFrontButton, Sprite *peekBackButton) {
     int state = 3;
     backButtonDark = hoverMouse(backButton);
     importButtonDark = hoverMouse(importButton);
@@ -205,6 +206,8 @@ int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
     randomButtonDark = (randomButton && hoverMouse(*randomButton));
     inputButtonDark = (inputButton && hoverMouse(*inputButton));
     peekButtonDark = hoverMouse(peekButton);
+    peekFrontDark = (peekFrontButton && hoverMouse(*peekFrontButton));
+    peekBackDark = (peekBackButton && hoverMouse(*peekBackButton));
     enqueueButtonDark = hoverMouse(enqueueButton);
     dequeueButtonDark = hoverMouse(dequeueButton);
 
@@ -228,6 +231,8 @@ int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                         createProcess--;
                     }
                     else if (Press(peekButton)) initPressState(22);
+                    else if (peekFrontButton && Press(*peekFrontButton)) initPressState(221, false);
+                    else if (peekBackButton && Press(*peekBackButton)) initPressState(222, false);
                     else if (Press(enqueueButton)) initPressState(33);
                     else if (Press(dequeueButton)) initPressState(34); 
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;

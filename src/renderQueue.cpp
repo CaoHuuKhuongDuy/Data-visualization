@@ -2,6 +2,8 @@
 
 QueueVisualize rootQueue;
 
+int peekPos = 0; // false = back, true = front
+
 void createAnimationQueue(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
     if (createProcess == 3) {
         Vector2f posRandomButton = Vector2f(220, 750);
@@ -20,6 +22,25 @@ void createAnimationQueue(RenderWindow &window, Sprite *&p_randomButton, Sprite 
     }
 }
 
+void peekAnimationQueue(RenderWindow &window, Sprite *&p_peekFront, Sprite *&p_peekBack) {
+    if (peekProcess == 3) {
+        Vector2f posPeekFront = Vector2f(220, 805);
+        Vector2f posPeekBack = Vector2f(300, 805);
+        p_peekFront = new Sprite(addSprite(window, "peekFrontButton.png", 70, 30, posPeekFront, peekFrontDark));
+        p_peekBack = new Sprite(addSprite(window, "peekBackButton.png", 70, 30, posPeekBack, peekBackDark));  
+    }
+    else if (peekProcess == 2) {
+        rootQueue.changeColor(Color::Green, peekPos); 
+        peekProcess--;
+    }
+    else {
+        usleep(1800000);
+        highlight.display = false;
+        rootQueue.changeColor(Color::Blue, peekPos);
+        peekProcess--;
+    }
+}
+
 void createBoxQueue(RenderWindow &window) {
     Arrow arrow(0);
     arrow.create(Vector2f(600, 400), Vector2f(1400, 400));
@@ -29,6 +50,7 @@ void createBoxQueue(RenderWindow &window) {
 }
 
 int Queue(RenderWindow &window) {
+    maximumNode = 8;
     window.clear(Color::White);
     displayText(window, "Queue", Vector2f(850, 50), 50);
     font.loadFromFile("../media/font/arial.ttf");
@@ -52,8 +74,18 @@ int Queue(RenderWindow &window) {
             numTextBox = 0;
             break;
         case 22:
-            peekProcess = 2;
+            peekProcess = 3;
             numTextBox = 0;
+            break;
+        case 221:
+            peekProcess--;
+            numTextBox = 0;
+            peekPos = 0;
+            break;
+        case 222:
+            peekProcess--;
+            numTextBox = 0;
+            peekPos = 1;
             break;
         case 33:
             input = displayTextBox(window, "Value", posEnqueueButton);
@@ -65,9 +97,10 @@ int Queue(RenderWindow &window) {
     }
 
     Sprite *p_closeButton = nullptr, *p_randomButton = nullptr, *p_inputButton = nullptr;
+    Sprite *p_peekFront = nullptr, *p_peekBack = nullptr;
 
     if (createProcess) createAnimationQueue(window, p_randomButton, p_inputButton);
-    // Vector2f posSearchButton = Vector2f(100, 900);
+    if (peekProcess) peekAnimationQueue(window, p_peekFront, p_peekBack);
 
     Sprite backButton = addSprite(window, "backButton.png", 150, 70, posBackButton, backButtonDark);     
     Sprite importButton = addSprite(window, "importButton.png", 90, 42, posImportButton, importButtonDark);
@@ -78,13 +111,9 @@ int Queue(RenderWindow &window) {
 
     createBoxQueue(window);
 
-    rootQueue.clear();
-    
-    for (int i = 1; i <= 8; i++) 
-        rootQueue.enqueue(i, font);
 
     rootQueue.draw(window);
 
     window.display();
-    return statusQueue(window, backButton, importButton, createButton, peekButton, enqueueButton, dequeueButton, input, p_randomButton, p_inputButton, p_closeButton);
+    return statusQueue(window, backButton, importButton, createButton, peekButton, enqueueButton, dequeueButton, input, p_randomButton, p_inputButton, p_closeButton, p_peekFront, p_peekBack);
 }

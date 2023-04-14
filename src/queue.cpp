@@ -6,14 +6,6 @@ QueueVisualize::QueueVisualize() {
     l = 0;
 }
 
-void QueueVisualize::clear() {
-    a.clear();
-    t_val.clear();
-    node.clear();
-    numNode = 0;
-    l = 0;
-}
-
 int QueueVisualize::size() {
     return (int)(a.size() - l);
 }
@@ -49,8 +41,22 @@ void QueueVisualize::enqueue(int val, Font &font, bool Create) {
 }
 
 void QueueVisualize::dequeue() {
+    if (numNode == 0) return;
     l++;
     numNode--;
+}
+
+void QueueVisualize::clear() {
+    a.clear();
+    t_val.clear();
+    node.clear();
+    numNode = 0;
+    l = 0;
+}
+
+void QueueVisualize::changeColor(Color color, int peekPos) {
+    if (peekPos == 0) node[l].setFillColor(color);
+    else node.back().setFillColor(color);
 }
 
 void QueueVisualize::draw(RenderWindow &window) {

@@ -21,6 +21,7 @@ int main() {
         // status = LinkList(window);
         // status = LinkList(window, 1);
         // status = Stack(window);
+        // status = Queue(window);
         // continue;
         switch (status) {
             case -1: return EXIT_SUCCESS;
