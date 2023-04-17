@@ -113,5 +113,26 @@ void highlightPopCode(Highlight &highlight) {
     if (maxFrame - numFrame > 40) highlight.makeHighlight(2);
     else if (maxFrame - numFrame > 2) highlight.makeHighlight(3);
     else highlight.makeHighlight(4);
+}
 
+void highlightPeekQueue(Highlight &highlight, int peekPos) {
+    if (numNode == 0) highlight.makeHighlight(1);
+    else highlight.makeHighlight(2);
+}
+
+void highlightEnqueue(Highlight &highlight) {
+    int maxFrame = 44 + 14 * (8 - numNode);
+    if (numFrame == 1) highlight.makeHighlight(1);
+    else if (maxFrame - numFrame <= 5) highlight.makeHighlight(3);
+    else highlight.makeHighlight(2);
+}
+
+void highlightDequeue(Highlight &highlight) {
+    if (numNode == 0) {
+        highlight.makeHighlight(1);
+        return;
+    }
+    if (numFrame <= 20) highlight.makeHighlight(2);
+    else if (numFrame <= 65) highlight.makeHighlight(3);
+    else highlight.makeHighlight(4);
 }

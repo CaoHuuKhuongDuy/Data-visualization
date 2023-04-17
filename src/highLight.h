@@ -28,4 +28,8 @@ void highlightPeekCode(Highlight &highlight);
 void highlightPushCode(Highlight &highlight);
 void highlightPopCode(Highlight &highlight);
 
+void highlightPeekQueue(Highlight &highlight, int peekPos);
+void highlightEnqueue(Highlight &highlight);
+void highlightDequeue(Highlight &highlight);
+
 #endif

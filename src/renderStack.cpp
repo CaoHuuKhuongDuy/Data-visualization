@@ -59,12 +59,10 @@ void pushAnimationStack(RenderWindow &window) {
 void popAnimationStack(RenderWindow &window) {
     nameCodeId = 3;
     numFrame++;
-    int formatProcess;
     highlightPopCode(highlight);
     if (popProcess == 2) {
         rootStack.changeColor(Color::Yellow);
-        formatProcess = rootStack.format(-1);
-        if (formatProcess == 3) popProcess--;    
+        if (rootStack.format(-1) == 3) popProcess--;    
     }
     else {
         usleep(1000000);

@@ -1,6 +1,9 @@
 #include "queue.h"
 
 Vector2f firstNodeQueue = {640, 425};
+Vector2f Left = {-1, 0};
+
+const double epsilon = 1e-6;
 
 QueueVisualize::QueueVisualize() {
     l = 0;
@@ -27,9 +30,7 @@ void QueueVisualize::enqueue(int val, Font &font, bool Create) {
     node[r].setOutlineColor(Color::Black);
     node[r].setOutlineThickness(5);
     node[r].setFillColor(Color::Blue);
-    // node[r].setPosition
-    node[r].setPosition(Vector2f(firstNodeQueue.x + (r - l) * 70, firstNodeQueue.y));
-    // node[r].setPosition((Create ? Vector2f(firstNodeQueue.x, firstNodeQueue.y - (r - l) * 55) : Vector2f(490, 200)));
+    node[r].setPosition(Vector2f(firstNodeQueue.x + (Create ? ((r - l) * 70) : 700), firstNodeQueue.y));
 
     t_val[r].setFont(font);
     t_val[r].setString(to_string(val));
@@ -42,8 +43,8 @@ void QueueVisualize::enqueue(int val, Font &font, bool Create) {
 
 void QueueVisualize::dequeue() {
     if (numNode == 0) return;
-    l++;
     numNode--;
+    l++;
 }
 
 void QueueVisualize::clear() {
@@ -59,7 +60,29 @@ void QueueVisualize::changeColor(Color color, int peekPos) {
     else node.back().setFillColor(color);
 }
 
-void QueueVisualize::draw(RenderWindow &window) {
+bool QueueVisualize::format(int type) {
+    if (type == 1) {
+        changePosition(l, Left * 3.f);
+        for (int i = l + 1; i < a.size(); i++)
+            changePosition(i, Left);
+        return (node[l].getPosition().x != firstNodeQueue.x - 210);
+    }
+    int r = a.size() - 1;
+    Vector2f pos = node[r].getPosition();
+    pos = pos + Left * 5.f;
+    pos.x = round(pos.x * 10.0f) / 10.0f;
+    changePosition(r, pos, false);
+    return (node[r].getPosition().x != firstNodeQueue.x + (r - l) * 70);
+}
+
+void QueueVisualize::changePosition(int id, Vector2f pos, bool status) {
+    if (status) pos = node[id].getPosition() + pos;
+    node[id].setPosition(pos);
+    int justify = (a[id] < 10 ? 6 : 0);
+    t_val[id].setPosition(Vector2f(node[id].getPosition()) + Vector2f(15 + justify, 65));
+}
+
+void QueueVisualize::draw(RenderWindow &window) {   
     for (int i = l; i < a.size(); i++) {
         window.draw(node[i]);
         window.draw(t_val[i]);

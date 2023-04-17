@@ -28,8 +28,11 @@ void peekAnimationQueue(RenderWindow &window, Sprite *&p_peekFront, Sprite *&p_p
         Vector2f posPeekBack = Vector2f(300, 805);
         p_peekFront = new Sprite(addSprite(window, "peekFrontButton.png", 70, 30, posPeekFront, peekFrontDark));
         p_peekBack = new Sprite(addSprite(window, "peekBackButton.png", 70, 30, posPeekBack, peekBackDark));  
+        return;
     }
-    else if (peekProcess == 2) {
+    nameCodeId = 1 + peekPos;
+    highlightPeekQueue(highlight, peekPos);
+    if (peekProcess == 2) {
         rootQueue.changeColor(Color::Green, peekPos); 
         peekProcess--;
     }
@@ -38,6 +41,54 @@ void peekAnimationQueue(RenderWindow &window, Sprite *&p_peekFront, Sprite *&p_p
         highlight.display = false;
         rootQueue.changeColor(Color::Blue, peekPos);
         peekProcess--;
+    }
+}
+
+// enqueueFrame = 42 + 14 * (8 - numNode) + 2
+
+bool firstEnqueue = false;
+
+void enqueueAnimationQueue(RenderWindow &window) {
+    numFrame++;
+    nameCodeId = 3 + (numNode == 1);
+    if (enqueueProcess == 3) {
+        rootQueue.enqueue(insertValue, font);
+        rootQueue.changeColor(Color::Green, 1);
+        enqueueProcess--;
+        firstEnqueue = true;
+        highlightEnqueue(highlight);
+        nameCodeId = 3 + (numNode == 1);
+        return;
+    }
+    highlightEnqueue(highlight);
+    if (firstEnqueue) usleep(1000000);
+    firstEnqueue = false;
+    if (enqueueProcess == 2 && !rootQueue.format(-1)) enqueueProcess--;
+    else if (enqueueProcess == 1) {
+        usleep(1800000);
+        rootQueue.changeColor(Color::Blue, 1);
+        numFrame = 0;
+        enqueueProcess = 0;
+        highlight.display = false;
+    }
+    
+}
+
+void dequeueAnimationQueue(RenderWindow &window) {
+    numFrame++;
+    cout << numFrame << endl;
+    nameCodeId = 5;
+    highlightDequeue(highlight);
+    if (dequeueProcess == 2) {
+        rootQueue.changeColor(Color::Green, 0);
+        if (!rootQueue.format()) dequeueProcess--;    
+    }
+    else {
+        usleep(1000000);
+        rootQueue.dequeue();
+        numFrame = 0;
+        dequeueProcess = 0;
+        highlight.display = false;
     }
 }
 
@@ -91,7 +142,7 @@ int Queue(RenderWindow &window) {
             input = displayTextBox(window, "Value", posEnqueueButton);
             break;
         case 34:
-            popProcess = 2;
+            dequeueProcess = (numNode != 0 ? 2 : 0);
             numTextBox = 0;
             break;
     }
@@ -101,6 +152,8 @@ int Queue(RenderWindow &window) {
 
     if (createProcess) createAnimationQueue(window, p_randomButton, p_inputButton);
     if (peekProcess) peekAnimationQueue(window, p_peekFront, p_peekBack);
+    if (enqueueProcess) enqueueAnimationQueue(window);
+    if (dequeueProcess) dequeueAnimationQueue(window);
 
     Sprite backButton = addSprite(window, "backButton.png", 150, 70, posBackButton, backButtonDark);     
     Sprite importButton = addSprite(window, "importButton.png", 90, 42, posImportButton, importButtonDark);
@@ -110,9 +163,11 @@ int Queue(RenderWindow &window) {
     Sprite dequeueButton = addSprite(window, "dequeueButton.png", 90, 42, posDequeueButton, dequeueButtonDark);
 
     createBoxQueue(window);
-
+ 
+    if (nameCodeId != 0) insertCode(window, nameCodeQueue[nameCodeId], p_closeButton);
 
     rootQueue.draw(window);
+    highlight.draw(window);
 
     window.display();
     return statusQueue(window, backButton, importButton, createButton, peekButton, enqueueButton, dequeueButton, input, p_randomButton, p_inputButton, p_closeButton, p_peekFront, p_peekBack);

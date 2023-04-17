@@ -46,7 +46,7 @@ int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack, Sprite Q
                     }
                     else if (Press(Queue)) {
                         state = 3;
-                        initState(3, 8);
+                        initState(4, 8);
                     }
                     else if (Press(Array)) {
                         state = 4;

@@ -22,8 +22,8 @@ class QueueVisualize {
         void dequeue();
         void clear();
         void changeColor(Color color, int peekPos);
-        int format(int type = 1);
-        void changePosition(Vector2f pos);
+        bool format(int type = 1);
+        void changePosition(int id, Vector2f pos, bool status = true);
         void draw(RenderWindow &window);
     private:
         int l;

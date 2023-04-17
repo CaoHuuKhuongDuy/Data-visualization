@@ -100,7 +100,7 @@ void textBox::submit() {
     case 33:
         displayNote = (numNode == maximumNode);
         if (!displayNote) break;
-        notice = "Note: The maximum number of vertex allowed is 6";
+        notice = "Note: The maximum number of vertex allowed is 8";
         break;
     }
     userText = "";
