@@ -15,6 +15,7 @@
 #include "singlyLL.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "array.h"
 
 using namespace sf;
 using namespace std;

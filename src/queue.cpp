@@ -3,6 +3,7 @@
 Vector2f firstNodeQueue = {640, 425};
 Vector2f Left = {-1, 0};
 
+
 const double epsilon = 1e-6;
 
 QueueVisualize::QueueVisualize() {
@@ -56,11 +57,13 @@ void QueueVisualize::clear() {
 }
 
 void QueueVisualize::changeColor(Color color, int peekPos) {
+    if (numNode == 0) return;
     if (peekPos == 0) node[l].setFillColor(color);
     else node.back().setFillColor(color);
 }
 
 bool QueueVisualize::format(int type) {
+    if (numNode == 0) return false;
     if (type == 1) {
         changePosition(l, Left * 3.f);
         for (int i = l + 1; i < a.size(); i++)

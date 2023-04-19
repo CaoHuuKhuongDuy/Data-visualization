@@ -246,10 +246,6 @@ int linkListPage(RenderWindow &window) {
 
     window.clear(Color::White);
     displayText(window, "Linked List", Vector2f(800, 10), 50);
-    numNode = 5;
-    maximumNode = 10;
-    createProcess = 1;
-    initValueNode();
 
     Sprite singlyLinkList = addSprite(window, "singlyLinkList.png", 450, 300, Vector2f(200, 220));
     Sprite doublyLinkList = addSprite(window, "doublyLinkList.png", 400, 340, Vector2f(760, 160));

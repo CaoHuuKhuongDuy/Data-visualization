@@ -1,6 +1,7 @@
 #include "renderLinkedList.h"
 #include "renderStack.h"
 #include "renderQueue.h"
+#include "renderArray.h"
 
 const int height = 1920;
 const int width = 1080;
@@ -22,6 +23,7 @@ int main() {
         // status = LinkList(window, 1);
         // status = Stack(window);
         // status = Queue(window);
+        // status = staticArray(window);
         // continue;
         switch (status) {
             case -1: return EXIT_SUCCESS;
@@ -48,6 +50,15 @@ int main() {
                 break;
             case 3:
                 status = Queue(window);
+                break;
+            case 4:
+                status = arrayHomePage(window);
+                break;
+            case 41:
+                status = staticArray(window);
+                break;
+            case 42:
+                status = 4;
                 break;
             default: 
                 status = 0;

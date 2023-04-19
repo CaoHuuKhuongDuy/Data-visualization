@@ -23,6 +23,7 @@ bool updateButtonDark = false;
 bool searchButtonDark = false;
 bool dequeueButtonDark = false;
 bool enqueueButtonDark = false;
+bool accessButtonDark = false;
 int numTextBox = 0;
 string userText = "", notice = "";
 SinglyLL *tmp = nullptr;

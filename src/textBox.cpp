@@ -76,7 +76,7 @@ void textBox::submit() {
     case 12:
         displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
         if (!displayNote) break;
-        if (numNode == 10) notice = "Note: The maximum number of vertex allowed is 10";
+        if (numNode == 10) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
         else notice = "Note: a valid index between [1.." + to_string(numNode + 1) + "]";
         break;
     case 13:
@@ -95,12 +95,19 @@ void textBox::submit() {
     case 23:
         displayNote = (numNode == maximumNode);
         if (!displayNote) break;
-        notice = "Note: The maximum number of vertex allowed is 6";
+        notice = "Note: The maximum number of vertex allowed is" + to_string(maximumNode);
         break;
     case 33:
         displayNote = (numNode == maximumNode);
         if (!displayNote) break;
-        notice = "Note: The maximum number of vertex allowed is 8";
+        notice = "Note: The maximum number of vertex allowed is 8" + to_string(maximumNode);
+        break;
+    case 42:
+        // cout << notice << " " << numNode << endl;
+        displayNote = (tmp >= numNode);
+        if (!displayNote) break;
+        if (numNode == 0) notice = "Note: The array is empty";
+        else notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
         break;
     }
     userText = "";
@@ -149,6 +156,10 @@ void textBox::submit() {
         case 33:
             enqueueProcess = 3;
             insertValue = tmp;
+            break;
+        case 42:
+            accessIndex = tmp;
+            accessProcess = 2;
             break;
         }
         if (noTextBox == 0) numTextBox = 0;

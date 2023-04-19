@@ -2,12 +2,14 @@
 0: Home Page
 
 1: link list
-    11: singly linkList
-    12: doubly linkList
-    13: circular linkList
+   11: singly linkList
+   12: doubly linkList
+   13: circular linkList
 
 2: stack
     
 3: queue
 
-4
+4: Array
+   41: static Array
+   42: dynamic Array

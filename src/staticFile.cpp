@@ -1,10 +1,11 @@
 #include "staticFile.h"
 #include <iostream>
 
-int valueNewNode[11];
+int valueNewNode[30];
 int numNode = 5;
 int insertIdx = -1, insertValue;
 int updateIdx = -1, updateValue; 
+int accessIndex = -1;
 int deleteIdx = -1;
 int searchValue = -1;
 int createProcess = 1;
@@ -17,6 +18,7 @@ int searchProcess = 0;
 int dequeueProcess = 0;
 int enqueueProcess = 0;
 int updateProcess = 0;
+int accessProcess = 0;
 int noTextBox = 0;
 int maximumNode = 0;
 bool displayNote = false;
@@ -32,7 +34,7 @@ string nameCodeQueue[] = {"", "peekFrontQueue.png", "peekBackQueue.png", "enqueu
 
 
 void initValueNode() {
-    for (int i = 1; i <= 10; i++)
+    for (int i = 1; i <= 20; i++)
       valueNewNode[i] = rand() % 100;
 }
 

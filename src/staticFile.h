@@ -6,15 +6,15 @@
 using namespace sf;
 using namespace std;
 
-extern int valueNewNode[11], maximumNode;
+extern int valueNewNode[30], maximumNode;
 extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark;
 extern bool randomButtonDark, inputButtonDark, peekFrontDark, peekBackDark;
 extern bool importButtonDark, peekButtonDark, pushButtonDark, popButtonDark;
-extern bool enqueueButtonDark, dequeueButtonDark;
+extern bool enqueueButtonDark, dequeueButtonDark, accessButtonDark;
 extern bool updateButtonDark, searchButtonDark, displayNote;
-extern int numTextBox, noTextBox, numNode, insertIdx, insertValue, searchValue, updateIdx, updateValue;
+extern int numTextBox, noTextBox, numNode, insertIdx, insertValue, searchValue, updateIdx, accessIndex, updateValue;
 extern int createProcess, addProcess, deleteProcess, searchProcess, updateProcess; 
-extern int peekProcess, popProcess, pushProcess, enqueueProcess, dequeueProcess;
+extern int peekProcess, popProcess, pushProcess, enqueueProcess, dequeueProcess, accessProcess;
 extern int deleteIdx;
 extern bool remake;
 extern string userText, notice;

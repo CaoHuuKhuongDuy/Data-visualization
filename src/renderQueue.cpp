@@ -76,7 +76,6 @@ void enqueueAnimationQueue(RenderWindow &window) {
 
 void dequeueAnimationQueue(RenderWindow &window) {
     numFrame++;
-    cout << numFrame << endl;
     nameCodeId = 5;
     highlightDequeue(highlight);
     if (dequeueProcess == 2) {
@@ -142,7 +141,7 @@ int Queue(RenderWindow &window) {
             input = displayTextBox(window, "Value", posEnqueueButton);
             break;
         case 34:
-            dequeueProcess = (numNode != 0 ? 2 : 0);
+            dequeueProcess = 2;
             numTextBox = 0;
             break;
     }
