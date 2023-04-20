@@ -22,6 +22,7 @@ int accessProcess = 0;
 int noTextBox = 0;
 int maximumNode = 0;
 bool displayNote = false;
+bool statusArray = false;
 
 int nameCodeId = 0;
 string nameCodeLL[] = {"", "insertAtHeadS.png", "insertAtHeadD.png", "insertAtHeadC.png", "insertAtTailS.png", "insertAtTailD.png", 

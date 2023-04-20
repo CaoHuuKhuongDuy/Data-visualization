@@ -7,7 +7,7 @@ using namespace sf;
 using namespace std;
 
 extern int valueNewNode[30], maximumNode;
-extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark;
+extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark, canAdd;
 extern bool randomButtonDark, inputButtonDark, peekFrontDark, peekBackDark;
 extern bool importButtonDark, peekButtonDark, pushButtonDark, popButtonDark;
 extern bool enqueueButtonDark, dequeueButtonDark, accessButtonDark;
@@ -18,6 +18,7 @@ extern int peekProcess, popProcess, pushProcess, enqueueProcess, dequeueProcess,
 extern int deleteIdx;
 extern bool remake;
 extern string userText, notice;
+extern bool statusArray;
 
 extern int nameCodeId;
 extern string nameCodeLL[];

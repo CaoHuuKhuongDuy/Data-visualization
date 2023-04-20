@@ -68,47 +68,62 @@ void textBox::submit() {
     std::cout << "User entered: " << userText << std::endl;
     int tmp = stoi(userText);
     switch (numTextBox) {
-    case 11:
-        displayNote = (tmp > maximumNode);
-        if (displayNote) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
-        break;
-    
-    case 12:
-        displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
-        if (!displayNote) break;
-        if (numNode == 10) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
-        else notice = "Note: a valid index between [1.." + to_string(numNode + 1) + "]";
-        break;
-    case 13:
-        displayNote = (tmp == 0 || tmp > numNode || numNode == 0);
-        if (!displayNote) break;
-        if (numNode == 0) notice = "Note: The linked list is empty";
-        else notice = "Note: a valid index between [1.." + to_string(numNode) + "]"; 
-        break;
-    case 14:
-        displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode); 
-        if (!displayNote) break;
-        else notice = "Note: a valid index between [1.." + to_string(numNode) + "]";
-        break;
-    case 15:
-        break;
-    case 23:
-        displayNote = (numNode == maximumNode);
-        if (!displayNote) break;
-        notice = "Note: The maximum number of vertex allowed is" + to_string(maximumNode);
-        break;
-    case 33:
-        displayNote = (numNode == maximumNode);
-        if (!displayNote) break;
-        notice = "Note: The maximum number of vertex allowed is 8" + to_string(maximumNode);
-        break;
-    case 42:
-        // cout << notice << " " << numNode << endl;
-        displayNote = (tmp >= numNode);
-        if (!displayNote) break;
-        if (numNode == 0) notice = "Note: The array is empty";
-        else notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
-        break;
+        case 11:
+            displayNote = (tmp > maximumNode);
+            if (displayNote) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
+            break;
+        
+        case 12:
+            displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
+            if (!displayNote) break;
+            if (numNode == maximumNode) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
+            else notice = "Note: a valid index between [1.." + to_string(numNode + 1) + "]";
+            break;
+        case 13:
+            displayNote = (tmp == 0 || tmp > numNode || numNode == 0);
+            if (!displayNote) break;
+            if (numNode == 0) notice = "Note: The linked list is empty";
+            else notice = "Note: a valid index between [1.." + to_string(numNode) + "]"; 
+            break;
+        case 14:
+            displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode); 
+            if (!displayNote) break;
+            else notice = "Note: a valid index between [1.." + to_string(numNode) + "]";
+            break;
+        case 15:
+            break;
+        case 23:
+            displayNote = (numNode == maximumNode);
+            if (!displayNote) break;
+            notice = "Note: The maximum number of vertex allowed is" + to_string(maximumNode);
+            break;
+        case 33:
+            displayNote = (numNode == maximumNode);
+            if (!displayNote) break;
+            notice = "Note: The maximum number of vertex allowed is 8" + to_string(maximumNode);
+            break;
+        case 42:
+            // cout << notice << " " << numNode << endl;
+            displayNote = (tmp >= numNode);
+            if (!displayNote) break;
+            if (numNode == 0) notice = "Note: The array is empty";
+            else notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
+            break;
+        case 43:
+            displayNote = (noTextBox == 0) && (tmp > numNode || numNode >= maximumNode || !canAdd);
+            if (!displayNote) break;
+            if (!canAdd) notice = "Note: Array capacity exceeded. Cannot add more elements"; 
+            else if (numNode == maximumNode) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
+            else notice = "Note: a valid index between [0.." + to_string(numNode) + "]";
+            break;
+        case 44:
+            displayNote = (tmp >= numNode);
+            if (displayNote) notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
+            break;
+        case 45:
+            displayNote = (noTextBox == 0) && (tmp >= numNode);
+            if (displayNote) notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
+            break;
     }
     userText = "";
     if (displayNote) return;
@@ -161,8 +176,32 @@ void textBox::submit() {
             accessIndex = tmp;
             accessProcess = 2;
             break;
-        }
-        if (noTextBox == 0) numTextBox = 0;
+        case 43:
+            if (noTextBox == 0) insertIdx = tmp;
+            else {
+                insertValue = tmp;
+                addProcess = 3;
+            }
+            (noTextBox += 1) %= 2;
+            break;
+        case 44:
+            deleteIdx = tmp;
+            deleteProcess = 3;
+            break;
+        case 45:
+            if (noTextBox == 0) updateIdx = tmp;
+            else {
+                updateValue = tmp;
+                updateProcess = 2;
+            }
+            (noTextBox += 1) %= 2;
+            break;
+        case 46:
+            searchValue = tmp;
+            searchProcess = 1;
+            break;
+    }
+    if (noTextBox == 0) numTextBox = 0;
 }
 
 void textBox::draw(RenderWindow &window) {

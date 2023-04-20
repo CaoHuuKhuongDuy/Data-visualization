@@ -255,8 +255,14 @@ int statusArrayPage(RenderWindow &window, Sprite staticArray, Sprite dynamicArra
                 if (event.mouseButton.button == Mouse::Left) {
                   initState(1, 5, 20);
                   if (Press(backButton)) state = 0; 
-                  if (Press(staticArray)) state = 41;
-                  if (Press(dynamicArray)) state = 42;
+                  if (Press(staticArray)) {
+                    state = 41;
+                    statusArray = false;
+                  }
+                  if (Press(dynamicArray)) {
+                    state = 42;
+                    statusArray = true;
+                  }
                 }
                 break;
         }
@@ -288,7 +294,7 @@ int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButt
                 break;
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
-                    if (Press(backButton)) state = 1;
+                    if (Press(backButton)) state = 4;
                     else if (Press(importButton)) initPressState(113);
                     else if (Press(createButton)) initPressState(11);
                     else if (randomButton && Press(*randomButton)) {
@@ -300,10 +306,10 @@ int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButt
                         createProcess--;
                     }
                     else if (Press(accessButton)) initPressState(42);
-                    else if (Press(addButton)) initPressState(12);
-                    else if (Press(deleteButton)) initPressState(43);
-                    else if (Press(updateButton)) initPressState(44); 
-                    else if (Press(searchButton)) initPressState(45);
+                    else if (Press(addButton)) initPressState(43);
+                    else if (Press(deleteButton)) initPressState(44);
+                    else if (Press(updateButton)) initPressState(45); 
+                    else if (Press(searchButton)) initPressState(46);
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
                 }
                 break;

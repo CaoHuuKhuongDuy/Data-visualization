@@ -12,13 +12,19 @@
 
 class ArrayVisualize {
     public:
-        ArrayVisualize(bool type);
+        ArrayVisualize();
         void clear();
         void create(int n, int val[], Font &font);
         void createNode(int id, int val, Font &font, bool dummy = false);
         void resize(int n, Font &font);
-        bool add(int x, Font &font);
+        void add(int x, Font &font);
         void changeColor(Color color, int idx);
+        void changeData(int id, int val);
+        void copyData(int idx1, int idx2);
+        void changeStatus(bool statusArray);
+        bool addMore();
+        int getData(int idx);
+        void del();
         bool draw(RenderWindow &window);
     private:
         vector <int> a;

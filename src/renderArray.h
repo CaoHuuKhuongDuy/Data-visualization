@@ -4,7 +4,6 @@
 #include "render.h"
 
 int arrayHomePage(RenderWindow &window);
-int staticArray(RenderWindow &window);
-int dynamicArray(RenderWindow &window); 
+int Array(RenderWindow &window);
 
 #endif 

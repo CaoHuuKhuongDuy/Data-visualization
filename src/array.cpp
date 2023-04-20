@@ -2,12 +2,12 @@
 
 Vector2f firstNodeArray = {440, 425};
 Color colorNode = {0, 170, 177};
+Color colorDummyNode = {0, 170, 177, 50};
 int sizeNode = 60;
 
 
 
-ArrayVisualize::ArrayVisualize(bool type) {
-    vectorType = type;
+ArrayVisualize::ArrayVisualize() {
     clear();
 }
 
@@ -19,11 +19,19 @@ void ArrayVisualize::clear() {
     capacity = r = numNode = 0;
 }
 
+bool ArrayVisualize::addMore() {
+    return (vectorType || r < capacity);
+}
+
+void ArrayVisualize::changeStatus(bool statusArray) {
+    vectorType = statusArray;
+}
+
 void ArrayVisualize::createNode(int id, int val, Font &font, bool dummy) {
     
     a[id] = val;
     node[id].setSize(Vector2f(sizeNode, sizeNode));
-    node[id].setFillColor(Color(colorNode.r, colorNode.g, colorNode.b, (dummy ? 50 : 255)));
+    node[id].setFillColor(dummy ? colorDummyNode : colorNode);
     node[id].setPosition(Vector2f(firstNodeArray.x + (sizeNode + 3) * id, firstNodeArray.y));
     
     t_val[id].setFont(font);
@@ -63,8 +71,8 @@ void ArrayVisualize::create(int n, int val[], Font &font) {
 }
 
 
-bool ArrayVisualize::add(int val, Font &font) {
-    if (!vectorType && r == capacity) return false;
+void ArrayVisualize::add(int val, Font &font) {
+    if (!addMore()) return;
     r++;
     a.push_back(val);
     node.emplace_back();
@@ -75,11 +83,32 @@ bool ArrayVisualize::add(int val, Font &font) {
     createNode(r - 1, val, font);
 
     if (r > capacity) resize(capacity, font);
-    return true;
 }
 
 void ArrayVisualize::changeColor(Color color, int idx) {
     node[idx].setFillColor(color);
+}
+
+void ArrayVisualize::changeData(int idx, int val) {
+    a[idx] = val;
+    t_val[idx].setString(to_string(a[idx]));
+    int justify = (a[idx] < 10 ? 5 : -2);
+    t_val[idx].setPosition(Vector2f(node[idx].getPosition()) + Vector2f(20 + justify, 20));
+}
+
+void ArrayVisualize::copyData(int idx1, int idx2) {
+    changeData(idx1, a[idx2]);
+}
+
+
+int ArrayVisualize::getData(int idx) {
+    return (idx >= capacity ? 0 : a[idx]);
+}
+
+void ArrayVisualize::del() {
+    node[numNode - 1].setFillColor(colorDummyNode);
+    numNode--;
+    r--;
 }
 
 bool ArrayVisualize::draw(RenderWindow &window) {
@@ -88,5 +117,5 @@ bool ArrayVisualize::draw(RenderWindow &window) {
         window.draw(t_val[i]);
         window.draw(idx[i]);
     }
-    return (capacity != 0);
+    return (capacity != 0); 
 }

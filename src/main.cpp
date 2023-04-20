@@ -55,10 +55,10 @@ int main() {
                 status = arrayHomePage(window);
                 break;
             case 41:
-                status = staticArray(window);
+                status = Array(window);
                 break;
             case 42:
-                status = 4;
+                status = Array(window);
                 break;
             default: 
                 status = 0;
