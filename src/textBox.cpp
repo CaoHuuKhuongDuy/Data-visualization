@@ -112,7 +112,7 @@ void textBox::submit() {
         case 43:
             displayNote = (noTextBox == 0) && (tmp > numNode || numNode >= maximumNode || !canAdd);
             if (!displayNote) break;
-            if (!canAdd) notice = "Note: Array capacity exceeded. Cannot add more elements"; 
+            if (!canAdd) notice = "Note: Array capacity exceeded. You have to create a new array"; 
             else if (numNode == maximumNode) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
             else notice = "Note: a valid index between [0.." + to_string(numNode) + "]";
             break;

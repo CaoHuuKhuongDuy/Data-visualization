@@ -8,7 +8,7 @@ int curId = -1;
 
 Color colorNodeArray = {0, 170, 177};
 Color colorPeekNode = {248, 210, 16};
-Color changeValueColor = Color::Magenta;
+Color changeValueColor = colorPeekNode;
 
 void createAnimationArray(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
     if (createProcess == 3) {
