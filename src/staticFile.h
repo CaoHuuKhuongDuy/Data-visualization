@@ -24,6 +24,7 @@ extern int nameCodeId;
 extern string nameCodeLL[];
 extern string nameCodeStack[];
 extern string nameCodeQueue[];
+extern string nameCodeArray[];
 
 extern int numFrame, loopCodeStatus;
 extern bool insert_at_end, delete_at_end;

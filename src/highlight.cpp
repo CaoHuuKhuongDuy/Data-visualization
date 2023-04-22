@@ -20,7 +20,7 @@ void Highlight::draw(RenderWindow &window) {
 }
 
 
-bool highLightLoop(Highlight &highlight) {
+bool highlightLoopLL(Highlight &highlight) {
     if (numFrame != 1 && loopCodeStatus != 0 && loopCodeStatus != 1) return false;
     if (numFrame == 1 && loopCodeStatus == -1) highlight.makeHighlight(1);
     else if (loopCodeStatus != -1) highlight.makeHighlight(loopCodeStatus == 1 ? 2 : 3);
@@ -41,7 +41,7 @@ void highlightInsertCode(Highlight &highlight) {
         highlight.makeHighlight(numFrame);
         return;
     } 
-    if (highLightLoop(highlight)) return;
+    if (highlightLoopLL(highlight)) return;
     if (numFrame - insertIdx <= 8) highlight.makeHighlight(4);
     else if (numFrame - insertIdx <= 16) highlight.makeHighlight(5);
     else if (numFrame - insertIdx <= 24) highlight.makeHighlight(6);
@@ -67,7 +67,7 @@ void highlightDeleteCode(Highlight &highlight) {
         else highlight.makeHighlight(4);
         return;
     }
-    if (highLightLoop(highlight)) return;
+    if (highlightLoopLL(highlight)) return;
     if (delete_at_end) {
         if (numFrame - deleteIdx <= 2) highlight.makeHighlight(4);
         else if (numFrame - deleteIdx <= 5) highlight.makeHighlight(5);
@@ -83,12 +83,12 @@ void highlightUpdateCode(Highlight &highlight) {
         highlight.makeHighlight(1);
         return;
     }
-    if (highLightLoop(highlight)) return;
+    if (highlightLoopLL(highlight)) return;
     highlight.makeHighlight(4);
 }
 
 void highlightSearchCode(Highlight &highlight) {
-    if (highLightLoop(highlight)) return;
+    if (highlightLoopLL(highlight)) return;
     highlight.makeHighlight(loopCodeStatus);
 }
 
@@ -135,4 +135,42 @@ void highlightDequeue(Highlight &highlight) {
     if (numFrame <= 20) highlight.makeHighlight(2);
     else if (numFrame <= 65) highlight.makeHighlight(3);
     else highlight.makeHighlight(4);
+}
+
+bool highlightLoopArray(Highlight &highlight, int correctStatus = -1, int posStart = 0, int posStartFrame = 0) {
+    if (numFrame - posStartFrame > 0 && loopCodeStatus == -1) return false;
+    if (correctStatus == -1) highlight.makeHighlight((loopCodeStatus == 1 ? 2 : 1) + posStart);
+    else highlight.makeHighlight(correctStatus ? 2 : 3);
+    return true;
+}
+
+
+
+void highlightAccessArray(Highlight &highlight) {
+    highlight.makeHighlight(1);
+}
+
+void highlightAddArray(Highlight &highlight, bool statusArray) {
+    if (addProcess == 3) {
+        if (statusArray) highlight.makeHighlight(numFrame + 1);
+        else highlight.makeHighlight(1);
+        return;
+    }
+    cout << statusArray + 1 << " " << numFrame << " " << endl;
+    if (highlightLoopArray(highlight, -1, statusArray + 1, 1)) return;
+    if (addProcess == 2) highlight.makeHighlight(statusArray + 4);
+
+}
+
+void highlightDeleteArray(Highlight &highlight) {
+    if (highlightLoopArray(highlight)) return;
+    highlight.makeHighlight(3);
+}
+
+void highlightUpdateArray(Highlight &highlight) {
+    highlight.makeHighlight(1);
+}
+
+void highlightSearchArray(Highlight &highlight, int correctStatus) {
+    highlightLoopArray(highlight, correctStatus);
 }

@@ -103,7 +103,6 @@ void textBox::submit() {
             notice = "Note: The maximum number of vertex allowed is 8" + to_string(maximumNode);
             break;
         case 42:
-            // cout << notice << " " << numNode << endl;
             displayNote = (tmp >= numNode);
             if (!displayNote) break;
             if (numNode == 0) notice = "Note: The array is empty";
@@ -118,11 +117,15 @@ void textBox::submit() {
             break;
         case 44:
             displayNote = (tmp >= numNode);
-            if (displayNote) notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
+            if (!displayNote) break;
+            if (numNode == 0) notice = "Note: The array is empty";
+            else notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
             break;
         case 45:
             displayNote = (noTextBox == 0) && (tmp >= numNode);
-            if (displayNote) notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
+            if (!displayNote) break;
+            if (numNode == 0) notice = "Note: The array is empty";
+            else notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
             break;
     }
     userText = "";
@@ -186,13 +189,13 @@ void textBox::submit() {
             break;
         case 44:
             deleteIdx = tmp;
-            deleteProcess = 3;
+            deleteProcess = 2;
             break;
         case 45:
             if (noTextBox == 0) updateIdx = tmp;
             else {
                 updateValue = tmp;
-                updateProcess = 2;
+                updateProcess = 3;
             }
             (noTextBox += 1) %= 2;
             break;

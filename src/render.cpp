@@ -6,7 +6,7 @@ const string imgSource = "../media/img/";
 
 Vector2f posBackButton = Vector2f(10, 10); 
 
-
+int loopCodeStatus = -1;
 bool backButtonDark = false;
 bool importButtonDark = false;
 bool createButtonDark = false;

@@ -23,6 +23,7 @@ class ArrayVisualize {
         void copyData(int idx1, int idx2);
         void changeStatus(bool statusArray);
         bool addMore();
+        bool full();
         int getData(int idx);
         void del();
         bool draw(RenderWindow &window);

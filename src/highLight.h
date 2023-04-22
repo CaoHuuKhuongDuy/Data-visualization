@@ -32,4 +32,10 @@ void highlightPeekQueue(Highlight &highlight, int peekPos);
 void highlightEnqueue(Highlight &highlight);
 void highlightDequeue(Highlight &highlight);
 
+void highlightAccessArray(Highlight &highlight);
+void highlightAddArray(Highlight &highlight, bool statusArray);
+void highlightDeleteArray(Highlight &highlight);
+void highlightUpdateArray(Highlight &highlight);
+void highlightSearchArray(Highlight &higlight, int correctStatus = -1);
+
 #endif

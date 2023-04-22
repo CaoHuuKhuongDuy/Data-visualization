@@ -30,8 +30,9 @@ void createAnimationArray(RenderWindow &window, Sprite *&p_randomButton, Sprite 
 }
 
 void accessAnimationArray(RenderWindow &window) {
+    nameCodeId = 1;
+    highlightAccessArray(highlight);
     if (accessProcess == 2) {
-        // rootArray.changeColor(Color::Magenta, accessIndex);
         rootArray.changeColor(colorPeekNode, accessIndex);
         accessProcess--;
     }
@@ -44,13 +45,32 @@ void accessAnimationArray(RenderWindow &window) {
 }
 
 void addAnimationArray(RenderWindow &window) {
+    nameCodeId = (statusArray ? 3 : 2);
+    if (numFrame == 0) {
+        if (!rootArray.full()) numFrame = 1;
+        highlightAddArray(highlight, statusArray);
+        if (!rootArray.full()) numFrame = 0;
+        numFrame++;
+        return;
+    }
     if (addProcess == 3) {
+        usleep(600000);
         rootArray.add(rootArray.getData(numNode), font);
         rootArray.changeColor(colorPeekNode, numNode - 1);
+        highlightAddArray(highlight, statusArray);
         addProcess--;
         return;
     }
+    if (loopCodeStatus == 1) {
+        highlightAddArray(highlight, statusArray);
+        usleep(600000);
+        loopCodeStatus = (curId <= insertIdx ? -1 : 0);
+        return;
+    }
     if (curId == -1) curId = numNode - 1;
+    if (curId == insertIdx) numFrame++;
+    highlightAddArray(highlight, statusArray);
+    numFrame++;
     if (curId > insertIdx) {
         if (curId != numNode - 1) rootArray.changeColor(colorNodeArray, curId + 1);
         rootArray.changeColor(Color::Red, curId);
@@ -58,6 +78,7 @@ void addAnimationArray(RenderWindow &window) {
         rootArray.copyData(curId, curId - 1);
         curId--;
         usleep(900000);
+        loopCodeStatus = 1;
     }
     else {
         if (addProcess == 2)  {
@@ -74,32 +95,60 @@ void addAnimationArray(RenderWindow &window) {
             highlight.display = false;
             curId = -1;
             addProcess--;
+            numFrame = 0;
+            loopCodeStatus = -1;
         }
     }
 }
 
 void deleteAnimationArray(RenderWindow &window) {
+    nameCodeId = 4;
+    if (loopCodeStatus == 1) {
+        highlightDeleteArray(highlight);
+        usleep(600000);
+        loopCodeStatus = (curId > numNode - 2 ? -1 : 0);
+        return;
+    }
     if (curId == -1) curId = deleteIdx;
+    if (curId == numNode - 1) numFrame = 1;
+    highlightDeleteArray(highlight);
+    numFrame++;
     if (curId <= numNode - 2) {
         if (curId != deleteIdx) rootArray.changeColor(colorNodeArray, curId - 1);
         rootArray.changeColor(Color::Red, curId);
         rootArray.changeColor(Color::Green, curId + 1);
         rootArray.copyData(curId, curId + 1);
-        curId++;
         usleep(900000);
+        loopCodeStatus = 1;
+        curId++;
     }
     else {
-        usleep(900000);
-        rootArray.del();
-        rootArray.changeColor(colorNodeArray, curId - 1);
-        deleteProcess = 0;
-        curId = -1;
-        highlight.display = false;
+        if (deleteProcess == 2) {
+            usleep(600000);
+            rootArray.del();
+            deleteProcess--;
+        }
+        else {
+            usleep(900000);
+            rootArray.changeColor(colorNodeArray, curId - 1);
+            deleteProcess = 0;
+            curId = -1;
+            highlight.display = false;
+            numFrame = 0;
+            loopCodeStatus = -1;
+        }
     }
 }
 
 void updateAnimationArray(RenderWindow &window) {
-    if (updateProcess == 2) {
+    nameCodeId = 5;
+    highlightUpdateArray(highlight);
+    if (updateProcess == 3) {
+        rootArray.changeColor(Color::Red, updateIdx);
+        updateProcess--;
+    }
+    else if (updateProcess == 2) {
+        usleep(900000);
         rootArray.changeColor(changeValueColor, updateIdx);
         rootArray.changeData(updateIdx, updateValue);
         updateProcess--;
@@ -113,12 +162,22 @@ void updateAnimationArray(RenderWindow &window) {
 }
 
 void searchAnimationArray(RenderWindow &window) {
+    nameCodeId = 6;
+    if (loopCodeStatus == 1) {
+        highlightSearchArray(highlight, rootArray.getData(curId - 1) == searchValue);
+        usleep(600000);
+        loopCodeStatus = (curId == numNode ? -1 : 0);
+        return;
+    }
     if (curId == -1) curId = 0;
+    if (numNode != 0) highlightSearchArray(highlight);
+    numFrame++;
     if (curId < numNode) {
         if (curId != 0 && rootArray.getData(curId - 1) != searchValue) rootArray.changeColor(colorNodeArray, curId - 1);
         rootArray.changeColor((rootArray.getData(curId) != searchValue ? colorPeekNode : Color::Red) , curId);
-        curId++;
         usleep(900000);
+        curId++;
+        loopCodeStatus = 1;
     }
     else {
         usleep(900000);
@@ -127,6 +186,8 @@ void searchAnimationArray(RenderWindow &window) {
         searchProcess = 0;
         curId = -1;
         highlight.display = false;
+        numFrame = 0;
+        loopCodeStatus = -1;
     }
 }
 
@@ -208,7 +269,8 @@ int Array(RenderWindow &window) {
     
     
     if (rootArray.draw(window)) displayText(window, "Index: ", Vector2f(370, 500), 20);
-
+    if (nameCodeId != 0) insertCode(window, nameCodeArray[nameCodeId], p_closeButton);
+    highlight.draw(window);
     window.display();
 
     canAdd = rootArray.addMore();

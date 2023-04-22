@@ -33,6 +33,9 @@ string nameCodeStack[] = {"", "peekCodeStack.png", "pushCodeStack.png", "popCode
 
 string nameCodeQueue[] = {"", "peekFrontQueue.png", "peekBackQueue.png", "enqueueQueue.png", "pushFirstNodeQueue.png","dequeueQueue.png"};
 
+string nameCodeArray[] = {"", "accessCodeArray.png", "addCodeStaticArray.png", "addCodeDynamicArray.png", "deletingCodeArray.png",
+    "updatingCodeArray.png", "searchingCodeArray.png"};
+
 
 void initValueNode() {
     for (int i = 1; i <= 20; i++)

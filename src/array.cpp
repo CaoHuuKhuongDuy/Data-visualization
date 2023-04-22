@@ -23,6 +23,10 @@ bool ArrayVisualize::addMore() {
     return (vectorType || r < capacity);
 }
 
+bool ArrayVisualize::full() {
+    return (r == capacity);
+}
+
 void ArrayVisualize::changeStatus(bool statusArray) {
     vectorType = statusArray;
 }
@@ -86,6 +90,7 @@ void ArrayVisualize::add(int val, Font &font) {
 }
 
 void ArrayVisualize::changeColor(Color color, int idx) {
+    if (idx < 0 || idx > r) return;
     node[idx].setFillColor(color);
 }
 

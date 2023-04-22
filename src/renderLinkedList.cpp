@@ -5,7 +5,6 @@ string styleName[4] = {"", "Singly Linked List", "Doubly Linked List", "Circular
 
 int numFrame = 0;
 
-int loopCodeStatus = -1;
 
 void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p_inputButton) {
     if (createProcess == 3) {
