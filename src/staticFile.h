@@ -6,6 +6,7 @@
 using namespace sf;
 using namespace std;
 
+extern int speed;
 extern int valueNewNode[30], maximumNode;
 extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark, canAdd;
 extern bool randomButtonDark, inputButtonDark, peekFrontDark, peekBackDark;
@@ -25,6 +26,8 @@ extern string nameCodeLL[];
 extern string nameCodeStack[];
 extern string nameCodeQueue[];
 extern string nameCodeArray[];
+extern string nameSpeedBox[];
+extern Sprite speedBox[3];
 
 extern int numFrame, loopCodeStatus;
 extern bool insert_at_end, delete_at_end;

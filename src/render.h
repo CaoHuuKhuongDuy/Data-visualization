@@ -38,6 +38,8 @@ void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Col
 
 textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos);
 
+void drawSpeedBox(RenderWindow &window);
+
 void goAndColor(SinglyLL *&cur, string des = "", int specialData = -1);
 
 void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton);

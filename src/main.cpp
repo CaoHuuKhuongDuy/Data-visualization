@@ -13,6 +13,13 @@ int styleLL;
 
 int main() {
 
+    Image icon;
+    if (!icon.loadFromFile("../media/img/applicationIcon.png")) {
+        // handle error loading image
+    }
+
+    // Set the window icon
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
     int status = 0;
     initValueNode();
     while (window.isOpen()) {

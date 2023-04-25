@@ -23,6 +23,7 @@ int initState(int state, int _numNode, int _maximumNode) {
     popProcess = 0;
     enqueueProcess = 0;
     dequeueProcess = 0;
+    speed = 1;
     initValueNode();
     return state;
 }
@@ -128,6 +129,8 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                     else if (Press(updateButton)) initPressState(14); 
                     else if (Press(searchButton)) initPressState(15);
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
+                    for (int i = 0; i < 3; i++) 
+                        if (Press(speedBox[i])) speed = i;
                 }
                 break;
             case Event::TextEntered:
@@ -161,6 +164,7 @@ int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                 break;
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
+                    if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 0;
                     else if (Press(importButton)) initPressState(113);
                     else if (Press(createButton)) initPressState(11);
@@ -176,6 +180,8 @@ int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                     else if (Press(pushButton)) initPressState(23);
                     else if (Press(popButton)) initPressState(24); 
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
+                    for (int i = 0; i < 3; i++) 
+                        if (Press(speedBox[i])) speed = i;
                 }   
                 break;
             case Event::TextEntered:
@@ -211,6 +217,7 @@ int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                 break;
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
+                    if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 0;
                     else if (Press(importButton)) initPressState(113);
                     else if (Press(createButton)) initPressState(11);
@@ -228,6 +235,8 @@ int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                     else if (Press(enqueueButton)) initPressState(33);
                     else if (Press(dequeueButton)) initPressState(34); 
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
+                    for (int i = 0; i < 3; i++) 
+                        if (Press(speedBox[i])) speed = i;
                 }   
                 break;
             case Event::TextEntered:
@@ -294,6 +303,7 @@ int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButt
                 break;
             case Event::MouseButtonPressed:
                 if (event.mouseButton.button == Mouse::Left) {
+                    if (numTextBox != 0) input.click(window, event);
                     if (Press(backButton)) state = 4;
                     else if (Press(importButton)) initPressState(113);
                     else if (Press(createButton)) initPressState(11);
@@ -311,6 +321,8 @@ int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButt
                     else if (Press(updateButton)) initPressState(45); 
                     else if (Press(searchButton)) initPressState(46);
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
+                    for (int i = 0; i < 3; i++) 
+                        if (Press(speedBox[i])) speed = i;
                 }
                 break;
             case Event::TextEntered:

@@ -75,17 +75,17 @@ void popAnimationStack(RenderWindow &window) {
 
 void createBoxStack(RenderWindow &window) {
     Arrow arrow(0);
-    arrow.create(Vector2f(780, 365), Vector2f(780, 785));
+    arrow.create(Vector2f(830, 365), Vector2f(830, 785));
     arrow.draw(window);
-    arrow.create(Vector2f(998, 365), Vector2f(998, 785));
+    arrow.create(Vector2f(1048, 365), Vector2f(1048, 785));
     arrow.draw(window);
-    arrow.create(Vector2f(777, 700), Vector2f(1056, 700));
+    arrow.create(Vector2f(827, 700), Vector2f(1106, 700));
     arrow.draw(window);
 }
 
 int Stack(RenderWindow &window) {
     window.clear(Color::White);
-    displayText(window, "Stack", Vector2f(850, 50), 50);
+    displayText(window, "Stack", Vector2f(875, 50), 50);
     font.loadFromFile("../media/font/arial.ttf");
     
     // initValueNode();
@@ -143,6 +143,7 @@ int Stack(RenderWindow &window) {
     
     rootStack.draw(window);
     highlight.draw(window);
+    drawSpeedBox(window);
 
     window.display();
 

@@ -271,6 +271,7 @@ int Array(RenderWindow &window) {
     if (rootArray.draw(window)) displayText(window, "Index: ", Vector2f(370, 500), 20);
     if (nameCodeId != 0) insertCode(window, nameCodeArray[nameCodeId], p_closeButton);
     highlight.draw(window);
+    drawSpeedBox(window);
     window.display();
 
     canAdd = rootArray.addMore();

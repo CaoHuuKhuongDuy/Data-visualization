@@ -1,7 +1,7 @@
 #include "singlyLL.h"
 
-Vector2f upStep = Vector2f(0, -3);
-Vector2f straightStep = Vector2f(4, 0);
+Vector2f upStep[3] = {Vector2f(0, -1.5), Vector2f(0, -3), Vector2f(0, -6)};
+Vector2f straightStep[3] = {Vector2f(2, 0), Vector2f(4, 0), Vector2f(8, 0)};
 int firstPosX = 320;
 int firstPosY = 350;
 
@@ -34,6 +34,7 @@ SinglyLL::SinglyLL(int value, int idx, Font &font) {
 }
 
 void SinglyLL::changePosition(Vector2f pos) {
+    pos.y = max((int)pos.y, firstPosY);
     position = pos;
 
     m_node.setPosition(pos);
@@ -74,8 +75,13 @@ bool SinglyLL::rightPlace(Font &font) {
     if (position.x == firstPosX + 120 * (id - 1) && position.y == firstPosY) return false;
     float tmp = 1.f;
     if (position.x > firstPosX + 120 * (id - 1)) tmp = -1.f;
-    if (position.x != firstPosX + 120 * (id - 1)) changePosition(position + (straightStep * tmp));
-    else changePosition(position + upStep);
+    if (position.x != firstPosX + 120 * (id - 1)) {
+        Vector2f newPos = position + (straightStep[speed] * tmp);
+        if (tmp == 1.f) newPos.x = min((int)newPos.x, firstPosX + 120 * (id - 1));
+        else newPos.x = max((int)newPos.x, firstPosX + 120 * (id - 1));
+        changePosition(newPos);
+    }
+    else changePosition(position + upStep[speed]);
     return true;
 }
 
@@ -237,13 +243,16 @@ void deleteNodeLL(SinglyLL *&root, SinglyLL *&tail, int idx, int &numNode) {
 }
 
 bool format(SinglyLL *cur, Font &font, bool insert_at_end, bool deleteProcess) {
-    int tmp = 0;
+    int cnt = 0, tmp = 0;
     while (cur) {
         if (insert_at_end && !cur->nxt) cur->changeColor(Color::Green);
         tmp += (cur->rightPlace(font));
+        cnt++;
+        // if (cnt == insertIdx) cur->changeColor(Color::Green);
         if (tmp == 1) cur->changeColor(Color::Green);
-        if (!deleteProcess && tmp == 2) cur->changeColor(Color::Blue);
+        if (!deleteProcess && cnt == insertIdx + 1) cur->changeColor(Color::Blue);
         cur = cur->nxt;
+        // cout << tmp << endl;
     }
     return (tmp);
 }

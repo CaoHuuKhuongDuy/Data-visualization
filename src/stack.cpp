@@ -1,8 +1,8 @@
 #include "stack.h"
 
 
-Vector2f Right = {7, 0};
-Vector2f Down = {0, 5};
+Vector2f Right[3] = {Vector2f(3, 0), Vector2f(7, 0), Vector2f(14, 0)};
+Vector2f Down[3] = {Vector2f(0, 2), Vector2f(0, 5), Vector2f(0, 8)};
 
 
 
@@ -13,7 +13,7 @@ Vector2f Down = {0, 5};
 
 
 
-Vector2f firstNodeStack = {784, 645};
+Vector2f firstNodeStack = {834, 645};
 
 StackVisualize::StackVisualize() {
     l = 1;
@@ -39,7 +39,7 @@ void StackVisualize::push(int val, Font &font, bool Create) {
     node[r].setOutlineColor(Color::Black);
     node[r].setOutlineThickness(5);
     node[r].setFillColor(Color::Red);
-    node[r].setPosition((Create ? Vector2f(firstNodeStack.x, firstNodeStack.y - (r - l) * 55) : Vector2f(490, 200)));
+    node[r].setPosition((Create ? Vector2f(firstNodeStack.x, firstNodeStack.y - (r - l) * 55) : Vector2f(540, 200)));
 
     t_val[r].setFont(font);
     t_val[r].setString(to_string(val));
@@ -78,11 +78,20 @@ int StackVisualize::format(int type) {
     }
     else {
         if (pos.y != 200) formatProcess = 2;
-        else if (pos.x != 490 && pos.x != 1078) formatProcess = 1;
+        else if (pos.x != 540 && pos.x != 1128) formatProcess = 1;
         else formatProcess = 3;
     }
-    if (formatProcess == 1) changePosition(pos + Right);
-    if (formatProcess == 2) changePosition(pos + Down * (float)type);
+    if (formatProcess == 1) {
+        Vector2f newPos = pos + Right[speed];
+        newPos.x = min((int)newPos.x, (type == 1 ? (int)firstNodeStack.x : 1128));
+        changePosition(newPos);
+    }
+    if (formatProcess == 2) {
+        Vector2f newPos = pos + Down[speed] * (float)type;
+        if (type == 1) newPos.y = min((int)newPos.y, (int)firstNodeStack.y - (r - l) * 55);
+        else newPos.y = max((int)newPos.y, 200);
+        changePosition(newPos);
+    }
     return formatProcess;
 }
 

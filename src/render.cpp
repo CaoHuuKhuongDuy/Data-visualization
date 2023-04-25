@@ -97,10 +97,24 @@ void goAndColor(SinglyLL *&cur, string des, int specialData) {
     if (cur == rootSGL) des = "Head/" + des;
     else if (!cur->nxt) des = "Tail/" + des;
     cur->changeDes(des);
-    usleep(900000);
-    // usleep(10000);
+    int delayTime;
+    if (speed == 0) delayTime = 1000000;
+    if (speed == 1) delayTime = 900000;
+    if (speed == 2) delayTime = 100000;
+    usleep(delayTime);
     cur = cur->nxt;
 
+}
+
+string getNameSpeedBox(int id) {
+    string s = nameSpeedBox[id];
+    if (id == speed) s.insert(s.size() - 4, "_picked", 7);
+    return s;
+}
+
+void drawSpeedBox(RenderWindow &window) {
+    for (int i = 0; i < 3; i++)
+        speedBox[i] = addSprite(window, getNameSpeedBox(i), 100, 49, Vector2f(800 + i * 100, 850));
 }
 
 void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton) {

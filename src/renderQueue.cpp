@@ -167,6 +167,8 @@ int Queue(RenderWindow &window) {
 
     rootQueue.draw(window);
     highlight.draw(window);
+    drawSpeedBox(window);
+
 
     window.display();
     return statusQueue(window, backButton, importButton, createButton, peekButton, enqueueButton, dequeueButton, input, p_randomButton, p_inputButton, p_closeButton, p_peekFront, p_peekBack);

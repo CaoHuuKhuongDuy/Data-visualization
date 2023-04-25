@@ -117,7 +117,10 @@ void deleteAnimationLL() {
             }
             else {
                 if (cur->nxt) cur->nxt->changeDes("aft");
-                cur->changePosition(cur->position + Vector2f(0, 6));
+                int tmp = (speed + 1) * 3;
+                Vector2f newPos =  cur->position + Vector2f(0, tmp);
+                newPos.y =  min((int)newPos.y, firstPosY + 90);
+                cur->changePosition(newPos);
                 if (cur->position.y == firstPosY + 90) deleteProcess--;
             }
         }
@@ -324,7 +327,7 @@ int LinkList(RenderWindow &window) {
     drawLL(window, rootSGL, tailSGL, (styleLL == 2), (styleLL == 3));
     
     highlight.draw(window);
-
+    drawSpeedBox(window);
     window.display();
 
     return statusLinkList(window, backButton, importButton, createButton, addButton, deleteButton, updateButton, searchButton, input, 

@@ -23,6 +23,7 @@ int noTextBox = 0;
 int maximumNode = 0;
 bool displayNote = false;
 bool statusArray = false;
+int speed = 1;
 
 int nameCodeId = 0;
 string nameCodeLL[] = {"", "insertAtHeadS.png", "insertAtHeadD.png", "insertAtHeadC.png", "insertAtTailS.png", "insertAtTailD.png", 
@@ -35,6 +36,10 @@ string nameCodeQueue[] = {"", "peekFrontQueue.png", "peekBackQueue.png", "enqueu
 
 string nameCodeArray[] = {"", "accessCodeArray.png", "addCodeStaticArray.png", "addCodeDynamicArray.png", "deletingCodeArray.png",
     "updatingCodeArray.png", "searchingCodeArray.png"};
+
+string nameSpeedBox[] = {"slow.png", "normal.png", "fast.png"};
+
+Sprite speedBox[3];
 
 
 void initValueNode() {
