@@ -31,7 +31,17 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
 // if (insert_at_end) insertFrame = 3 + (insertIdx - 1);
 // else insertFrame = 33 + (insertIdx - 1);
 
-void insertAnimationLL() {
+void insertAnimationLL(RenderWindow &window, Sprite *&p_headButton, Sprite *&p_tailButton, Sprite *&p_specifyButton) {
+    if (addProcess == 5) {
+        Vector2f posHead = Vector2f(220, 755);
+        Vector2f posTail = Vector2f(320, 755);
+        Vector2f posSpecify = Vector2f(420, 755);
+        p_headButton = new Sprite(addSprite(window, "headButton.png", 90, 35, posHead, headButtonDark));
+        p_tailButton = new Sprite(addSprite(window, "tailButton.png", 90, 35, posTail, tailButtonDark));
+        p_specifyButton = new Sprite(addSprite(window, "specifyIndexButton.png", 90, 35, posSpecify, specifyButtonDark));
+        return;
+    }
+    if (addProcess == 4) return;
     if (insertIdx == 1) {
         nameCodeId = styleLL;
         if (insert_at_end) nameCodeId = (styleLL != 3 ? 18 : 19);
@@ -83,7 +93,21 @@ void insertAnimationLL() {
 // if (deleteAtEnd) deleteFrame = 8 + (deleteIdx - 1)
 // else deleteFrame = 52 + (deleteIdx - 1)
 
-void deleteAnimationLL() {
+// 0 : 4 frame
+// 1 : 2 frame
+// 2 : 1
+
+void deleteAnimationLL(RenderWindow &window, Sprite *&p_headButton, Sprite *&p_tailButton, Sprite *&p_specifyButton) {
+    if (deleteProcess == 7) {
+        Vector2f posHead = Vector2f(220, 805);
+        Vector2f posTail = Vector2f(320, 805);
+        Vector2f posSpecify = Vector2f(420, 805);
+        p_headButton = new Sprite(addSprite(window, "headButton.png", 90, 35, posHead, headButtonDark));
+        p_tailButton = new Sprite(addSprite(window, "tailButton.png", 90, 35, posTail, tailButtonDark));
+        p_specifyButton = new Sprite(addSprite(window, "specifyIndexButton.png", 90, 35, posSpecify, specifyButtonDark));
+        return;
+    }
+    if (deleteProcess == 6) return;
     if (loopCodeStatus == 1) {
         highlightDeleteCode(highlight);
         usleep(600000);
@@ -287,6 +311,7 @@ int LinkList(RenderWindow &window) {
     Sprite searchButton = addSprite(window, "searchButton.png", 90, 42, posSearchButton, searchButtonDark);
 
     Sprite *p_closeButton = nullptr, *p_randomButton = nullptr, *p_inputButton = nullptr;
+    Sprite *p_HeadButton = nullptr, *p_tailButton = nullptr, *p_specifyButton = nullptr; 
 
 
     switch (numTextBox) {
@@ -302,10 +327,18 @@ int LinkList(RenderWindow &window) {
             numTextBox = 0;
             break;
         case 12:
-            input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
+            if (addProcess == 0) {
+                addProcess = 5;
+                numTextBox = 0;
+            }
+            else input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
             break;
         case 13:
-            input = displayTextBox(window, "Index", posDeleteButton);
+            if (deleteProcess == 0) {
+                deleteProcess = 7;
+                numTextBox = 0;
+            }
+            else input = displayTextBox(window, "Index", posDeleteButton);
             break;
         case 14:
             input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posUpdateButton);
@@ -317,8 +350,8 @@ int LinkList(RenderWindow &window) {
 
 
     if (createProcess) createAnimationLL(window, p_randomButton, p_inputButton);
-    if (addProcess) insertAnimationLL();
-    if (deleteProcess) deleteAnimationLL();
+    if (addProcess) insertAnimationLL(window, p_HeadButton, p_tailButton, p_specifyButton);
+    if (deleteProcess) deleteAnimationLL(window, p_HeadButton, p_tailButton, p_specifyButton);
     if (updateProcess) updateAnimationLL();
     if (searchProcess) searchAnimationLL();
 
@@ -331,5 +364,5 @@ int LinkList(RenderWindow &window) {
     window.display();
 
     return statusLinkList(window, backButton, importButton, createButton, addButton, deleteButton, updateButton, searchButton, input, 
-                          styleLL + 10, p_randomButton, p_inputButton, p_closeButton);
+                          styleLL + 10, p_randomButton, p_inputButton, p_closeButton, p_HeadButton, p_tailButton, p_specifyButton);
 }

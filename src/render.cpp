@@ -22,6 +22,9 @@ bool deleteButtonDark = false;
 bool updateButtonDark = false;
 bool searchButtonDark = false;
 bool dequeueButtonDark = false;
+bool headButtonDark = false;
+bool tailButtonDark = false;
+bool specifyButtonDark = false;
 bool enqueueButtonDark = false;
 bool accessButtonDark = false;
 int numTextBox = 0;
@@ -113,6 +116,7 @@ string getNameSpeedBox(int id) {
 }
 
 void drawSpeedBox(RenderWindow &window) {
+    return;
     for (int i = 0; i < 3; i++)
         speedBox[i] = addSprite(window, getNameSpeedBox(i), 100, 49, Vector2f(800 + i * 100, 850));
 }

@@ -16,8 +16,10 @@ bool Press(Sprite sprite) {
 int initState(int state, int _numNode, int _maximumNode) {
     numNode = _numNode;
     maximumNode = _maximumNode;
+    numTextBox = 0;
     createProcess = 1;
     nameCodeId = 0;
+    addProcess = 0;
     pushProcess = 0;
     peekProcess = 0;
     popProcess = 0;
@@ -85,13 +87,15 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
 void initPressState(int x, bool resetProcess = true) {
     numTextBox = (numTextBox == x ? 0 : x);
     noTextBox = 0;
+    addProcess = deleteProcess = 0;
     userText = "";
     displayNote = false;
     if (resetProcess) createProcess = peekProcess = 0;
 }
 
-int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,Sprite createButton, Sprite addButton, Sprite deleteButton, 
-                  Sprite updateButton, Sprite searchButton, textBox &input, int originState, Sprite *randomButton, Sprite *inputButton, Sprite *closeButton) {
+int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite addButton, 
+                  Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input, int originState, 
+                  Sprite *randomButton, Sprite *inputButton, Sprite *closeButton, Sprite *headButton, Sprite *tailButton, Sprite *specifyButton) {
     int state = originState;
     backButtonDark = hoverMouse(backButton);
     importButtonDark = hoverMouse(importButton);
@@ -102,10 +106,12 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
     deleteButtonDark = hoverMouse(deleteButton);
     updateButtonDark = hoverMouse(updateButton);
     searchButtonDark = hoverMouse(searchButton);
+    headButtonDark = (headButton && hoverMouse(*headButton));
+    tailButtonDark = (tailButton && hoverMouse(*tailButton));
+    specifyButtonDark = (specifyButton && hoverMouse(*specifyButton));
     while (window.pollEvent(event)) {
         state = originState;
         switch (event.type) {
-
             case Event::Closed:
                 window.close();
                 state = -1;
@@ -128,6 +134,44 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                     else if (Press(deleteButton)) initPressState(13);
                     else if (Press(updateButton)) initPressState(14); 
                     else if (Press(searchButton)) initPressState(15);
+                    else if  (headButton && Press(*headButton)) {
+                        if (addProcess != 0) {
+                            initPressState(12);
+                            addProcess = 4;
+                            insertIdx = 1;
+                            noTextBox = 1;
+                        }
+                        else {
+                            deleteProcess = 5;
+                            deleteIdx = 1;
+                        }
+                    }
+                    else if (tailButton && Press(*tailButton)) {
+                        if (addProcess != 0) {
+                            initPressState(12);
+                            addProcess = 4;
+                            insertIdx = numNode + 1;
+                            noTextBox = 1;
+                            insert_at_end = true;
+                        }
+                        else {
+                            deleteProcess = 5;
+                            deleteIdx = numNode;
+                            delete_at_end = true;
+                        }
+                    }
+                    else if (specifyButton && Press(*specifyButton)) {
+                        if (addProcess != 0) {
+                            initPressState(12);
+                            addProcess = 4;
+                            noTextBox = 0;
+                        }
+                        else {
+                            initPressState(13);
+                            deleteProcess = 6;
+                            noTextBox = 0;
+                        }
+                    }
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
                     for (int i = 0; i < 3; i++) 
                         if (Press(speedBox[i])) speed = i;
@@ -281,7 +325,8 @@ int statusArrayPage(RenderWindow &window, Sprite staticArray, Sprite dynamicArra
 
 int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite accessButton, 
                     Sprite addButton, Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input, 
-                    Sprite *randomButton, Sprite *inputButton, Sprite *closeButton) {
+                    Sprite *randomButton, Sprite *inputButton, Sprite *closeButton, 
+                    Sprite *headButton, Sprite *tailButton, Sprite *specifyButton) {
     int state = 41;
     backButtonDark = hoverMouse(backButton);
     importButtonDark = hoverMouse(importButton);
@@ -293,6 +338,9 @@ int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButt
     deleteButtonDark = hoverMouse(deleteButton);
     updateButtonDark = hoverMouse(updateButton);
     searchButtonDark = hoverMouse(searchButton);
+    headButtonDark = (headButton && hoverMouse(*headButton));
+    tailButtonDark = (tailButton && hoverMouse(*tailButton));
+    specifyButtonDark = (specifyButton && hoverMouse(*specifyButton));
 
     while (window.pollEvent(event)) {
         state = 41;
@@ -320,6 +368,42 @@ int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButt
                     else if (Press(deleteButton)) initPressState(44);
                     else if (Press(updateButton)) initPressState(45); 
                     else if (Press(searchButton)) initPressState(46);
+                    else if  (headButton && Press(*headButton)) {
+                        if (addProcess != 0) {
+                            initPressState(43);
+                            addProcess = 4;
+                            insertIdx = 0;
+                            noTextBox = 1;
+                        }
+                        else {
+                            deleteProcess = 2;
+                            deleteIdx = 0;
+                        }
+                    }
+                    else if (tailButton && Press(*tailButton)) {
+                        if (addProcess != 0) {
+                            initPressState(43);
+                            addProcess = 4;
+                            insertIdx = numNode;
+                            noTextBox = 1;
+                        }
+                        else {
+                            deleteProcess = 2;
+                            deleteIdx = numNode - 1;
+                        }
+                    }
+                    else if (specifyButton && Press(*specifyButton)) {
+                        if (addProcess != 0) {
+                            initPressState(43);
+                            addProcess = 4;
+                            noTextBox = 0;
+                        }
+                        else {
+                            initPressState(44);
+                            deleteProcess = 3;
+                            noTextBox = 0;
+                        }
+                    }
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
                     for (int i = 0; i < 3; i++) 
                         if (Press(speedBox[i])) speed = i;

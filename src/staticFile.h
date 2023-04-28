@@ -9,7 +9,7 @@ using namespace std;
 extern int speed;
 extern int valueNewNode[30], maximumNode;
 extern bool backButtonDark, createButtonDark, addButtonDark, deleteButtonDark, canAdd;
-extern bool randomButtonDark, inputButtonDark, peekFrontDark, peekBackDark;
+extern bool randomButtonDark, inputButtonDark, peekFrontDark, peekBackDark, headButtonDark, tailButtonDark, specifyButtonDark;
 extern bool importButtonDark, peekButtonDark, pushButtonDark, popButtonDark;
 extern bool enqueueButtonDark, dequeueButtonDark, accessButtonDark;
 extern bool updateButtonDark, searchButtonDark, displayNote;
@@ -32,6 +32,7 @@ extern Sprite speedBox[3];
 extern int numFrame, loopCodeStatus;
 extern bool insert_at_end, delete_at_end;
 extern int styleLL;
+
 
 void initValueNode();
 void resizeSprite(Sprite &sprite, double height, double width);

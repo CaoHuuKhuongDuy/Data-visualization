@@ -18,7 +18,8 @@ int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList,
 
 int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite addButton, 
                   Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input, int originState, 
-                  Sprite *randomButton = nullptr, Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
+                  Sprite *randomButton = nullptr, Sprite *inputButton = nullptr, Sprite *closeButton = nullptr, 
+                  Sprite *headButton = nullptr, Sprite *tailButton = nullptr, Sprite *specifyButton =  nullptr);
 
 
 int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite peekButton,
@@ -34,7 +35,8 @@ int statusArrayPage(RenderWindow &window, Sprite staticArray, Sprite dynamicArra
 
 int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite accessButton, 
                     Sprite addButton, Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input, 
-                    Sprite *randomButton = nullptr, Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);
+                    Sprite *randomButton = nullptr, Sprite *inputButton = nullptr, Sprite *closeButton = nullptr, 
+                    Sprite *headButton = nullptr, Sprite *tailButton = nullptr, Sprite *specifyButton = nullptr);
 
 int statusDynamicArray(RenderWindow &window);
 

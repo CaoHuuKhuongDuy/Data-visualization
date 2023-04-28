@@ -74,21 +74,22 @@ void textBox::submit() {
             break;
         
         case 12:
-            displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode + 1 || numNode >= 10);
+            displayNote = (noTextBox == 0) && (tmp > numNode || numNode >= 10);
             if (!displayNote) break;
             if (numNode == maximumNode) notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
-            else notice = "Note: a valid index between [1.." + to_string(numNode + 1) + "]";
+            else notice = "Note: a valid index between [0.." + to_string(numNode) + "]";
             break;
         case 13:
-            displayNote = (tmp == 0 || tmp > numNode || numNode == 0);
+            displayNote = (tmp >= numNode || numNode == 0);
             if (!displayNote) break;
             if (numNode == 0) notice = "Note: The linked list is empty";
-            else notice = "Note: a valid index between [1.." + to_string(numNode) + "]"; 
+            else notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]"; 
             break;
         case 14:
-            displayNote = (noTextBox == 0) && (tmp == 0 || tmp > numNode); 
+            displayNote = (noTextBox == 0) && (tmp >= numNode || numNode == 0); 
             if (!displayNote) break;
-            else notice = "Note: a valid index between [1.." + to_string(numNode) + "]";
+            if (numNode == 0) notice = "Note: The linked list is empty";
+            else notice = "Note: a valid index between [0.." + to_string(numNode - 1) + "]";
             break;
         case 15:
             break;
@@ -142,7 +143,7 @@ void textBox::submit() {
             if (noTextBox == 0) createProcess--;
             break;
         case 12:
-            if (noTextBox == 0) insertIdx = tmp;
+            if (noTextBox == 0) insertIdx = tmp + 1;
             else {
                 insertValue = tmp;
                 addProcess = 3;
@@ -151,12 +152,12 @@ void textBox::submit() {
             (noTextBox += 1) %= 2;
             break;
         case 13:
-            deleteIdx = tmp;
+            deleteIdx = tmp + 1;
             deleteProcess = 5;
             delete_at_end = (deleteIdx == numNode);
             break;
         case 14:
-            if (noTextBox == 0) updateIdx = tmp;
+            if (noTextBox == 0) updateIdx = tmp + 1;
             else {
                 updateValue = tmp;
                 updateProcess = 3;

@@ -44,7 +44,17 @@ void accessAnimationArray(RenderWindow &window) {
     }
 }
 
-void addAnimationArray(RenderWindow &window) {
+void addAnimationArray(RenderWindow &window, Sprite *&p_headButton, Sprite *&p_tailButton, Sprite *&p_specifyButton) {
+    if (addProcess == 5) {
+        Vector2f posHead = Vector2f(220, 755);
+        Vector2f posTail = Vector2f(320, 755);
+        Vector2f posSpecify = Vector2f(420, 755);
+        p_headButton = new Sprite(addSprite(window, "headButton.png", 90, 35, posHead, headButtonDark));
+        p_tailButton = new Sprite(addSprite(window, "tailButton.png", 90, 35, posTail, tailButtonDark));
+        p_specifyButton = new Sprite(addSprite(window, "specifyIndexButton.png", 90, 35, posSpecify, specifyButtonDark));
+        return;
+    }
+    if (addProcess == 4) return;
     nameCodeId = (statusArray ? 3 : 2);
     if (numFrame == 0) {
         if (!rootArray.full()) numFrame = 1;
@@ -101,7 +111,17 @@ void addAnimationArray(RenderWindow &window) {
     }
 }
 
-void deleteAnimationArray(RenderWindow &window) {
+void deleteAnimationArray(RenderWindow &window, Sprite *&p_headButton, Sprite *&p_tailButton, Sprite *&p_specifyButton) {
+    if (deleteProcess == 4) {
+        Vector2f posHead = Vector2f(220, 805);
+        Vector2f posTail = Vector2f(320, 805);
+        Vector2f posSpecify = Vector2f(420, 805);
+        p_headButton = new Sprite(addSprite(window, "headButton.png", 90, 35, posHead, headButtonDark));
+        p_tailButton = new Sprite(addSprite(window, "tailButton.png", 90, 35, posTail, tailButtonDark));
+        p_specifyButton = new Sprite(addSprite(window, "specifyIndexButton.png", 90, 35, posSpecify, specifyButtonDark));
+        return;
+    }
+    if (deleteProcess == 3) return;
     nameCodeId = 4;
     if (loopCodeStatus == 1) {
         highlightDeleteArray(highlight);
@@ -230,6 +250,7 @@ int Array(RenderWindow &window) {
     Sprite searchButton = addSprite(window, "searchButton.png", 90, 42, posSearchButton, searchButtonDark);
 
     Sprite *p_closeButton = nullptr, *p_randomButton = nullptr, *p_inputButton = nullptr;
+    Sprite *p_headButton = nullptr, *p_tailButton = nullptr, *p_specifyButton = nullptr;
 
     switch (numTextBox) {
         case 11:
@@ -247,10 +268,18 @@ int Array(RenderWindow &window) {
             input = displayTextBox(window, "Index", posAccessButton);
             break;
         case 43:
-            input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
+            if (addProcess == 0) {
+                addProcess = 5;
+                numTextBox = 0;
+            }
+            else input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
             break;
         case 44:
-            input = displayTextBox(window, "Index", posDeleteButton);
+            if (deleteProcess == 0) {
+                deleteProcess = 4;
+                numTextBox = 0;
+            }
+            else input = displayTextBox(window, "Index", posDeleteButton);
             break;
         case 45:
             input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posUpdateButton);
@@ -262,8 +291,8 @@ int Array(RenderWindow &window) {
 
     if (createProcess) createAnimationArray(window, p_randomButton, p_inputButton);
     if (accessProcess) accessAnimationArray(window);
-    if (addProcess) addAnimationArray(window);
-    if (deleteProcess) deleteAnimationArray(window);
+    if (addProcess) addAnimationArray(window, p_headButton, p_tailButton, p_specifyButton);
+    if (deleteProcess) deleteAnimationArray(window, p_headButton, p_tailButton, p_specifyButton);
     if (updateProcess) updateAnimationArray(window);
     if (searchProcess) searchAnimationArray(window);
     
@@ -276,5 +305,5 @@ int Array(RenderWindow &window) {
 
     canAdd = rootArray.addMore();
     return statusStaticArray(window, backButton, importButton, createButton, accessButton, addButton, deleteButton, updateButton, 
-                            searchButton, input, p_randomButton, p_inputButton, p_closeButton);
+                            searchButton, input, p_randomButton, p_inputButton, p_closeButton, p_headButton, p_tailButton, p_specifyButton);
 }
