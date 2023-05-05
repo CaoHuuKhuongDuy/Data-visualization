@@ -34,7 +34,7 @@ extern Highlight highlight;
 
 Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, Vector2f pos, bool dark = false, bool display = true);
 
-void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Color color = Color::Black);
+void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Color color = Color::Black, bool bold = true);
 
 textBox displayTextBox(RenderWindow &window, string nameText, Vector2f pos);
 

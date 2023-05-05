@@ -67,14 +67,14 @@ Sprite addSprite(RenderWindow &window, string fileName, double sz1, double sz2, 
     return sprite;
 }
 
-void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Color color) {
+void displayText(RenderWindow &window, string content, Vector2f pos, int sz, Color color, bool bold) {
 
     Text title;
     font.loadFromFile("../media/font/arial.ttf");
     title.setFont(font);
     title.setString(content);
     title.setFillColor(color);
-    title.setStyle(Text::Bold);
+    if (bold) title.setStyle(Text::Bold);
     title.setCharacterSize(sz);
     title.setPosition(pos);
     window.draw(title);

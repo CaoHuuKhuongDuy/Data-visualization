@@ -20,6 +20,7 @@ int initState(int state, int _numNode, int _maximumNode) {
     createProcess = 1;
     nameCodeId = 0;
     addProcess = 0;
+    deleteProcess = 0;
     pushProcess = 0;
     peekProcess = 0;
     popProcess = 0;
@@ -137,27 +138,45 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                     else if  (headButton && Press(*headButton)) {
                         if (addProcess != 0) {
                             initPressState(12);
+                            userText = "0";
+                            input.submit();
+                            if (displayNote) {
+                                numTextBox = 0;
+                                addProcess = 5;
+                                break;
+                            }
                             addProcess = 4;
-                            insertIdx = 1;
-                            noTextBox = 1;
                         }
                         else {
-                            deleteProcess = 5;
-                            deleteIdx = 1;
+                            initPressState(13);
+                            userText = "0";
+                            input.submit();
+                            if (displayNote) {
+                                numTextBox = 0;
+                                deleteProcess = 7;
+                            }
                         }
                     }
                     else if (tailButton && Press(*tailButton)) {
                         if (addProcess != 0) {
                             initPressState(12);
+                            userText = to_string(numNode);
+                            input.submit();
+                            if (displayNote) {
+                                numTextBox = 0;
+                                addProcess = 5;
+                                break;
+                            }
                             addProcess = 4;
-                            insertIdx = numNode + 1;
-                            noTextBox = 1;
-                            insert_at_end = true;
                         }
                         else {
-                            deleteProcess = 5;
-                            deleteIdx = numNode;
-                            delete_at_end = true;
+                            initPressState(13);
+                            userText = to_string((numNode == 0 ? 0 : numNode - 1));
+                            input.submit();
+                            if (displayNote) {
+                                deleteProcess = 7;
+                                numTextBox = 0;
+                            }
                         }
                     }
                     else if (specifyButton && Press(*specifyButton)) {
@@ -371,25 +390,45 @@ int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButt
                     else if  (headButton && Press(*headButton)) {
                         if (addProcess != 0) {
                             initPressState(43);
+                            userText = "0";
+                            input.submit();
+                            if (displayNote) {
+                                numTextBox = 0;
+                                addProcess = 5;
+                                break;
+                            }
                             addProcess = 4;
-                            insertIdx = 0;
-                            noTextBox = 1;
                         }
                         else {
-                            deleteProcess = 2;
-                            deleteIdx = 0;
+                            initPressState(44);
+                            userText = "0";
+                            input.submit();
+                            if (displayNote) {
+                                numTextBox = 0;
+                                deleteProcess = 4;
+                            }
                         }
                     }
                     else if (tailButton && Press(*tailButton)) {
                         if (addProcess != 0) {
                             initPressState(43);
+                            userText = to_string(numNode);
+                            input.submit();
+                            if (displayNote) {
+                                numTextBox = 0;
+                                addProcess = 5;
+                                break;
+                            }
                             addProcess = 4;
-                            insertIdx = numNode;
-                            noTextBox = 1;
                         }
                         else {
-                            deleteProcess = 2;
-                            deleteIdx = numNode - 1;
+                            initPressState(44);
+                            userText = to_string((numNode == 0 ? 0 : numNode - 1));
+                            input.submit();
+                            if (displayNote) {
+                                numTextBox = 0;
+                                deleteProcess = 4;
+                            }
                         }
                     }
                     else if (specifyButton && Press(*specifyButton)) {

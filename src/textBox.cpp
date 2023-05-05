@@ -131,7 +131,6 @@ void textBox::submit() {
     }
     userText = "";
     if (displayNote) return;
-
     switch (numTextBox) {
         case 11:
             numNode = tmp;

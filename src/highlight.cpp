@@ -156,7 +156,6 @@ void highlightAddArray(Highlight &highlight, bool statusArray) {
         else highlight.makeHighlight(1);
         return;
     }
-    cout << statusArray + 1 << " " << numFrame << " " << endl;
     if (highlightLoopArray(highlight, -1, statusArray + 1, 1)) return;
     if (addProcess == 2) highlight.makeHighlight(statusArray + 4);
 

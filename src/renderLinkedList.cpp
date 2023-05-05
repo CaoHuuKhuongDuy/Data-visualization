@@ -12,7 +12,7 @@ void createAnimationLL(RenderWindow &window, Sprite *&p_randomButton, Sprite *&p
         Vector2f posInputButton = Vector2f(360, 700);
         displayText(window, "Size = " + to_string(numNode), Vector2f(240, 660), 18);
         p_randomButton = new Sprite(addSprite(window, "randomButton.png", 120, 42, posRandomButton, randomButtonDark));
-        p_inputButton = new Sprite(addSprite(window, "inputButton.png", 120, 42, posInputButton, inputButtonDark));    
+        p_inputButton = new Sprite(addSprite(window, "inputButton.png", 120, 42, posInputButton, inputButtonDark));   
     }
     if (createProcess == 1) {
         deleteLL(rootSGL, tailSGL);
@@ -39,6 +39,7 @@ void insertAnimationLL(RenderWindow &window, Sprite *&p_headButton, Sprite *&p_t
         p_headButton = new Sprite(addSprite(window, "headButton.png", 90, 35, posHead, headButtonDark));
         p_tailButton = new Sprite(addSprite(window, "tailButton.png", 90, 35, posTail, tailButtonDark));
         p_specifyButton = new Sprite(addSprite(window, "specifyIndexButton.png", 90, 35, posSpecify, specifyButtonDark));
+        if (displayNote) displayText(window, notice, posSpecify + Vector2f(100, 10), 12, Color::Red, false);
         return;
     }
     if (addProcess == 4) return;
@@ -105,6 +106,7 @@ void deleteAnimationLL(RenderWindow &window, Sprite *&p_headButton, Sprite *&p_t
         p_headButton = new Sprite(addSprite(window, "headButton.png", 90, 35, posHead, headButtonDark));
         p_tailButton = new Sprite(addSprite(window, "tailButton.png", 90, 35, posTail, tailButtonDark));
         p_specifyButton = new Sprite(addSprite(window, "specifyIndexButton.png", 90, 35, posSpecify, specifyButtonDark));
+        if (displayNote) displayText(window, notice, posSpecify + Vector2f(100, 10), 12, Color::Red, false);
         return;
     }
     if (deleteProcess == 6) return;

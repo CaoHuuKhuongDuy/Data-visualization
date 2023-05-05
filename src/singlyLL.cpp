@@ -20,7 +20,7 @@ SinglyLL::SinglyLL(int value, int idx, Font &font) {
     m_node.setFillColor(Color::White);
 
     description.setFont(font);
-    description.setString(to_string(id) + "/temp");
+    description.setString(to_string(id - 1) + "/temp");
     description.setCharacterSize(13);
     description.setStyle(Text::Bold);
     description.setFillColor(Color::Red);
@@ -68,7 +68,7 @@ void SinglyLL::changeDes(string s, bool empty) {
         description.setString(s);
         return;
     }
-    description.setString(to_string(id) + '/' + s);
+    description.setString(to_string(id - 1) + '/' + s);
 }
 
 bool SinglyLL::rightPlace(Font &font) {

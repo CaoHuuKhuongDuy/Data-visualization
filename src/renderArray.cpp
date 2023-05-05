@@ -52,6 +52,7 @@ void addAnimationArray(RenderWindow &window, Sprite *&p_headButton, Sprite *&p_t
         p_headButton = new Sprite(addSprite(window, "headButton.png", 90, 35, posHead, headButtonDark));
         p_tailButton = new Sprite(addSprite(window, "tailButton.png", 90, 35, posTail, tailButtonDark));
         p_specifyButton = new Sprite(addSprite(window, "specifyIndexButton.png", 90, 35, posSpecify, specifyButtonDark));
+        if (displayNote) displayText(window, notice, posSpecify + Vector2f(100, 10), 12, Color::Red, false);
         return;
     }
     if (addProcess == 4) return;
@@ -119,6 +120,7 @@ void deleteAnimationArray(RenderWindow &window, Sprite *&p_headButton, Sprite *&
         p_headButton = new Sprite(addSprite(window, "headButton.png", 90, 35, posHead, headButtonDark));
         p_tailButton = new Sprite(addSprite(window, "tailButton.png", 90, 35, posTail, tailButtonDark));
         p_specifyButton = new Sprite(addSprite(window, "specifyIndexButton.png", 90, 35, posSpecify, specifyButtonDark));
+        if (displayNote) displayText(window, notice, posSpecify + Vector2f(100, 10), 12, Color::Red, false);
         return;
     }
     if (deleteProcess == 3) return;
