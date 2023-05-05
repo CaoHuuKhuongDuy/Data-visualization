@@ -357,7 +357,7 @@ int LinkList(RenderWindow &window) {
     if (updateProcess) updateAnimationLL();
     if (searchProcess) searchAnimationLL();
 
-    if (nameCodeId != 0) insertCode(window, nameCodeLL[nameCodeId], p_closeButton);
+    if (nameCodeId != 0) insertCode(window, nameCodeLL[nameCodeId], p_closeButton, (nameCodeId == 16 || nameCodeId == 17));
 
     drawLL(window, rootSGL, tailSGL, (styleLL == 2), (styleLL == 3));
     

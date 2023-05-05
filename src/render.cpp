@@ -121,8 +121,8 @@ void drawSpeedBox(RenderWindow &window) {
         speedBox[i] = addSprite(window, getNameSpeedBox(i), 100, 49, Vector2f(800 + i * 100, 850));
 }
 
-void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton) {
-    addSprite(window, fileName, 600, 300, Vector2f(1400, 700));
+void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton, bool posAdd) {
+    addSprite(window, fileName, 550, 300 + 10 * posAdd, Vector2f(1400, 700));
     p_closeButton = new Sprite(addSprite(window, "closeButton.png", 25, 25, Vector2f(1895, 700)));
 
 }

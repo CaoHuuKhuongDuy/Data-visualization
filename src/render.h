@@ -42,7 +42,7 @@ void drawSpeedBox(RenderWindow &window);
 
 void goAndColor(SinglyLL *&cur, string des = "", int specialData = -1);
 
-void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton);
+void insertCode(RenderWindow &window, string fileName, Sprite *&p_closeButton, bool addMore = false);
 
 void resizeSprite(Sprite &sprite, double height, double width);
 
