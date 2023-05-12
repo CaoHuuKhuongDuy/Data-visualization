@@ -7,3 +7,6 @@ In this project, I use SFML to create GUI. You can read more about SFML at here:
 ## Project Structure 
 I have total 11 main header files and 4 header files to render each data structures, which are separated from "render.h". Additionally, there is 
 a main file to call all of them. The workflow looks like this:
+
+
+![test](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/workFlow_rm-removebg-preview.jpg)
