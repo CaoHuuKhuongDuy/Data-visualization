@@ -139,7 +139,7 @@ int homePage(RenderWindow &window) {
     Sprite Stack = addSprite(window, "stack.png", 400, 300, Vector2f(500, 300));
     Sprite Queue = addSprite(window, "queue.png", 400, 300, Vector2f(1000, 300));
     Sprite Array = addSprite(window, "array.png", 400, 300, Vector2f(1500, 200));
-    displayText(window, "Data visualization", Vector2f(700, 10), 50);
+    displayText(window, "Data visualization", Vector2f(750, 10), 50);
     window.display();
     return statusHomePage(window, linkList, Stack, Queue, Array);
 
