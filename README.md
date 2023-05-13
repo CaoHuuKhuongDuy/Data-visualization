@@ -9,4 +9,4 @@ I have total 11 main header files and 4 header files to render each data structu
 a main file to call all of them. The workflow looks like this:
 
 
-![workflow](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/workFlow_rm-removebg-preview.jpg)
+![workflow](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/workFlow_rm.png)
