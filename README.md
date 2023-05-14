@@ -15,3 +15,10 @@ The functions in header files are defined in .cpp files with the same name. Howe
 
 ## process.h
 This file is used to handle all events. 
+
+| Function                                                                                                               | Usage                                         |
+|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack, Sprite Queue, Sprite Array);                   | Handle event from Home Page scene             |
+| int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList, Sprite backButton); | Handle event from Linked List Home Page scene |
+|                                                                                                                        |                                               |
+|                                                                                                                        |                                               |
