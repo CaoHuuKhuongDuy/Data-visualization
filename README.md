@@ -10,3 +10,8 @@ a main file to call all of them. The workflow looks like this:
 
 
 ![workflow](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/workFlow_rm.png)
+
+The functions in header files are defined in .cpp files with the same name. However, there are some functions in the .cpp files that are not declared in the header files because they are only used within the file itself. Therefore, I will list all the functions that exist in the .cpp files.
+
+## process.h
+This file is used to handle all events. 
