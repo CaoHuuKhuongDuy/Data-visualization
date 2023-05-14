@@ -306,6 +306,6 @@ int Array(RenderWindow &window) {
     window.display();
 
     canAdd = rootArray.addMore();
-    return statusStaticArray(window, backButton, importButton, createButton, accessButton, addButton, deleteButton, updateButton, 
+    return statusArray_SD(window, backButton, importButton, createButton, accessButton, addButton, deleteButton, updateButton, 
                             searchButton, input, p_randomButton, p_inputButton, p_closeButton, p_headButton, p_tailButton, p_specifyButton);
 }

@@ -342,7 +342,7 @@ int statusArrayPage(RenderWindow &window, Sprite staticArray, Sprite dynamicArra
     return state;
 }
 
-int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite accessButton, 
+int statusArray_SD(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite accessButton, 
                     Sprite addButton, Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input, 
                     Sprite *randomButton, Sprite *inputButton, Sprite *closeButton, 
                     Sprite *headButton, Sprite *tailButton, Sprite *specifyButton) {

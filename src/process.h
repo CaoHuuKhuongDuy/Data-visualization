@@ -33,11 +33,10 @@ int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
 
 int statusArrayPage(RenderWindow &window, Sprite staticArray, Sprite dynamicArray, Sprite backButton);
 
-int statusStaticArray(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite accessButton, 
+int statusArray_SD(RenderWindow &window, Sprite backButton, Sprite importButton, Sprite createButton, Sprite accessButton, 
                     Sprite addButton, Sprite deleteButton, Sprite updateButton, Sprite searchButton, textBox &input, 
                     Sprite *randomButton = nullptr, Sprite *inputButton = nullptr, Sprite *closeButton = nullptr, 
                     Sprite *headButton = nullptr, Sprite *tailButton = nullptr, Sprite *specifyButton = nullptr);
 
-int statusDynamicArray(RenderWindow &window);
 
 #endif
