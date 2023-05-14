@@ -3,7 +3,7 @@
 
 Event event;
 
-int hoverMouse(Sprite sprite) {
+bool hoverMouse(Sprite sprite) {
     FloatRect bounds_sprite = sprite.getGlobalBounds();
     return (bounds_sprite.contains(Vector2f(event.mouseMove.x, event.mouseMove.y))); 
 }
