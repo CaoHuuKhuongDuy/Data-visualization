@@ -55,3 +55,18 @@ SinglyLL is a class that defines a node in a singly linked list, with method to 
 | `Text m_text`                          | Text object representing the data value of the node.                                                     |
 | `Text description`                     | Text object representing the description of the node.                                                    |
 
+
+| Function signature                                      | Description                                                                                                     |
+|---------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| `SinglyLL *createNode()`  | Creates a new SinglyLL node with the given value, index, position, and font.                                   |
+| `void deleteLL()`          | Deletes all nodes in the SinglyLL linked list starting from the root node. Updates both root and tail pointers. |
+| `void createLL()` | Creates a new SinglyLL linked list with the given number of nodes, values, and font. |
+| `void drawReturnLine()` | Draws an arrow to indicate that the linked list is circular. |
+| `void drawLL()` | Draws the SinglyLL linked list on the given window. |
+| `void insertBefore()` | Inserts a new node with the given value and index before the root node. |
+| `void deleteBefore()` | Deletes the node before the node with the given index. |
+| `void changeIndex()` | Increases the index of all nodes starting from the given node. |
+| `void insertLL()` | Inserts a new node with the given value and index into the SinglyLL linked list. |
+| `void deleteNodeLL()` | Deletes the node with the given index from the SinglyLL linked list. |
+| `bool format()` | Moving the nodes to their designated positions based (create the motion effect)|
+| `void clearColorLL()`| Remove all |
