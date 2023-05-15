@@ -16,9 +16,16 @@ The functions in header files are defined in .cpp files with the same name. Howe
 ## process.h
 This file is used to handle all events. 
 
-| Function                                                                                                               | Usage                                         |
-|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack, Sprite Queue, Sprite Array);                   | Handle event from Home Page scene             |
-| int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList, Sprite backButton); | Handle event from Linked List Home Page scene |
-|                                                                                                                        |                                               |
-|                                                                                                                        |                                               |
+| Function                                                                                                               | Usage                                                            |
+|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| int statusHomePage(RenderWindow &window, Sprite linkList, Sprite Stack, Sprite Queue, Sprite Array);                   | Handle event from Home Page scene                                |
+| int statuslinkListPage(RenderWindow &window, Sprite sLinkList, Sprite dLinkList, Sprite cLinkList, Sprite backButton); | Handle event from Linked List Home Page scene                    |
+| int statusArrayPage(RenderWindow &window, Sprite staticArray, Sprite dynamicArray, Sprite backButton);                 | Handle event from Array Home Page scene                          |
+| int statusLinkList(RenderWindow &window,..., Sprite *tailButton = nullptr, Sprite *specifyButton =  nullptr);          | Handle event from Linked List Visualization scene                |
+| int statusStack(RenderWindow &window,...., Sprite *inputButton = nullptr, Sprite *closeButton = nullptr);              | Handle event from Stack Visualization scene                      |
+| int statusQueue(RenderWindow &window,...., Sprite *peekFrontButton, Sprite *peekBackButton);                           | Handle event from Queue Visualization scene                      |
+| int statusArray_SD(RenderWindow &window,..., Sprite *tailButton = nullptr, Sprite *specifyButton = nullptr);           | Handle event from Array Visualization scene                      |
+| int initState(int state, int _numNode, int _maximumNode);                                                              | Reinitialize some global variables when switching screens        |
+| void initPressState(int x, bool resetProcess = true);                                                                  | Reinitialize some global variables when clicking the button      |
+| bool hoverMouse(Sprite sprite);                                                                                        | To determine if I am hovering the mouse over the "sprite" or not |
+| bool Press(Sprite sprite);                                                                                             | To determine if I have clicked on the "sprite" or not            |
