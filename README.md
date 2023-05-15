@@ -160,5 +160,22 @@ The ArrayVisualize class facilitates visualizing and manipulating arrays, offeri
 
 
 ## UI Components
-SFML doesn't support 
+SFML doesn't have built-in support for drawing text boxes, arrows and other shapes, so I need to create them myself using drawing tools 
+and functions provided by SFML.
+### arrow.h
+
+| Function/Property                                                             | Usage                                                               |
+|-------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `Arrow(int num = 1)`                                                          | Constructor for creating an `Arrow` object with an optional `num`.  |
+| `void create(Vector2f startPoint, Vector2f endPoint, bool change)`            | Creates an arrow shape from the given start and end points.         |
+| `void createLine(Vector2f startPoint, Vector2f endPoint, bool change)`        | Creates a line shape from the given start and end points.           |
+| `void createArrow(VertexArray &arrow)`                                        | Creates the arrow shape from a given `VertexArray`.                 |
+| `void draw(RenderWindow &window)`                                             | Draws the arrow on the specified `RenderWindow`.                    |
+| `int numArrow`                                                                | Integer variable representing the number of arrows.                 |
+| `VertexArray line`                                                            | VertexArray object representing the line shape of the arrow.        |
+| `VertexArray arrow1`                                                          | VertexArray object representing one side of the arrow shape.        |
+| `VertexArray arrow2`                                                          | VertexArray object representing the other side of the arrow shape.  |
+| `Vector2f point1`                                                             | Vector2f representing the start point of the arrow.                 |
+| `Vector2f point2`                                                             | Vector2f representing the end point of the arrow.                   |
+
 
