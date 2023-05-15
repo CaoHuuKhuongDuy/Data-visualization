@@ -184,7 +184,7 @@ The arrow is used to pointing from one node to another node in Linked List. I dr
 | `Vector2f point1`                                                             | Vector2f representing the start point of the arrow.                 |
 | `Vector2f point2`                                                             | Vector2f representing the end point of the arrow.                   |
 
-###textBox.h
+### textBox.h
 The text box is used to handle the user input and check its validity.
 
 ![textBox](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/textBox.png)
@@ -202,5 +202,6 @@ The text box is used to handle the user input and check its validity.
 | Text description                                                                  | Text object for displaying description text.    |
 | Sprite submitButton                                                               | Sprite representing the submit button.          |
 
-
+### highLight.h
+The highlight is a rectangle that used to highlight the corresponding line of code. 
 
