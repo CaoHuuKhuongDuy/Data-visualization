@@ -266,4 +266,9 @@ There are functions that help to highlight corresponding line of code.
 | void highlightUpdateArray(Highlight &highlight)                    | Highlights the code for updating an element in an array.                       |
 | void highlightSearchArray(Highlight &highlight, int correctStatus) | Highlights the code for searching an element in an array. If `correctStatus` is provided, it indicates the search result (found or not found).                                                                                                  |
 
+## [Github repository](https://github.com/CaoHuuKhuongDuy/Data-visualization) 
+
+## [Commit history](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/gitlog.txt)
+
+
 
