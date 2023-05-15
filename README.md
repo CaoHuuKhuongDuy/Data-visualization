@@ -37,7 +37,7 @@ This file is used to handle various operations related to Linked List.
 SinglyLL is a class that defines a node in a singly linked list, with method to modify the position, color, data,... of the node and draw it on a render window.
 | Method Name                            | Usage                                                                                      |
 |--------------------------------------- |--------------------------------------------------------------------------------------------|
-| `SinglyLL(int, int, Font&)`            | Constructor to create a new node with the given value, index, and fon                      |
+| `SinglyLL(int, int, Font&)`            | Constructor to create a new node with the given value, index, and font.                    |
 | `void changePosition(Vector2f)`        | Method to update the position of the node.                                                 |
 | `void changeColor(Color)`              | Method to update the color of the node.                                                    |
 | `void changeRadius(double)`            | Method to update the radius of the node.                                                   |
@@ -74,33 +74,34 @@ There are some functions that are called from renderLinkedList.cpp to process us
 | `void changeIndex()`                    | Increases the index of all nodes starting from the given node.                                                  |
 | `void insertLL()`                       | Inserts a new node with the given value and index into the SinglyLL linked list.                                |
 | `void deleteNodeLL()`                   | Deletes the node with the given index from the SinglyLL linked list.                                            |
-| `bool format()`                         | Moving the nodes to their designated positions based (create the motion effect)                                 |
-| `void clearColorLL()`                   | Remove all effects from the nodes                                                                               |
+| `bool format()`                         | Moving the nodes to their designated positions based (create the motion effect).                                |
+| `void clearColorLL()`                   | Remove all effects from the nodes.                                                                              |
 
 ## stack.h
 This file is used to handle various operations related to Stack.
 ### Class StackVisualize 
 The StackVisualize class provides functionality to visualize and manipulate a stack data structure.
 
-| Method                                              | Usage                                                 |
-|-----------------------------------------------------|-------------------------------------------------------|
-| `int size()`                                        | Returns the size of the stack                         |
-| `void create(int n, int val[], Font &font)`         | Creates the stack with specified size and values      |
-| `void push(int x, Font &font, bool Create = false)` | Pushes an element onto the stack                      |
-| `void pop()`                                        | Pops the top element from the stack                   |
-| `void clear()`                                      | Clears the stack                                      |
-| `void changeColor(Color color)`                     | Changes the color of the stack visualization          |
-| `int format(int type = 1)`                          | Formats the visualization style of the stack          |
-| `void changePosition(Vector2f pos)`                 | Changes the position of the stack visualization       |
-| `void draw(RenderWindow &window)`                   | Draws the stack visualization on the specified window |
+| Method                                              | Usage                                                         |
+|-----------------------------------------------------|---------------------------------------------------------------|
+| `int size()`                                        | Returns the size of the stack.                                |
+| `void create(int n, int val[], Font &font)`         | Creates the stack with the specified size and values.         |
+| `void push(int x, Font &font, bool Create = false)` | Pushes an element onto the stack.                             |
+| `void pop()`                                        | Pops the top element from the stack.                          |
+| `void clear()`                                      | Clears the stack.                                             |
+| `void changeColor(Color color)`                     | Changes the color of the stack visualization.                 |
+| `int format(int type = 1)`                          | Formats the visualization style of the stack.                 |
+| `void changePosition(Vector2f pos)`                 | Changes the position of the stack visualization.              |
+| `void draw(RenderWindow &window)`                   | Draws the stack visualization on the specified window.        |
 
-| Property                    | Usage                                                      |
-|-----------------------------|------------------------------------------------------------|
-| `RectangleShape node[12]`   | Array of RectangleShape objects representing stack nodes   |
-| `Text t_val[12]`            | Array of Text objects representing node values             |
-| `int l`                     | Integer variable representing the left index of the stack  |
-| `int r`                     | Integer variable representing the right index of the stack |
-| `int a[12]`                 | Array of integers representing the stack elements          |
+| Property                    | Usage                                                             |
+|-----------------------------|-------------------------------------------------------------------|
+| `RectangleShape node[12]`   | Array of RectangleShape objects representing stack nodes.         |
+| `Text t_val[12]`            | Array of Text objects representing node values.                   |
+| `int l`                     | Integer variable representing the left index of the stack.        |
+| `int r`                     | Integer variable representing the right index of the stack.       |
+| `int a[12]`                 | Array of integers representing the stack elements.                |
+
 
 ## queue.h
 This file is used to handle various operation related to Queue.
@@ -108,52 +109,56 @@ This file is used to handle various operation related to Queue.
 The QueueVisualize class provides functionality to visualize and manipulate a queue data structure.
 | Method                                                            | Usage                                                     |
 |-------------------------------------------------------------------|-----------------------------------------------------------|
-| `QueueVisualize()`                                                | Constructor for creating a `QueueVisualize` object        |
-| `int size()`                                                      | Returns the size of the queue                             |
-| `void create(int n, int val[], Font &font)`                       | Creates the queue with specified size and values          |
-| `void enqueue(int val, Font &font, bool Create = false)`          | Adds an element to the back of the queue                  |
-| `void dequeue()`                                                  | Removes the front element from the queue                  |
-| `void clear()`                                                    | Clears the queue                                          |
-| `void changeColor(Color color, int peekPos)`                      | Changes the color of the queue visualization              |
-| `bool format(int type = 1)`                                       | Formats the visualization style of the queue              |
-| `void changePosition(int id, Vector2f pos, bool status = true)`   | Changes the position of a node in the queue               |
-| `void draw(RenderWindow &window)`                                 | Draws the queue visualization on the specified window     |
+| `QueueVisualize()`                                                | Constructor for creating a `QueueVisualize` object.       |
+| `int size()`                                                      | Returns the size of the queue.                            |
+| `void create(int n, int val[], Font &font)`                       | Creates the queue with the specified size and values.     |
+| `void enqueue(int val, Font &font, bool Create = false)`          | Adds an element to the back of the queue.                 |
+| `void dequeue()`                                                  | Removes the front element from the queue.                 |
+| `void clear()`                                                    | Clears the queue.                                         |
+| `void changeColor(Color color, int peekPos)`                      | Changes the color of the queue visualization.             |
+| `bool format(int type = 1)`                                       | Formats the visualization style of the queue.             |
+| `void changePosition(int id, Vector2f pos, bool status = true)`   | Changes the position of a node in the queue.              |
+| `void draw(RenderWindow &window)`                                 | Draws the queue visualization on the specified window.    |
 
-|Property                                                           |                                                           |
+| Property                                                          |                                                           |
 |-------------------------------------------------------------------|-----------------------------------------------------------|
-| `int l`                                                           | Integer variable representing the left index of the queue |
-| `vector<int> a`                                                   | Vector of integers representing the queue elements        |
-| `vector<Text> t_val`                                              | Vector of Text objects representing node values           |
-| `vector<RectangleShape> node`                                     | Vector of RectangleShape objects representing queue nodes |
+| `int l`                                                           | Integer variable representing the left index of the queue.|
+| `vector<int> a`                                                   | Vector of integers representing the queue elements.       |
+| `vector<Text> t_val`                                              | Vector of Text objects representing node values.          |
+| `vector<RectangleShape> node`                                     | Vector of RectangleShape objects representing queue nodes.|
+
 ## array.h
 This file is used to handle various operation related to Array (static and dynamic).
 ### Class ArrayVisualize 
 The ArrayVisualize class facilitates visualizing and manipulating arrays, offering functionality for adding, deleting, resizing, and modifying element values.
 | Method                                                             | Usage                                                           |
 |--------------------------------------------------------------------|-----------------------------------------------------------------|
-| `ArrayVisualize()`                                                 | Constructor for creating an `ArrayVisualize` object             |
-| `void clear()`                                                     | Clears the array                                                |
-| `void create(int n, int val[], Font &font)`                        | Creates the array with specified size and values                |
-| `void createNode(int id, int val, Font &font, bool dummy = false)` | Creates a node in the array with the specified ID and value     |
-| `void resize(int n, Font &font)`                                   | Resizes the array to the specified size                         |
-| `void add(int x, Font &font)`                                      | Adds an element to the array                                    |
-| `void changeColor(Color color, int idx)`                           | Changes the color of the array element at the specified index   |
-| `void changeData(int id, int val)`                                 | Changes the value of the array element with the specified ID    |
-| `void copyData(int idx1, int idx2)`                                | Copies the value from one array element to another              |
-| `void changeStatus(bool statusArray)`                              | Changes the status of the array                                 |
-| `bool addMore()`                                                   | Checks if more elements can be added to the array               |
-| `bool full()`                                                      | Checks if the array is full                                     |
-| `int getData(int idx)`                                             | Returns the value of the array element at the specified index   |
-| `void del()`                                                       | Deletes an element from the array                               |
-| `bool draw(RenderWindow &window)`                                  | Draws the array visualization on the specified window           |
+| `ArrayVisualize()`                                                 | Constructor for creating an `ArrayVisualize` object.            |
+| `void clear()`                                                     | Clears the array.                                               |
+| `void create(int n, int val[], Font &font)`                        | Creates the array with the specified size and values.           |
+| `void createNode(int id, int val, Font &font, bool dummy = false)` | Creates a node in the array with the specified ID and value.    |
+| `void resize(int n, Font &font)`                                   | Resizes the array to the specified size.                        |
+| `void add(int x, Font &font)`                                      | Adds an element to the array.                                   |
+| `void changeColor(Color color, int idx)`                           | Changes the color of the array element at the specified index.  |
+| `void changeData(int id, int val)`                                 | Changes the value of the array element with the specified ID.   |
+| `void copyData(int idx1, int idx2)`                                | Copies the value from one array element to another.             |
+| `void changeStatus(bool statusArray)`                              | Changes the status of the array.                                |
+| `bool addMore()`                                                   | Checks if more elements can be added to the array.              |
+| `bool full()`                                                      | Checks if the array is full.                                    |
+| `int getData(int idx)`                                             | Returns the value of the array element at the specified index.  |
+| `void del()`                                                       | Deletes an element from the array.                              |
+| `bool draw(RenderWindow &window)`                                  | Draws the array visualization on the specified window.          |
 
-| Property                            | Usage                                                                       |
-|-------------------------------------|-----------------------------------------------------------------------------|
-| `vector<int> a`                     | Vector of integers representing the array elements                          |
-| `vector<RectangleShape> node`       | Vector of RectangleShape objects representing array nodes                   |
-| `vector<Text> t_val, idx`           | Vectors of Text objects representing node values and indices                |
-| `int r`                             | Integer variable representing the right index of the array                  |
-| `int capacity`                      | Integer variable representing the capacity of the array                     |
-| `bool vectorType`                   | Boolean variable indicating the type of vector used for array visualization |
+| Property                            | Usage                                                                        |
+|-------------------------------------|------------------------------------------------------------------------------|
+| `vector<int> a`                     | Vector of integers representing the array elements.                          |
+| `vector<RectangleShape> node`       | Vector of RectangleShape objects representing array nodes.                   |
+| `vector<Text> t_val, idx`           | Vectors of Text objects representing node values and indices.                |
+| `int r`                             | Integer variable representing the right index of the array.                  |
+| `int capacity`                      | Integer variable representing the capacity of the array.                     |
+| `bool vectorType`                   | Boolean variable indicating the type of vector used for array visualization. |
 
+
+## UI Components
+SFML doesn't support 
 
