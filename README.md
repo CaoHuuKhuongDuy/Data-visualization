@@ -80,7 +80,7 @@ There are some functions that are called from renderLinkedList.cpp to process us
 ## stack.h
 This file is used to handle various operations related to Stack.
 ### Class StackVisualize 
-StackVisualize is a class that provides functionality to visualize and manipulate a stack data structure.
+The StackVisualize class provides functionality to visualize and manipulate a stack data structure.
 
 | Method                                              | Usage                                                 |
 |-----------------------------------------------------|-------------------------------------------------------|
