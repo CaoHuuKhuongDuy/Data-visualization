@@ -14,20 +14,20 @@ a main file to call all of them. The workflow looks like this:
 The functions in header files are defined in .cpp files with the same name. However, there are some functions in the .cpp files that are not declared in the header files because they are only used within the file itself. Therefore, I will list all the functions that exist in the .cpp files.
 
 ## render.h
-This file 
+This file is used to render screen 
 
 ## process.h
 This file is used to handle all events. 
 
 | Function Name                 | Usage                                                                        |
 |-------------------------------|------------------------------------------------------------------------------|
-| `int statusHomePage()`        | Handle events from the Home Page scene.                                      |
-| `int statuslinkListPage()`    | Handle events from the Linked List Home Page scene.                          |
-| `int statusLinkList()`        | Handle events from the Linked List Visualization scene.                      |
-| `int statusStack()`           | Handle events from the Stack Visualization scene.                            |
-| `int statusQueue()`           | Handle events from the Queue Visualization scene.                            |
-| `int statusArrayPage()`       | Handle events from the Array Home Page scene.                                |
-| `int statusArray_SD()`        | Handle events from the Array Visualization scene.                            |
+| `int statusHomePage()`        | Handle events from the Home Page screen.                                     |
+| `int statuslinkListPage()`    | Handle events from the Linked List Home Page screen.                         |
+| `int statusLinkList()`        | Handle events from the Linked List Visualization screen.                     |
+| `int statusStack()`           | Handle events from the Stack Visualization screen.                           |
+| `int statusQueue()`           | Handle events from the Queue Visualization screen.                           |
+| `int statusArrayPage()`       | Handle events from the Array Home Page screen.                               |
+| `int statusArray_SD()`        | Handle events from the Array Visualization screen.                           |
 | `void initState()`            | Reinitialize some global variables when switching screens.                   |
 | `void initPressState()`       | Reinitialize some global variables when clicking a button.                   |
 | `bool hoverMouse()`           | Determine if the mouse is hovering over a sprite.                            |
