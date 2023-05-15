@@ -125,4 +125,35 @@ The QueueVisualize class provides functionality to visualize and manipulate a qu
 | `vector<int> a`                                                   | Vector of integers representing the queue elements        |
 | `vector<Text> t_val`                                              | Vector of Text objects representing node values           |
 | `vector<RectangleShape> node`                                     | Vector of RectangleShape objects representing queue nodes |
+## array.h
+This file is used to handle various operation related to Array (static and dynamic).
+### Class ArrayVisualize 
+The ArrayVisualize class facilitates visualizing and manipulating arrays, offering functionality for adding, deleting, resizing, and modifying element values.
+| Method                                                             | Usage                                                           |
+|--------------------------------------------------------------------|-----------------------------------------------------------------|
+| `ArrayVisualize()`                                                 | Constructor for creating an `ArrayVisualize` object             |
+| `void clear()`                                                     | Clears the array                                                |
+| `void create(int n, int val[], Font &font)`                        | Creates the array with specified size and values                |
+| `void createNode(int id, int val, Font &font, bool dummy = false)` | Creates a node in the array with the specified ID and value     |
+| `void resize(int n, Font &font)`                                   | Resizes the array to the specified size                         |
+| `void add(int x, Font &font)`                                      | Adds an element to the array                                    |
+| `void changeColor(Color color, int idx)`                           | Changes the color of the array element at the specified index   |
+| `void changeData(int id, int val)`                                 | Changes the value of the array element with the specified ID    |
+| `void copyData(int idx1, int idx2)`                                | Copies the value from one array element to another              |
+| `void changeStatus(bool statusArray)`                              | Changes the status of the array                                 |
+| `bool addMore()`                                                   | Checks if more elements can be added to the array               |
+| `bool full()`                                                      | Checks if the array is full                                     |
+| `int getData(int idx)`                                             | Returns the value of the array element at the specified index   |
+| `void del()`                                                       | Deletes an element from the array                               |
+| `bool draw(RenderWindow &window)`                                  | Draws the array visualization on the specified window           |
+
+| Property                            | Usage                                                                       |
+|-------------------------------------|-----------------------------------------------------------------------------|
+| `vector<int> a`                     | Vector of integers representing the array elements                          |
+| `vector<RectangleShape> node`       | Vector of RectangleShape objects representing array nodes                   |
+| `vector<Text> t_val, idx`           | Vectors of Text objects representing node values and indices                |
+| `int r`                             | Integer variable representing the right index of the array                  |
+| `int capacity`                      | Integer variable representing the capacity of the array                     |
+| `bool vectorType`                   | Boolean variable indicating the type of vector used for array visualization |
+
 
