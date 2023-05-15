@@ -10,6 +10,6 @@ all: compile link run
 compile:
 	g++ -c main.cpp render.cpp process.cpp linkedList.cpp textBox.cpp staticFile.cpp arrow.cpp renderLinkedList.cpp highlight.cpp fileDialog.cpp renderStack.cpp stack.cpp renderQueue.cpp queue.cpp renderArray.cpp array.cpp -I $(INCLUDE)
 link:
-	g++ main.o render.o process.o linkedList.o textBox.o staticFile.o arrow.o renderLinkedList.o highlight.o fileDialog.o renderStack.o stack.o renderQueue.o queue.o renderArray.o array.o -o main.exe -L $(LIBRARY) $(SFMLFLAGS) $(SFML_INCLUDE)
+	g++ main.o render.o process.o linkedList.o textBox.o staticFile.o arrow.o renderLinkedList.o highlight.o fileDialog.o renderStack.o stack.o renderQueue.o queue.o renderArray.o array.o -o Data_Visualization.exe -L $(LIBRARY) $(SFMLFLAGS) $(SFML_INCLUDE)
 run:
-	./main.exe
+	./Data_Visualization.exe
