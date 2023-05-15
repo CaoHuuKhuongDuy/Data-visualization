@@ -80,6 +80,7 @@ There are some functions that are called from renderLinkedList.cpp to process us
 ## stack.h
 This file is used to handle various operations related to Stack.
 ### Class StackVisualize 
+StackVisualize is a class that provides functionality to visualize and manipulate a stack data structure.
 
 | Method                                              | Usage                                                 |
 |-----------------------------------------------------|-------------------------------------------------------|
@@ -100,3 +101,28 @@ This file is used to handle various operations related to Stack.
 | `int l`                     | Integer variable representing the left index of the stack  |
 | `int r`                     | Integer variable representing the right index of the stack |
 | `int a[12]`                 | Array of integers representing the stack elements          |
+
+## queue.h
+This file is used to handle various operation related to Queue.
+### Class QueueVisualize
+The QueueVisualize class provides functionality to visualize and manipulate a queue data structure.
+| Method                                                            | Usage                                                     |
+|-------------------------------------------------------------------|-----------------------------------------------------------|
+| `QueueVisualize()`                                                | Constructor for creating a `QueueVisualize` object        |
+| `int size()`                                                      | Returns the size of the queue                             |
+| `void create(int n, int val[], Font &font)`                       | Creates the queue with specified size and values          |
+| `void enqueue(int val, Font &font, bool Create = false)`          | Adds an element to the back of the queue                  |
+| `void dequeue()`                                                  | Removes the front element from the queue                  |
+| `void clear()`                                                    | Clears the queue                                          |
+| `void changeColor(Color color, int peekPos)`                      | Changes the color of the queue visualization              |
+| `bool format(int type = 1)`                                       | Formats the visualization style of the queue              |
+| `void changePosition(int id, Vector2f pos, bool status = true)`   | Changes the position of a node in the queue               |
+| `void draw(RenderWindow &window)`                                 | Draws the queue visualization on the specified window     |
+
+|Property                                                           |                                                           |
+|-------------------------------------------------------------------|-----------------------------------------------------------|
+| `int l`                                                           | Integer variable representing the left index of the queue |
+| `vector<int> a`                                                   | Vector of integers representing the queue elements        |
+| `vector<Text> t_val`                                              | Vector of Text objects representing node values           |
+| `vector<RectangleShape> node`                                     | Vector of RectangleShape objects representing queue nodes |
+
