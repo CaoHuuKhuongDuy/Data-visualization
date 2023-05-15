@@ -1,5 +1,6 @@
 .vscode
-*.txt
+*.txt 
+!gitlog.txt
 src/test.cpp
 src/example.cpp
 src/example.exe
