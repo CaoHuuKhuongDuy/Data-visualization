@@ -7,5 +7,5 @@ src/arrowExample.cpp
 src/exampleTextBox.cpp
 src/displayTextBox.txt
 src/*.txt
-src/*.exe
+src/test.exe
 src/*.o
