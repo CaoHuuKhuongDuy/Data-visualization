@@ -33,7 +33,7 @@ This file is used to handle all events.
 
 ## linkedList.h
 This file is used to handle various operations related to Linked List.
-### Class SinglyLL
+### SinglyLL Class
 SinglyLL is a class that defines a node in a singly linked list, with method to modify the position, color, data,... of the node and draw it on a render window.
 | Method Name                            | Usage                                                                                      |
 |--------------------------------------- |--------------------------------------------------------------------------------------------|
@@ -58,7 +58,7 @@ SinglyLL is a class that defines a node in a singly linked list, with method to 
 | `Text m_text`                         | Text object representing the data value of the node.                                            |
 | `Text description`                    | Text object representing the description of the node.                                           |
 
-### Function
+### Functions
 
 There are some functions that are called from renderLinkedList.cpp to process user request.
 
@@ -79,7 +79,7 @@ There are some functions that are called from renderLinkedList.cpp to process us
 
 ## stack.h
 This file is used to handle various operations related to Stack.
-### Class StackVisualize 
+### StackVisualize Class
 The StackVisualize class provides functionality to visualize and manipulate a stack data structure.
 
 | Method                                              | Usage                                                         |
@@ -105,7 +105,7 @@ The StackVisualize class provides functionality to visualize and manipulate a st
 
 ## queue.h
 This file is used to handle various operation related to Queue.
-### Class QueueVisualize
+### QueueVisualize Class 
 The QueueVisualize class provides functionality to visualize and manipulate a queue data structure.
 | Method                                                            | Usage                                                     |
 |-------------------------------------------------------------------|-----------------------------------------------------------|
@@ -129,7 +129,7 @@ The QueueVisualize class provides functionality to visualize and manipulate a qu
 
 ## array.h
 This file is used to handle various operation related to Array (static and dynamic).
-### Class ArrayVisualize 
+### ArrayVisualize Class
 The ArrayVisualize class facilitates visualizing and manipulating arrays, offering functionality for adding, deleting, resizing, and modifying element values.
 | Method                                                             | Usage                                                           |
 |--------------------------------------------------------------------|-----------------------------------------------------------------|
@@ -204,4 +204,44 @@ The text box is used to handle the user input and check its validity.
 
 ### highLight.h
 The highlight is a rectangle that used to highlight the corresponding line of code. 
+
+![highlight](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/highLight.png)
+
+#### Highlight Class
+
+The Highlight class is used to create a rectangle that represents a highlight object. 
+
+| Method                                    | Usage                                                                                                             |
+|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| Highlight()                               | Constructor for creating a Highlight object.                                                                      |
+| void makeHighlight(int Line, Color color) | Creates a highlight at the specified line with the given color. If no color is provided, a default color is used. |
+| void line(int x)                          | Sets the horizontal position of the highlight line.                                                               |
+| void draw(RenderWindow &window)           | Draws the highlight on the specified window.                                                                      |
+| bool display                              | Indicates whether the highlight should be displayed or not.                                                       |
+
+| Property                                  | Usage                                      |
+|-------------------------------------------|--------------------------------------------|
+| RectangleShape highLight                  | RectangleShape representing the highlight. |
+
+#### Functions
+There are functions that help to highlight corresponding line of code.
+
+| Function                                                           | Usage                                                                          |
+|--------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| void highlightInsertCode(Highlight &highlight)                     | Highlights the code for an insert operation.                                   |
+| void highlightDeleteCode(Highlight &highlight)                     | Highlights the code for a delete operation.                                    |
+| void highlightUpdateCode(Highlight &highlight)                     | Highlights the code for an update operation.                                   |
+| void highlightSearchCode(Highlight &highlight)                     | Highlights the code for a search operation.                                    |
+| void highlightPeekCode(Highlight &highlight)                       | Highlights the code for a peek operation.                                      |
+| void highlightPushCode(Highlight &highlight)                       | Highlights the code for a push operation.                                      |
+| void highlightPopCode(Highlight &highlight)                        | Highlights the code for a pop operation.                                       |
+| void highlightPeekQueue(Highlight &highlight, int peekPos)         | Highlights the code for a peek operation in a queue at the specified position. |
+| void highlightEnqueue(Highlight &highlight)                        | Highlights the code for an enqueue operation.                                  |
+| void highlightDequeue(Highlight &highlight)                        | Highlights the code for a dequeue operation.                                   |
+| void highlightAccessArray(Highlight &highlight )                   | Highlights the code for accessing an array.                                    |
+| void highlightAddArray(Highlight &highlight, bool statusArray)     | Highlights the code for adding an element to an array. If `statusArray` is `true`, it indicates a successful addition.                                                                                                                      |
+| void highlightDeleteArray(Highlight &highlight)                    | Highlights the code for deleting an element from an array.                     |
+| void highlightUpdateArray(Highlight &highlight)                    | Highlights the code for updating an element in an array.                       |
+| void highlightSearchArray(Highlight &highlight, int correctStatus) | Highlights the code for searching an element in an array. If `correctStatus` is provided, it indicates the search result (found or not found).                                                                                                  |
+
 
