@@ -13,18 +13,40 @@ a main file to call all of them. The workflow looks like this:
 
 The functions in header files are defined in .cpp files with the same name. However, there are some functions in the .cpp files that are not declared in the header files because they are only used within the file itself. Therefore, I will list all the functions that exist in the .cpp files.
 
+## render.h
+This file is used to render the screen, and it is devided into 4 files: renderLinkedList.h, renderStack.h, renderQueue.h, and renderArray.h to present each data structure.
+
+| Function Name            | Usage                                                                | File                 |
+|--------------------------|----------------------------------------------------------------------|----------------------|
+| Sprite addSprite()       | Adds a sprite to the window with the specified properties.           | render.h             |
+| void displayText()       | Displays text on the window with the specified properties.           | render.h             |
+| textBox displayTextBox() | Displays a text box on the window at the specified position.         | render.h             |
+| void drawSpeedBox()      | Draws a speed box on the window.                                     | render.h             |
+| void goAndColor()        | Performs operations on a linked list and applies color highlights.   | render.h             |
+| void insertCode()        | Inserts code into the window from a specified file.                  | render.h             |
+| void resizeSprite()      | Resizes a sprite to the specified height and width.                  | render.h             |
+| int homePage()           | Displays the home page and returns the ID of the next screen.        | render.h             |
+| int linkListPage()       | Displays the linked list page and returns the ID of the next screen. | renderLinkedList.h   |
+| int LinkList()           | Implements the linked list and returns the ID of the next screen.    | renderLinkedList.h   |
+| int Stack()              | Implements the stack and returns the ID of the next screen.          | renderStack.h        |
+| int Queue()              | Implements the queue and returns the ID of the next screen.          | renderQueue.h        |
+| int arrayHomePage()      | Displays the array home page and returns the ID of the next screen.  | renderArray.h        |
+| int Array()              | Implements the array and returns the ID of the next screen.          | renderArray.h        |
+
+
+
 ## process.h
 This file is used to handle all events. 
 
 | Function Name                 | Usage                                                                        |
 |-------------------------------|------------------------------------------------------------------------------|
-| `int statusHomePage()`        | Handle events from the Home Page scene.                                      |
-| `int statuslinkListPage()`    | Handle events from the Linked List Home Page scene.                          |
-| `int statusLinkList()`        | Handle events from the Linked List Visualization scene.                      |
-| `int statusStack()`           | Handle events from the Stack Visualization scene.                            |
-| `int statusQueue()`           | Handle events from the Queue Visualization scene.                            |
-| `int statusArrayPage()`       | Handle events from the Array Home Page scene.                                |
-| `int statusArray_SD()`        | Handle events from the Array Visualization scene.                            |
+| `int statusHomePage()`        | Handle events from the Home Page screen.                                     |
+| `int statuslinkListPage()`    | Handle events from the Linked List Home Page screen.                         |
+| `int statusLinkList()`        | Handle events from the Linked List Visualization screen.                     |
+| `int statusStack()`           | Handle events from the Stack Visualization screen.                           |
+| `int statusQueue()`           | Handle events from the Queue Visualization screen.                           |
+| `int statusArrayPage()`       | Handle events from the Array Home Page screen.                               |
+| `int statusArray_SD()`        | Handle events from the Array Visualization screen.                           |
 | `void initState()`            | Reinitialize some global variables when switching screens.                   |
 | `void initPressState()`       | Reinitialize some global variables when clicking a button.                   |
 | `bool hoverMouse()`           | Determine if the mouse is hovering over a sprite.                            |
@@ -33,7 +55,7 @@ This file is used to handle all events.
 
 ## linkedList.h
 This file is used to handle various operations related to Linked List.
-### Class SinglyLL
+### SinglyLL Class
 SinglyLL is a class that defines a node in a singly linked list, with method to modify the position, color, data,... of the node and draw it on a render window.
 | Method Name                            | Usage                                                                                      |
 |--------------------------------------- |--------------------------------------------------------------------------------------------|
@@ -58,7 +80,7 @@ SinglyLL is a class that defines a node in a singly linked list, with method to 
 | `Text m_text`                         | Text object representing the data value of the node.                                            |
 | `Text description`                    | Text object representing the description of the node.                                           |
 
-### Function
+### Functions
 
 There are some functions that are called from renderLinkedList.cpp to process user request.
 
@@ -79,7 +101,7 @@ There are some functions that are called from renderLinkedList.cpp to process us
 
 ## stack.h
 This file is used to handle various operations related to Stack.
-### Class StackVisualize 
+### StackVisualize Class
 The StackVisualize class provides functionality to visualize and manipulate a stack data structure.
 
 | Method                                              | Usage                                                         |
@@ -105,7 +127,7 @@ The StackVisualize class provides functionality to visualize and manipulate a st
 
 ## queue.h
 This file is used to handle various operation related to Queue.
-### Class QueueVisualize
+### QueueVisualize Class 
 The QueueVisualize class provides functionality to visualize and manipulate a queue data structure.
 | Method                                                            | Usage                                                     |
 |-------------------------------------------------------------------|-----------------------------------------------------------|
@@ -129,7 +151,7 @@ The QueueVisualize class provides functionality to visualize and manipulate a qu
 
 ## array.h
 This file is used to handle various operation related to Array (static and dynamic).
-### Class ArrayVisualize 
+### ArrayVisualize Class
 The ArrayVisualize class facilitates visualizing and manipulating arrays, offering functionality for adding, deleting, resizing, and modifying element values.
 | Method                                                             | Usage                                                           |
 |--------------------------------------------------------------------|-----------------------------------------------------------------|
@@ -184,7 +206,7 @@ The arrow is used to pointing from one node to another node in Linked List. I dr
 | `Vector2f point1`                                                             | Vector2f representing the start point of the arrow.                 |
 | `Vector2f point2`                                                             | Vector2f representing the end point of the arrow.                   |
 
-###textBox.h
+### textBox.h
 The text box is used to handle the user input and check its validity.
 
 ![textBox](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/textBox.png)
@@ -202,5 +224,46 @@ The text box is used to handle the user input and check its validity.
 | Text description                                                                  | Text object for displaying description text.    |
 | Sprite submitButton                                                               | Sprite representing the submit button.          |
 
+### highLight.h
+The highlight is a rectangle that used to highlight the corresponding line of code. 
+
+![highlight](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/highLight.png)
+
+#### Highlight Class
+
+The Highlight class is used to create a rectangle that represents a highlight object. 
+
+| Method                                    | Usage                                                                                                             |
+|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| Highlight()                               | Constructor for creating a Highlight object.                                                                      |
+| void makeHighlight(int Line, Color color) | Creates a highlight at the specified line with the given color. If no color is provided, a default color is used. |
+| void line(int x)                          | Sets the horizontal position of the highlight line.                                                               |
+| void draw(RenderWindow &window)           | Draws the highlight on the specified window.                                                                      |
+| bool display                              | Indicates whether the highlight should be displayed or not.                                                       |
+
+| Property                                  | Usage                                      |
+|-------------------------------------------|--------------------------------------------|
+| RectangleShape highLight                  | RectangleShape representing the highlight. |
+
+#### Functions
+There are functions that help to highlight corresponding line of code.
+
+| Function                                                           | Usage                                                                          |
+|--------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| void highlightInsertCode(Highlight &highlight)                     | Highlights the code for an insert operation.                                   |
+| void highlightDeleteCode(Highlight &highlight)                     | Highlights the code for a delete operation.                                    |
+| void highlightUpdateCode(Highlight &highlight)                     | Highlights the code for an update operation.                                   |
+| void highlightSearchCode(Highlight &highlight)                     | Highlights the code for a search operation.                                    |
+| void highlightPeekCode(Highlight &highlight)                       | Highlights the code for a peek operation.                                      |
+| void highlightPushCode(Highlight &highlight)                       | Highlights the code for a push operation.                                      |
+| void highlightPopCode(Highlight &highlight)                        | Highlights the code for a pop operation.                                       |
+| void highlightPeekQueue(Highlight &highlight, int peekPos)         | Highlights the code for a peek operation in a queue at the specified position. |
+| void highlightEnqueue(Highlight &highlight)                        | Highlights the code for an enqueue operation.                                  |
+| void highlightDequeue(Highlight &highlight)                        | Highlights the code for a dequeue operation.                                   |
+| void highlightAccessArray(Highlight &highlight )                   | Highlights the code for accessing an array.                                    |
+| void highlightAddArray(Highlight &highlight, bool statusArray)     | Highlights the code for adding an element to an array. If `statusArray` is `true`, it indicates a successful addition.                                                                                                                      |
+| void highlightDeleteArray(Highlight &highlight)                    | Highlights the code for deleting an element from an array.                     |
+| void highlightUpdateArray(Highlight &highlight)                    | Highlights the code for updating an element in an array.                       |
+| void highlightSearchArray(Highlight &highlight, int correctStatus) | Highlights the code for searching an element in an array. If `correctStatus` is provided, it indicates the search result (found or not found).                                                                                                  |
 
 
