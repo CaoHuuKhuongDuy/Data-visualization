@@ -12,7 +12,7 @@
 #include "highLight.h"
 #include "process.h"
 #include "arrow.h"
-#include "singlyLL.h"
+#include "linkedList.h"
 #include "Stack.h"
 #include "Queue.h"
 #include "array.h"

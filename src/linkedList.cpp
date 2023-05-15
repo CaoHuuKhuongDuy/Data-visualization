@@ -1,4 +1,4 @@
-#include "singlyLL.h"
+#include "linkedList.h"
 
 Vector2f upStep[3] = {Vector2f(0, -1.5), Vector2f(0, -3), Vector2f(0, -6)};
 Vector2f straightStep[3] = {Vector2f(2, 0), Vector2f(4, 0), Vector2f(8, 0)};
