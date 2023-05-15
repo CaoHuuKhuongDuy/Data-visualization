@@ -329,16 +329,16 @@ int LinkList(RenderWindow &window) {
             numTextBox = 0;
             break;
         case 12:
-            if (addProcess == 0) {
+            if (addProcess == 0 || addProcess == 5) {
                 addProcess = 5;
-                numTextBox = 0;
+                // numTextBox = 0;
             }
             else input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
             break;
         case 13:
-            if (deleteProcess == 0) {
+            if (deleteProcess == 0 || deleteProcess == 7) {
                 deleteProcess = 7;
-                numTextBox = 0;
+                // numTextBox = 0;
             }
             else input = displayTextBox(window, "Index", posDeleteButton);
             break;

@@ -270,17 +270,11 @@ int Array(RenderWindow &window) {
             input = displayTextBox(window, "Index", posAccessButton);
             break;
         case 43:
-            if (addProcess == 0) {
-                addProcess = 5;
-                numTextBox = 0;
-            }
+            if (addProcess == 0 || addProcess == 5) addProcess = 5;
             else input = displayTextBox(window, ((noTextBox == 0) ? "Index" : "Value"), posAddButton);
             break;
         case 44:
-            if (deleteProcess == 0) {
-                deleteProcess = 4;
-                numTextBox = 0;
-            }
+            if (deleteProcess == 0 || deleteProcess == 4) deleteProcess = 4;
             else input = displayTextBox(window, "Index", posDeleteButton);
             break;
         case 45:

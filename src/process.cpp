@@ -137,7 +137,6 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                     else if (Press(searchButton)) initPressState(15);
                     else if  (headButton && Press(*headButton)) {
                         if (addProcess != 0) {
-                            initPressState(12);
                             userText = "0";
                             input.submit();
                             if (displayNote) {
@@ -148,7 +147,6 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                             addProcess = 4;
                         }
                         else {
-                            initPressState(13);
                             userText = "0";
                             input.submit();
                             if (displayNote) {
@@ -159,7 +157,6 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                     }
                     else if (tailButton && Press(*tailButton)) {
                         if (addProcess != 0) {
-                            initPressState(12);
                             userText = to_string(numNode);
                             input.submit();
                             if (displayNote) {
@@ -170,7 +167,6 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                             addProcess = 4;
                         }
                         else {
-                            initPressState(13);
                             userText = to_string((numNode == 0 ? 0 : numNode - 1));
                             input.submit();
                             if (displayNote) {
@@ -180,20 +176,13 @@ int statusLinkList(RenderWindow &window, Sprite backButton, Sprite importButton,
                         }
                     }
                     else if (specifyButton && Press(*specifyButton)) {
-                        if (addProcess != 0) {
-                            initPressState(12);
-                            addProcess = 4;
-                            noTextBox = 0;
-                        }
-                        else {
-                            initPressState(13);
-                            deleteProcess = 6;
-                            noTextBox = 0;
-                        }
+                        if (addProcess != 0) addProcess = 4;
+                        else deleteProcess = 6;
+                        noTextBox = 0;
                     }
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
-                    for (int i = 0; i < 3; i++) 
-                        if (Press(speedBox[i])) speed = i;
+                    // for (int i = 0; i < 3; i++) 
+                    //     if (Press(speedBox[i])) speed = i;
                 }
                 break;
             case Event::TextEntered:
@@ -243,8 +232,8 @@ int statusStack(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                     else if (Press(pushButton)) initPressState(23);
                     else if (Press(popButton)) initPressState(24); 
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
-                    for (int i = 0; i < 3; i++) 
-                        if (Press(speedBox[i])) speed = i;
+                    // for (int i = 0; i < 3; i++) 
+                    //     if (Press(speedBox[i])) speed = i;
                 }   
                 break;
             case Event::TextEntered:
@@ -298,8 +287,8 @@ int statusQueue(RenderWindow &window, Sprite backButton, Sprite importButton, Sp
                     else if (Press(enqueueButton)) initPressState(33);
                     else if (Press(dequeueButton)) initPressState(34); 
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
-                    for (int i = 0; i < 3; i++) 
-                        if (Press(speedBox[i])) speed = i;
+                    // for (int i = 0; i < 3; i++) 
+                    //     if (Press(speedBox[i])) speed = i;
                 }   
                 break;
             case Event::TextEntered:
@@ -389,7 +378,6 @@ int statusArray_SD(RenderWindow &window, Sprite backButton, Sprite importButton,
                     else if (Press(searchButton)) initPressState(46);
                     else if  (headButton && Press(*headButton)) {
                         if (addProcess != 0) {
-                            initPressState(43);
                             userText = "0";
                             input.submit();
                             if (displayNote) {
@@ -400,7 +388,6 @@ int statusArray_SD(RenderWindow &window, Sprite backButton, Sprite importButton,
                             addProcess = 4;
                         }
                         else {
-                            initPressState(44);
                             userText = "0";
                             input.submit();
                             if (displayNote) {
@@ -411,7 +398,6 @@ int statusArray_SD(RenderWindow &window, Sprite backButton, Sprite importButton,
                     }
                     else if (tailButton && Press(*tailButton)) {
                         if (addProcess != 0) {
-                            initPressState(43);
                             userText = to_string(numNode);
                             input.submit();
                             if (displayNote) {
@@ -422,7 +408,6 @@ int statusArray_SD(RenderWindow &window, Sprite backButton, Sprite importButton,
                             addProcess = 4;
                         }
                         else {
-                            initPressState(44);
                             userText = to_string((numNode == 0 ? 0 : numNode - 1));
                             input.submit();
                             if (displayNote) {
@@ -432,20 +417,13 @@ int statusArray_SD(RenderWindow &window, Sprite backButton, Sprite importButton,
                         }
                     }
                     else if (specifyButton && Press(*specifyButton)) {
-                        if (addProcess != 0) {
-                            initPressState(43);
-                            addProcess = 4;
-                            noTextBox = 0;
-                        }
-                        else {
-                            initPressState(44);
-                            deleteProcess = 3;
-                            noTextBox = 0;
-                        }
+                        if (addProcess != 0) addProcess = 4;
+                        else deleteProcess = 3;
+                        noTextBox = 0;
                     }
                     if (closeButton && Press(*closeButton)) nameCodeId = 0;
-                    for (int i = 0; i < 3; i++) 
-                        if (Press(speedBox[i])) speed = i;
+                    // for (int i = 0; i < 3; i++) 
+                    //     if (Press(speedBox[i])) speed = i;
                 }
                 break;
             case Event::TextEntered:
