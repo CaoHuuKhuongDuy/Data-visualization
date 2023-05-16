@@ -103,7 +103,7 @@ int Stack(RenderWindow &window) {
             input = displayTextBox(window, "v[" + to_string(noTextBox + 1) + "] = ", posCreateButton + Vector2f((noTextBox == 9 ? 0 : 10), 0));
             break;
         case 113:
-            import(window, valueNewNode, numNode);
+            import(window, valueNewNode, numNode, maximumNode);
             createProcess = 1;
             numTextBox = 0;
             break;

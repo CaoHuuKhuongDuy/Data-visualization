@@ -13,7 +13,7 @@
 using namespace std;
 using namespace sf;
 
-void import(RenderWindow &window, int val[], int &numNode);
+void import(RenderWindow &window, int val[], int &numNode, int maximumNode = 10);
 
 
 #endif

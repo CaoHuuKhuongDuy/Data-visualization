@@ -22,14 +22,15 @@ bool validate(string s) {
     return true;
 }
 
-void import(RenderWindow &window, int val[], int &numNode)
+void import(RenderWindow &window, int val[], int &numNode, int maximumNode)
 {
+    maximumNode--;
     string filePath = openFileDialog(window.getSystemHandle());
     if (filePath.empty()) return;
     ifstream ci(filePath);
     numNode = 0;
     string s;
-    while (numNode <= 10 && !ci.eof()) {
+    while (numNode <= maximumNode && !ci.eof()) {
         ci >> s;
         if (validate(s)) val[++numNode] = stoi(s);
     }
