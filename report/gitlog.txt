@@ -1,6 +1,43 @@
-Number of commits: 138
+Number of commits: 142
 
-commit 4a57bef75db34ca65ada76d9aece0ae80dd70d83 (HEAD -> main, origin/main)
+commit f537c978775c6d5e7e5210a47607b6df8de85d44 (HEAD -> main, origin/main)
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 14:45:04 2023 +0700
+
+    debug import from file
+
+commit 3a7e3bd2b385cceaa6877d57138c999de95f3e4a
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 14:06:07 2023 +0700
+
+    add pdf report
+
+commit e0562a78a9a6af60462cb337b3e7ca9ffe58827c
+Merge: 2339eb9 f86b151
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 13:35:40 2023 +0700
+
+    Merge branch 'main' of https://github.com/CaoHuuKhuongDuy/Data-visualization
+
+commit 2339eb90952bb65f842ee8740dddac5d4aa70c78
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 13:35:31 2023 +0700
+
+    change gitlog
+
+commit f86b1519605e4ddd49b516b43581c004465d0b0f
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 13:33:04 2023 +0700
+
+    Update README.md
+
+commit 5dd6c87c48acd9fb2cb8cf5917dbea1266bee86f
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 13:30:55 2023 +0700
+
+    Update README.md
+
+commit 4a57bef75db34ca65ada76d9aece0ae80dd70d83
 Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
 Date:   Tue May 16 13:30:27 2023 +0700
 
