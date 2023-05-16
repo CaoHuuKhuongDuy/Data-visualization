@@ -1,4 +1,116 @@
-commit 57619823acfc612812ac9915ec7ace2363329ff0 (HEAD -> main, origin/main)
+Number of commits: 138
+
+commit 4a57bef75db34ca65ada76d9aece0ae80dd70d83 (HEAD -> main, origin/main)
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 13:30:27 2023 +0700
+
+    add img
+
+commit a6eaf47442e47c63f84f3045cda54130a2d1c5bd
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 13:20:09 2023 +0700
+
+    add img
+
+commit 0966e591a8b04235d11594c6ddaf9a6d1d824a80
+Merge: d21442a 6cfd1ea
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 13:06:41 2023 +0700
+
+    Merge branch 'main' of https://github.com/CaoHuuKhuongDuy/Data-visualization
+
+commit d21442a7e4681b7336beb8db38d470a6e8f19c27
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 13:06:33 2023 +0700
+
+    add img
+
+commit 6cfd1ea43419858341afdf1bcbe2561a71fc2c47
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 12:47:36 2023 +0700
+
+    Rename gitlog.txt to report/gitlog.txt
+
+commit dad64c6053fe03d87ef5856a69aa471ddd03e690
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 12:47:20 2023 +0700
+
+    Rename README.md to report/README.md
+
+commit 6d68ede89022db073ee5e11d84ad2e9a0a8aae07
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 12:46:36 2023 +0700
+
+    Update README.md
+
+commit be53699b48e81ae09af5a9bdfcd5db8add6a05b8
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 12:41:43 2023 +0700
+
+    Update README.md
+
+commit 83e6be161c0c3216764e27426b119020b5a6c5cd
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 12:21:27 2023 +0700
+
+    Update README.md
+
+commit 86b4dbb10b786dfb0ea1c75f38a57185609e8b78
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 03:45:40 2023 +0700
+
+    Update README.md
+
+commit 30b8876e5e22d3c178b46e2bda5ff048a90cb741
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 02:49:33 2023 +0700
+
+    Update README.md
+
+commit 9405b32f4703cae2fb298d05ac7b7dfc9c645b53
+Merge: 515fcfe 51a4a11
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 02:36:10 2023 +0700
+
+    Merge branch 'main' of https://github.com/CaoHuuKhuongDuy/Data-visualization
+
+commit 515fcfe226331359a423a9fb4f6a3581d363fb2f
+Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
+Date:   Tue May 16 02:36:05 2023 +0700
+
+    add git log
+
+commit 51a4a114c5c9e48dd0d70b66c9652dd13d629c0a
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 02:20:30 2023 +0700
+
+    Update README.md
+
+commit 7f230b0572a529b18c65916a53454ce034826381
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 02:00:50 2023 +0700
+
+    Update README.md
+
+commit 8762d3120b134a79466db9f744718d9daa22fef3
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 01:52:58 2023 +0700
+
+    Update README.md
+
+commit 79c7700786fef485819432ed660d31a505e6906a
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 01:50:15 2023 +0700
+
+    Update README.md
+
+commit af65d6b3bf500644f54894a6bed8059ff7ea8d9e
+Author: Cao Huu Khuong Duy <110726215+CaoHuuKhuongDuy@users.noreply.github.com>
+Date:   Tue May 16 01:33:59 2023 +0700
+
+    Update README.md
+
+commit 57619823acfc612812ac9915ec7ace2363329ff0
 Merge: d79df89 cabc397
 Author: CaoHuuKhuongDuy <khuongduy2121@gmail.com>
 Date:   Tue May 16 01:33:35 2023 +0700
