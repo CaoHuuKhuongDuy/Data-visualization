@@ -286,7 +286,9 @@ You can interact with the data structures using the button.
 
 ![button](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/Button_rm.png)
 
-If a text box appears, you need to input a valid value.
+If a text box appears, you need to input a valid value. And the data structures will start the process.
+
+![process](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/process_rm.png)
 
 
 #### [Github repository](https://github.com/CaoHuuKhuongDuy/Data-visualization) 
