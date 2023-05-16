@@ -272,6 +272,21 @@ There are functions that help to highlight corresponding line of code.
 - Run the Data_Visualization.exe `./Data_Visualization.exe`
 
 ## User manual
+This is the Home Screen:
+
+![HomePage](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/HomePage.png)
+
+To select a data structure, click on the icon of that data structure.
+
+For example, Singly Linked List is chosen:
+
+![SinglyLinkedList](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/singlyLinkList_rm.png)
+
+You can interact with the data structures using the button.
+
+![button](https://github.com/CaoHuuKhuongDuy/Data-visualization/blob/main/media/img/Button_rm.png)
+
+If a text box appears, you need to input a valid value.
 
 
 #### [Github repository](https://github.com/CaoHuuKhuongDuy/Data-visualization) 
