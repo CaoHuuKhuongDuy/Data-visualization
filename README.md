@@ -271,6 +271,8 @@ There are functions that help to highlight corresponding line of code.
 - Change the directory to src `cd src`
 - Run the Data_Visualization.exe `./Data_Visualization.exe`
 
+## User manual
+
 
 #### [Github repository](https://github.com/CaoHuuKhuongDuy/Data-visualization) 
 
