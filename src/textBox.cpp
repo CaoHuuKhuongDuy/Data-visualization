@@ -96,7 +96,7 @@ void textBox::submit() {
         case 23:
             displayNote = (numNode == maximumNode);
             if (!displayNote) break;
-            notice = "Note: The maximum number of vertex allowed is" + to_string(maximumNode);
+            notice = "Note: The maximum number of vertex allowed is " + to_string(maximumNode);
             break;
         case 33:
             displayNote = (numNode == maximumNode);
