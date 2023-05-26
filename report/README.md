@@ -16,22 +16,22 @@ The functions in header files are defined in .cpp files with the same name. Howe
 ## render.h
 This file is used to render the screen, and it is devided into 4 files: renderLinkedList.h, renderStack.h, renderQueue.h, and renderArray.h to present each data structure.
 
-| Function Name            | Usage                                                                | File                 |
-|--------------------------|----------------------------------------------------------------------|----------------------|
-| Sprite addSprite()       | Adds a sprite to the window with the specified properties.           | render.h             |
-| void displayText()       | Displays text on the window with the specified properties.           | render.h             |
-| textBox displayTextBox() | Displays a text box on the window at the specified position.         | render.h             |
-| void drawSpeedBox()      | Draws a speed box on the window.                                     | render.h             |
-| void goAndColor()        | Performs operations on a linked list and applies color highlights.   | render.h             |
-| void insertCode()        | Inserts code into the window from a specified file.                  | render.h             |
-| void resizeSprite()      | Resizes a sprite to the specified height and width.                  | render.h             |
-| int homePage()           | Displays the home page and returns the ID of the next screen.        | render.h             |
-| int linkListPage()       | Displays the linked list page and returns the ID of the next screen. | renderLinkedList.h   |
-| int LinkList()           | Implements the linked list and returns the ID of the next screen.    | renderLinkedList.h   |
-| int Stack()              | Implements the stack and returns the ID of the next screen.          | renderStack.h        |
-| int Queue()              | Implements the queue and returns the ID of the next screen.          | renderQueue.h        |
-| int arrayHomePage()      | Displays the array home page and returns the ID of the next screen.  | renderArray.h        |
-| int Array()              | Implements the array and returns the ID of the next screen.          | renderArray.h        |
+| Function Name              | Usage                                                                | File                 |
+|----------------------------|----------------------------------------------------------------------|----------------------|
+| `Sprite addSprite()`       | Adds a sprite to the window with the specified properties.           | render.h             |
+| `void displayText()`       | Displays text on the window with the specified properties.           | render.h             |
+| `textBox displayTextBox()` | Displays a text box on the window at the specified position.         | render.h             |
+| `void drawSpeedBox()`      | Draws a speed box on the window.                                     | render.h             |
+| `void goAndColor()`        | Performs operations on a linked list and applies color highlights.   | render.h             |
+| `void insertCode()`        | Inserts code into the window from a specified file.                  | render.h             |
+| `void resizeSprite()`      | Resizes a sprite to the specified height and width.                  | render.h             |
+| `int homePage()`           | Displays the home page and returns the ID of the next screen.        | render.h             |
+| `int linkListPage()`       | Displays the linked list page and returns the ID of the next screen. | renderLinkedList.h   |
+| `int LinkList()`           | Implements the linked list and returns the ID of the next screen.    | renderLinkedList.h   |
+| `int Stack()`              | Implements the stack and returns the ID of the next screen.          | renderStack.h        |
+| `int Queue()`              | Implements the queue and returns the ID of the next screen.          | renderQueue.h        |
+| `int arrayHomePage()`      | Displays the array home page and returns the ID of the next screen.  | renderArray.h        |
+| `int Array()`              | Implements the array and returns the ID of the next screen.          | renderArray.h        |
 
 
 
